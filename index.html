@@ -9,6 +9,10 @@
 <meta name="author" content="DelTriC Contributors">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://deltric.github.io/">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="kinit_logo.png">
 <meta property="og:title" content="DelTriC — Delaunay Triangulation Clustering">
 <meta property="og:description" content="Density-robust clustering with built-in outlier detection. scikit-learn compatible. Often beats HDBSCAN on both clustering and outlier detection.">
 <meta property="og:type" content="website">
@@ -51,7 +55,7 @@ a:hover{color:var(--accent-hover)}
 /* ── Navigation ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border-light);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
 nav .logo{display:flex;align-items:center;gap:0.6rem}
-nav .logo img{height:32px;width:auto}
+nav .logo img{height:37px;width:auto}
 nav .logo-text{font-weight:800;font-size:1.2rem;color:var(--text);letter-spacing:-0.5px}
 nav .logo-text span{color:var(--accent)}
 nav .nav-links{display:flex;gap:1.5rem;align-items:center}
@@ -71,12 +75,13 @@ nav .nav-links .btn:hover{opacity:0.9;text-decoration:none}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,86,219,0.35);text-decoration:none;color:#fff}
 .btn-secondary{background:var(--surface);color:var(--text);padding:0.85rem 2.2rem;border-radius:var(--radius);font-weight:600;font-size:1rem;border:1px solid var(--border);cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.5rem}
 .btn-secondary:hover{background:var(--surface2);text-decoration:none;border-color:var(--text-light)}
-.code-snippet{margin-top:3rem;background:#1e293b;border:1px solid #334155;border-radius:var(--radius-lg);padding:1.5rem 2rem;text-align:left;max-width:560px;width:100%;position:relative;font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:0.85rem;line-height:1.8;box-shadow:var(--shadow-lg)}
+.code-snippet{margin-top:3rem;background:#1e293b;border:1px solid #334155;border-radius:var(--radius-lg);padding:1.5rem 2rem;text-align:left;max-width:600px;width:100%;position:relative;font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:0.85rem;line-height:1.8;box-shadow:var(--shadow-lg)}
 .code-snippet .comment{color:#64748b}
 .code-snippet .kw{color:#c084fc}
 .code-snippet .fn{color:#60a5fa}
 .code-snippet .str{color:#34d399}
 .code-snippet .num{color:#fbbf24}
+.code-snippet .im{color:#f472b6}
 
 /* ── Sections ── */
 section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
@@ -117,6 +122,8 @@ tbody td{padding:0.55rem 0.8rem;text-align:right;border-bottom:1px solid var(--b
 tbody td:first-child{text-align:left;font-weight:600}
 tbody tr:hover{background:var(--accent-light)}
 tbody tr:last-child td{border-bottom:none}
+tbody tr.trivial{opacity:0.45}
+tbody tr.trivial:hover{opacity:0.65}
 .best{color:var(--green);font-weight:700}
 .winner-badge{display:inline-block;background:var(--green-light);color:var(--green);padding:0.1rem 0.45rem;border-radius:4px;font-size:0.72rem;font-weight:700;margin-left:0.3rem}
 .timeout-cell{color:var(--text-light);font-style:italic}
@@ -141,8 +148,14 @@ tbody tr:last-child td{border-bottom:none}
 .feature h3{font-size:1.05rem;font-weight:700;margin-bottom:0.4rem}
 .feature p{color:var(--text-dim);font-size:0.93rem}
 
-/* ── Code blocks ── */
-pre{background:#1e293b;border:1px solid #334155;border-radius:var(--radius);padding:1.5rem;overflow-x:auto;font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:0.85rem;line-height:1.8;margin:1rem 0;box-shadow:var(--shadow-md)}
+/* ── Code blocks (light theme for install section) ── */
+pre{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:var(--radius);padding:1.5rem;overflow-x:auto;font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:0.85rem;line-height:1.8;margin:1rem 0;box-shadow:var(--shadow-sm)}
+pre .comment{color:#64748b}
+pre .kw{color:#7c3aed}
+pre .fn{color:#2563eb}
+pre .str{color:#059669}
+pre .num{color:#d97706}
+pre .im{color:#db2777}
 code{font-family:'SF Mono','Fira Code','Cascadia Code',monospace}
 .pip-code{background:var(--accent-light);border:1px solid #bfdbfe;border-radius:8px;padding:0.7rem 1.2rem;display:inline-block;font-family:'SF Mono','Fira Code',monospace;font-size:0.9rem;margin:0.5rem 0;color:var(--accent);font-weight:600}
 
@@ -196,8 +209,12 @@ footer a:hover{text-decoration:underline}
     <a href="https://github.com/deltric/deltric" class="btn-secondary">View on GitHub</a>
   </div>
   <div class="code-snippet">
-    <span class="comment"># Auto-param mode — just pass your data</span><br>
-    <span class="kw">from</span> deltric <span class="kw">import</span> <span class="fn">DelTriC</span><br>
+    <span class="comment"># X is a numpy array of shape (n_samples, n_features)</span><br>
+    <span class="kw">from</span> sklearn.datasets <span class="im">import</span> make_blobs<br>
+    <span class="kw">from</span> deltric <span class="kw">import</span> <span class="fn">DelTriC</span><br><br>
+    <span class="comment"># X shape: (500, 2) — 500 points, 2 features</span><br>
+    X, y = <span class="fn">make_blobs</span>(n_samples=<span class="num">500</span>, centers=<span class="num">3</span>,<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cluster_std=<span class="num">0.6</span>, random_state=<span class="num">42</span>)<br><br>
     model = <span class="fn">DelTriC</span>()<br>
     labels = model.<span class="fn">fit_predict</span>(X)<br>
     <span class="fn">print</span>(<span class="str">f"Found {n_clusters} clusters, {n_outliers} outliers"</span>)
@@ -330,17 +347,8 @@ footer a:hover{text-decoration:underline}
       <!-- Filled by JS -->
     </div>
 
-    <h3 class="bench-subtitle">Outlier Detection — AUC</h3>
-    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">Area Under the ROC Curve on real-world outlier detection datasets. Higher is better.</p>
-    <div style="overflow-x:auto;">
-    <table>
-      <thead><tr><th>Dataset</th><th>DelTriC</th><th>HDBSCAN</th><th>K-Means</th></tr></thead>
-      <tbody id="auc-tbody"></tbody>
-    </table>
-    </div>
-
     <h3 class="bench-subtitle">Outlier Detection — F1 Score</h3>
-    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">F1 score (precision-recall harmonic mean) on real-world outlier detection datasets. Higher is better.</p>
+    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">F1 score (precision-recall harmonic mean) on real-world outlier detection datasets. Higher is better. Trivial rows (all 0.0 or all 1.0) are greyed out.</p>
     <div style="overflow-x:auto;">
     <table>
       <thead><tr><th>Dataset</th><th>DelTriC</th><th>HDBSCAN</th><th>K-Means</th></tr></thead>
@@ -349,20 +357,11 @@ footer a:hover{text-decoration:underline}
     </div>
 
     <h3 class="bench-subtitle">Clustering Quality — ARI</h3>
-    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">Adjusted Rand Index on synthetic clustering datasets. Higher is better. Timeout = dataset too large within time limit.</p>
+    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">Adjusted Rand Index on synthetic clustering datasets. Higher is better. Timeout = dataset too large within time limit. Trivial rows are greyed out.</p>
     <div style="overflow-x:auto;">
     <table>
       <thead><tr><th>Dataset</th><th>DelTriC</th><th>HDBSCAN</th><th>K-Means</th><th>True k</th></tr></thead>
       <tbody id="cluster-ari-tbody"></tbody>
-    </table>
-    </div>
-
-    <h3 class="bench-subtitle">Clustering Quality — NMI</h3>
-    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">Normalized Mutual Information on synthetic clustering datasets. Higher is better.</p>
-    <div style="overflow-x:auto;">
-    <table>
-      <thead><tr><th>Dataset</th><th>DelTriC</th><th>HDBSCAN</th><th>K-Means</th><th>True k</th></tr></thead>
-      <tbody id="cluster-nmi-tbody"></tbody>
     </table>
     </div>
 
@@ -380,6 +379,7 @@ footer a:hover{text-decoration:underline}
   <pre><span class="kw">from</span> deltric <span class="kw">import</span> DelTriC
 <span class="kw">import</span> numpy <span class="kw">as</span> np
 
+<span class="comment"># X: numpy array of shape (n_samples, n_features)</span>
 X = np.random.randn(500, 10)
 
 <span class="comment"># Auto-param mode — just pass your data</span>
@@ -440,48 +440,35 @@ function fmt(v, decimals){
   if(v===null||v===undefined) return '<span class="timeout-cell">—</span>';
   return v.toFixed(decimals||4);
 }
-function fmtTime(v){
-  if(v===null||v===undefined) return '—';
-  return v.toFixed(1)+'s';
+
+// Check if a row is "trivial" — all non-null values are identical and are 0 or 1
+function isTrivialRow(vals){
+  const valid = vals.filter(v => v !== null && v !== undefined);
+  if(valid.length === 0) return false;
+  const allSame = valid.every(v => v === valid[0]);
+  if(!allSame) return false;
+  return valid[0] === 0 || valid[0] === 1.0;
 }
 
-// ── Build outlier tables ──
+// ── Build outlier F1 table ──
 (function(){
   const outlierDatasets = Object.keys(OUTLIER_DATA).sort();
   const algos = ['deltric','hdbscan','kmeans--'];
   const algoLabels = {'deltric':'DelTriC','hdbscan':'HDBSCAN','kmeans--':'K-Means'};
 
-  // AUC table
-  const aucBody = document.getElementById('auc-tbody');
-  outlierDatasets.forEach(ds => {
-    const d = OUTLIER_DATA[ds];
-    const vals = algos.map(a => (d[a] && d[a].auc!==null && d[a].auc!==undefined) ? d[a].auc : null);
-    const validVals = vals.filter(v => v !== null);
-    const best = validVals.length ? Math.max(...validVals) : null;
-    let html = '<tr><td>'+ds+'</td>';
-    algos.forEach((a,i) => {
-      const v = vals[i];
-      const isBest = (v !== null && v === best);
-      html += '<td'+(isBest?" class='best'":"")+'>' + fmt(v);
-      if(isBest) html += ' <span class="winner-badge">WIN</span>';
-      html += '</td>';
-    });
-    aucBody.innerHTML += html + '</tr>';
-  });
-
-  // F1 table
   const f1Body = document.getElementById('f1-tbody');
   outlierDatasets.forEach(ds => {
     const d = OUTLIER_DATA[ds];
     const vals = algos.map(a => (d[a] && d[a].f1!==null && d[a].f1!==undefined) ? d[a].f1 : null);
     const validVals = vals.filter(v => v !== null);
     const best = validVals.length ? Math.max(...validVals) : null;
-    let html = '<tr><td>'+ds+'</td>';
+    const trivial = isTrivialRow(vals);
+    let html = '<tr'+(trivial?' class="trivial"':'')+'><td>'+ds+'</td>';
     algos.forEach((a,i) => {
       const v = vals[i];
       const isBest = (v !== null && v === best);
       html += '<td'+(isBest?" class='best'":"")+'>' + fmt(v);
-      if(isBest) html += ' <span class="winner-badge">WIN</span>';
+      if(isBest && !trivial) html += ' <span class="winner-badge">WIN</span>';
       html += '</td>';
     });
     f1Body.innerHTML += html + '</tr>';
@@ -513,19 +500,16 @@ function fmtTime(v){
   const summary = document.getElementById('summary-cards');
   const nDatasets = outlierDatasets.length;
   const nDeltricOk = outlierDatasets.filter(ds => OUTLIER_DATA[ds].deltric && OUTLIER_DATA[ds].deltric.status==='ok').length;
-  const nDeltricTimeout = outlierDatasets.filter(ds => OUTLIER_DATA[ds].deltric && OUTLIER_DATA[ds].deltric.status==='timeout').length;
   summary.innerHTML += '<div class="summary-card"><div class="big">'+nDatasets+'</div><div class="lbl">Outlier datasets</div></div>';
   summary.innerHTML += '<div class="summary-card"><div class="big">'+nDeltricOk+'</div><div class="lbl">DelTriC completed</div></div>';
   summary.innerHTML += '<div class="summary-card"><div class="big">'+Object.keys(CLUSTER_DATA).length+'</div><div class="lbl">Clustering datasets</div></div>';
 })();
 
-// ── Build clustering tables ──
+// ── Build clustering ARI table ──
 (function(){
   const clusterDatasets = Object.keys(CLUSTER_DATA).sort();
   const algos = ['deltric','hdbscan','kmeans--'];
-  const algoLabels = {'deltric':'DelTriC','hdbscan':'HDBSCAN','kmeans--':'K-Means'};
 
-  // ARI table
   const ariBody = document.getElementById('cluster-ari-tbody');
   clusterDatasets.forEach(ds => {
     const d = CLUSTER_DATA[ds];
@@ -533,7 +517,8 @@ function fmtTime(v){
     const vals = algos.map(a => (d[a] && d[a].ari!==null && d[a].ari!==undefined) ? d[a].ari : null);
     const validVals = vals.filter(v => v !== null);
     const best = validVals.length ? Math.max(...validVals) : null;
-    let html = '<tr><td>'+ds+'</td>';
+    const trivial = isTrivialRow(vals);
+    let html = '<tr'+(trivial?' class="trivial"':'')+'><td>'+ds+'</td>';
     algos.forEach((a,i) => {
       const v = vals[i];
       const isBest = (v !== null && v === best);
@@ -542,37 +527,12 @@ function fmtTime(v){
         html += '<td class="timeout-cell">timeout</td>';
       } else {
         html += '<td'+(isBest?" class='best'":"")+'>' + fmt(v);
-        if(isBest) html += ' <span class="winner-badge">WIN</span>';
+        if(isBest && !trivial) html += ' <span class="winner-badge">WIN</span>';
         html += '</td>';
       }
     });
     html += '<td>' + (trueK!==null&&trueK!==undefined ? trueK : '—') + '</td>';
     ariBody.innerHTML += html + '</tr>';
-  });
-
-  // NMI table
-  const nmiBody = document.getElementById('cluster-nmi-tbody');
-  clusterDatasets.forEach(ds => {
-    const d = CLUSTER_DATA[ds];
-    const trueK = d[algos[0]] && d[algos[0]].true_k;
-    const vals = algos.map(a => (d[a] && d[a].nmi!==null && d[a].nmi!==undefined) ? d[a].nmi : null);
-    const validVals = vals.filter(v => v !== null);
-    const best = validVals.length ? Math.max(...validVals) : null;
-    let html = '<tr><td>'+ds+'</td>';
-    algos.forEach((a,i) => {
-      const v = vals[i];
-      const isBest = (v !== null && v === best);
-      const status = d[a] ? d[a].status : 'missing';
-      if(status === 'timeout') {
-        html += '<td class="timeout-cell">timeout</td>';
-      } else {
-        html += '<td'+(isBest?" class='best'":"")+'>' + fmt(v);
-        if(isBest) html += ' <span class="winner-badge">WIN</span>';
-        html += '</td>';
-      }
-    });
-    html += '<td>' + (trueK!==null&&trueK!==undefined ? trueK : '—') + '</td>';
-    nmiBody.innerHTML += html + '</tr>';
   });
 })();
 
