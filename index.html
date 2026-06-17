@@ -65,8 +65,10 @@ nav .nav-links .btn{background:var(--gradient);color:#fff!important;padding:0.45
 nav .nav-links .btn:hover{opacity:0.9;text-decoration:none}
 
 /* ── Hero ── */
-.hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 4rem;position:relative;background:linear-gradient(180deg,#ffffff 0%,#f0f4ff 50%,var(--bg) 100%)}
-.hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(26,86,219,0.06) 0%,transparent 70%);pointer-events:none}
+.hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 4rem;position:relative;background:linear-gradient(180deg,#ffffff 0%,#f0f4ff 50%,var(--bg) 100%);overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:800px;height:900px;background:radial-gradient(circle,rgba(26,86,219,0.06) 0%,transparent 70%);pointer-events:none}
+#particles{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.hero > *:not(#particles){position:relative;z-index:1}
 .hero h1{font-size:clamp(2.4rem,5.5vw,4rem);font-weight:900;letter-spacing:-1.5px;line-height:1.12;margin-bottom:1.2rem;position:relative;color:var(--text)}
 .hero h1 .highlight{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero .subtitle{font-size:clamp(1rem,2.2vw,1.2rem);color:var(--text-dim);max-width:620px;margin-bottom:2.5rem;position:relative}
@@ -203,6 +205,7 @@ footer a:hover{text-decoration:underline}
 
 <!-- Hero -->
 <div class="hero">
+  <canvas id="particles"></canvas>
   <h1>Delaunay Triangulation<br><span class="highlight">Clustering & Outlier Detection</span></h1>
   <p class="subtitle">A scikit-learn compatible algorithm that combines density-robust clustering with built-in outlier detection — often beating HDBSCAN on both tasks simultaneously.</p>
   <div class="cta-row">
@@ -554,6 +557,84 @@ function closeLightbox(e){
 document.addEventListener('keydown', function(e){
   if(e.key === 'Escape') closeLightbox();
 });
+
+// ── Particle network background ──
+(function(){
+  var canvas = document.getElementById('particles');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var N = 20; // number of particles
+  var CONNECT_DIST = 180; // max distance for connection
+  var particles = [];
+
+  function resize(){
+    canvas.width = canvas.parentElement.offsetWidth;
+    canvas.height = canvas.parentElement.offsetHeight;
+  }
+
+  function init(){
+    resize();
+    particles = [];
+    for(var i=0; i<N; i++){
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        r: Math.random() * 1.5 + 1
+      });
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Update positions
+    for(var i=0; i<N; i++){
+      var p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      // Bounce off edges
+      if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      p.x = Math.max(0, Math.min(canvas.width, p.x));
+      p.y = Math.max(0, Math.min(canvas.height, p.y));
+    }
+
+    // Draw connections
+    for(var i=0; i<N; i++){
+      for(var j=i+1; j<N; j++){
+        var dx = particles[i].x - particles[j].x;
+        var dy = particles[i].y - particles[j].y;
+        var dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < CONNECT_DIST){
+          var alpha = (1 - dist / CONNECT_DIST) * 0.25;
+          ctx.strokeStyle = 'rgba(26,86,219,' + alpha + ')';
+          ctx.lineWidth = 0.8;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw dots
+    for(var i=0; i<N; i++){
+      ctx.fillStyle = 'rgba(26,86,219,0.35)';
+      ctx.beginPath();
+      ctx.arc(particles[i].x, particles[i].y, particles[i].r, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  init();
+  draw();
+})();
+
 </script>
 </body>
 </html>
