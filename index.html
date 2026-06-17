@@ -75,13 +75,14 @@ nav .nav-links .btn:hover{opacity:0.9;text-decoration:none}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,86,219,0.35);text-decoration:none;color:#fff}
 .btn-secondary{background:var(--surface);color:var(--text);padding:0.85rem 2.2rem;border-radius:var(--radius);font-weight:600;font-size:1rem;border:1px solid var(--border);cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.5rem}
 .btn-secondary:hover{background:var(--surface2);text-decoration:none;border-color:var(--text-light)}
-.code-snippet{margin-top:3rem;background:#1e293b;border:1px solid #334155;border-radius:var(--radius-lg);padding:1.5rem 2rem;text-align:left;max-width:600px;width:100%;position:relative;font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:0.85rem;line-height:1.8;box-shadow:var(--shadow-lg)}
-.code-snippet .comment{color:#64748b}
-.code-snippet .kw{color:#c084fc}
-.code-snippet .fn{color:#60a5fa}
-.code-snippet .str{color:#34d399}
-.code-snippet .num{color:#fbbf24}
-.code-snippet .im{color:#f472b6}
+.code-snippet{margin-top:3rem;background:#1e293b;border:1px solid #334155;border-radius:var(--radius-lg);padding:1.5rem 2rem;text-align:left;max-width:600px;width:100%;position:relative;font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:0.85rem;line-height:1.8;box-shadow:var(--shadow-lg);color:#e2e8f0}
+.code-snippet .comment{color:#94a3b8}
+.code-snippet .kw{color:#d8b4fe}
+.code-snippet .fn{color:#93c5fd}
+.code-snippet .str{color:#6ee7b7}
+.code-snippet .num{color:#fde68a}
+.code-snippet .im{color:#f9a8d4}
+.code-snippet .mod{color:#7dd3fc}
 
 /* ── Sections ── */
 section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
@@ -210,8 +211,8 @@ footer a:hover{text-decoration:underline}
   </div>
   <div class="code-snippet">
     <span class="comment"># X is a numpy array of shape (n_samples, n_features)</span><br>
-    <span class="kw">from</span> sklearn.datasets <span class="im">import</span> make_blobs<br>
-    <span class="kw">from</span> deltric <span class="kw">import</span> <span class="fn">DelTriC</span><br><br>
+    <span class="kw">from</span> <span class="mod">sklearn.datasets</span> <span class="kw">import</span> <span class="fn">make_blobs</span><br>
+    <span class="kw">from</span> <span class="mod">deltric</span> <span class="kw">import</span> <span class="fn">DelTriC</span><br><br>
     <span class="comment"># X shape: (500, 2) — 500 points, 2 features</span><br>
     X, y = <span class="fn">make_blobs</span>(n_samples=<span class="num">500</span>, centers=<span class="num">3</span>,<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cluster_std=<span class="num">0.6</span>, random_state=<span class="num">42</span>)<br><br>
