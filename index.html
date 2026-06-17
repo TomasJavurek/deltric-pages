@@ -19,180 +19,359 @@
 <meta name="twitter:description" content="Density-robust clustering with built-in outlier detection. Beats HDBSCAN on combined tasks.">
 <meta name="twitter:image" content="https://deltric.github.io/images/phases/nb_bridge_umap_phases.png">
 <style>
-:root{--bg:#0a0e17;--surface:#111827;--surface2:#1a2235;--border:#2a3450;--text:#e2e8f0;--text-dim:#8892a4;--accent:#6366f1;--accent2:#818cf8;--green:#34d399;--yellow:#fbbf24;--gradient:linear-gradient(135deg,#6366f1 0%,#8b5cf6 50%,#a78bfa 100%)}
+:root{
+  --bg:#f8f9fc;
+  --surface:#ffffff;
+  --surface2:#f0f2f7;
+  --border:#d9dce6;
+  --border-light:#e8eaf0;
+  --text:#1a2035;
+  --text-dim:#5a6480;
+  --text-light:#8892a4;
+  --accent:#1a56db;
+  --accent-hover:#164bc2;
+  --accent-light:#e8effc;
+  --accent2:#3b82f6;
+  --green:#059669;
+  --green-light:#ecfdf5;
+  --yellow:#d97706;
+  --gradient:linear-gradient(135deg,#1a56db 0%,#3b82f6 100%);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:0 4px 12px rgba(0,0,0,0.08),0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg:0 12px 40px rgba(0,0,0,0.12),0 4px 12px rgba(0,0,0,0.06);
+  --radius:10px;
+  --radius-lg:16px;
+}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
-a{color:var(--accent2);text-decoration:none}
-a:hover{text-decoration:underline}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,23,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
-nav .logo{font-weight:800;font-size:1.3rem;color:var(--text);letter-spacing:-0.5px}
-nav .logo span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none;transition:color 0.15s}
+a:hover{color:var(--accent-hover)}
+
+/* ── Navigation ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border-light);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+nav .logo{display:flex;align-items:center;gap:0.6rem}
+nav .logo img{height:32px;width:auto}
+nav .logo-text{font-weight:800;font-size:1.2rem;color:var(--text);letter-spacing:-0.5px}
+nav .logo-text span{color:var(--accent)}
 nav .nav-links{display:flex;gap:1.5rem;align-items:center}
 nav .nav-links a{color:var(--text-dim);font-size:0.9rem;font-weight:500;transition:color 0.2s}
 nav .nav-links a:hover{color:var(--text);text-decoration:none}
-nav .nav-links .btn{background:var(--gradient);color:#fff!important;padding:0.4rem 1rem;border-radius:6px;font-weight:600}
-nav .nav-links .btn:hover{opacity:0.9}
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative}
-.hero::before{content:'';position:absolute;top:-50%;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(99,102,241,0.12) 0%,transparent 70%);pointer-events:none}
-.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;letter-spacing:-2px;line-height:1.1;margin-bottom:1.2rem;position:relative}
+nav .nav-links .btn{background:var(--gradient);color:#fff!important;padding:0.45rem 1.1rem;border-radius:8px;font-weight:600;font-size:0.88rem}
+nav .nav-links .btn:hover{opacity:0.9;text-decoration:none}
+
+/* ── Hero ── */
+.hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 4rem;position:relative;background:linear-gradient(180deg,#ffffff 0%,#f0f4ff 50%,var(--bg) 100%)}
+.hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(26,86,219,0.06) 0%,transparent 70%);pointer-events:none}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4rem);font-weight:900;letter-spacing:-1.5px;line-height:1.12;margin-bottom:1.2rem;position:relative;color:var(--text)}
 .hero h1 .highlight{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero .subtitle{font-size:clamp(1rem,2.5vw,1.3rem);color:var(--text-dim);max-width:640px;margin-bottom:2.5rem;position:relative}
+.hero .subtitle{font-size:clamp(1rem,2.2vw,1.2rem);color:var(--text-dim);max-width:620px;margin-bottom:2.5rem;position:relative}
 .hero .cta-row{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;position:relative}
-.btn-primary{background:var(--gradient);color:#fff;padding:0.8rem 2rem;border-radius:8px;font-weight:700;font-size:1rem;border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;display:inline-flex;align-items:center;gap:0.5rem}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,0.3);text-decoration:none}
-.btn-secondary{background:var(--surface2);color:var(--text);padding:0.8rem 2rem;border-radius:8px;font-weight:600;font-size:1rem;border:1px solid var(--border);cursor:pointer;transition:background 0.2s;display:inline-flex;align-items:center;gap:0.5rem}
-.btn-secondary:hover{background:var(--border);text-decoration:none}
-.code-snippet{margin-top:3rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem 2rem;text-align:left;max-width:560px;width:100%;position:relative;font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:0.85rem;line-height:1.8}
-.code-snippet .comment{color:#6b7280}
+.btn-primary{background:var(--gradient);color:#fff;padding:0.85rem 2.2rem;border-radius:var(--radius);font-weight:700;font-size:1rem;border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;display:inline-flex;align-items:center;gap:0.5rem;box-shadow:0 4px 14px rgba(26,86,219,0.25)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,86,219,0.35);text-decoration:none;color:#fff}
+.btn-secondary{background:var(--surface);color:var(--text);padding:0.85rem 2.2rem;border-radius:var(--radius);font-weight:600;font-size:1rem;border:1px solid var(--border);cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.5rem}
+.btn-secondary:hover{background:var(--surface2);text-decoration:none;border-color:var(--text-light)}
+.code-snippet{margin-top:3rem;background:#1e293b;border:1px solid #334155;border-radius:var(--radius-lg);padding:1.5rem 2rem;text-align:left;max-width:560px;width:100%;position:relative;font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:0.85rem;line-height:1.8;box-shadow:var(--shadow-lg)}
+.code-snippet .comment{color:#64748b}
 .code-snippet .kw{color:#c084fc}
-.code-snippet .fn{color:#6366f1}
+.code-snippet .fn{color:#60a5fa}
 .code-snippet .str{color:#34d399}
 .code-snippet .num{color:#fbbf24}
+
+/* ── Sections ── */
 section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
-section h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;letter-spacing:-1px;margin-bottom:1rem}
-section .section-desc{color:var(--text-dim);font-size:1.1rem;max-width:680px;margin-bottom:3rem}
-.steps{display:grid;gap:1.5rem}
-.step{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;display:flex;gap:1.2rem;align-items:flex-start;transition:border-color 0.2s}
-.step:hover{border-color:var(--accent)}
+section h2{font-size:clamp(1.7rem,3.5vw,2.3rem);font-weight:800;letter-spacing:-0.8px;margin-bottom:0.8rem;color:var(--text)}
+section .section-desc{color:var(--text-dim);font-size:1.05rem;max-width:680px;margin-bottom:2.5rem}
+
+/* ── How it works ── */
+.steps{display:grid;gap:1.2rem}
+.step{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);padding:1.5rem;display:flex;gap:1.2rem;align-items:flex-start;transition:border-color 0.2s,box-shadow 0.2s;box-shadow:var(--shadow-sm)}
+.step:hover{border-color:var(--accent);box-shadow:var(--shadow-md)}
 .step-num{background:var(--gradient);color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0}
-.step h3{font-size:1.1rem;font-weight:700;margin-bottom:0.3rem}
-.step p{color:var(--text-dim);font-size:0.95rem}
+.step h3{font-size:1.05rem;font-weight:700;margin-bottom:0.3rem}
+.step p{color:var(--text-dim);font-size:0.93rem}
+
+/* ── Triangulation gallery ── */
 .tri-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-bottom:2rem}
-.tri-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:transform 0.2s,border-color 0.2s}
-.tri-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.tri-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;box-shadow:var(--shadow-sm);cursor:pointer}
+.tri-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
 .tri-card img{width:100%;height:200px;object-fit:cover;display:block}
 .tri-card .label{padding:0.8rem 1rem;font-size:0.85rem;color:var(--text-dim);font-weight:600}
+
+/* ── Phase diagram ── */
 .phase-diagram{display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;margin:2rem 0}
-.phase-diagram img{max-width:48%;min-width:280px;border-radius:12px;border:1px solid var(--border)}
-.bench-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.phase-diagram .phase-item{flex:1;min-width:280px;max-width:48%;text-align:center}
+.phase-diagram img{width:100%;border-radius:var(--radius);border:1px solid var(--border-light);box-shadow:var(--shadow-sm);cursor:pointer}
+.phase-diagram .phase-caption{margin-top:0.6rem;font-size:0.88rem;color:var(--text-dim);font-weight:500}
+
+/* ── Benchmarks ── */
+.bench-section{background:var(--surface);border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light)}
 .bench-wrap{max-width:1100px;margin:0 auto;padding:5rem 2rem}
-table{width:100%;border-collapse:collapse;font-size:0.9rem;margin-bottom:2rem}
-thead th{background:var(--surface2);padding:0.7rem 0.8rem;text-align:right;font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-dim);border-bottom:2px solid var(--border)}
+.bench-wrap > h2{font-size:clamp(1.7rem,3.5vw,2.3rem);font-weight:800;letter-spacing:-0.8px;margin-bottom:0.8rem;color:var(--text)}
+.bench-wrap > .section-desc{color:var(--text-dim);font-size:1.05rem;max-width:680px;margin-bottom:2.5rem}
+.bench-subtitle{font-size:1.15rem;font-weight:700;margin:2.5rem 0 0.8rem;color:var(--text)}
+table{width:100%;border-collapse:collapse;font-size:0.88rem;margin-bottom:2rem;background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
+thead th{background:var(--surface2);padding:0.7rem 0.8rem;text-align:right;font-weight:700;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-dim);border-bottom:2px solid var(--border)}
 thead th:first-child{text-align:left}
-tbody td{padding:0.6rem 0.8rem;text-align:right;border-bottom:1px solid rgba(42,52,80,0.5)}
+tbody td{padding:0.55rem 0.8rem;text-align:right;border-bottom:1px solid var(--border-light);color:var(--text)}
 tbody td:first-child{text-align:left;font-weight:600}
-tbody tr:hover{background:rgba(99,102,241,0.05)}
+tbody tr:hover{background:var(--accent-light)}
+tbody tr:last-child td{border-bottom:none}
 .best{color:var(--green);font-weight:700}
-.winner-badge{display:inline-block;background:rgba(52,211,153,0.15);color:var(--green);padding:0.15rem 0.5rem;border-radius:4px;font-size:0.75rem;font-weight:700;margin-left:0.4rem}
-.summary-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:2rem 0}
-.summary-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center}
-.summary-card .big{font-size:2.2rem;font-weight:900;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.summary-card .lbl{font-size:0.85rem;color:var(--text-dim);margin-top:0.3rem}
-.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.feature{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.8rem;transition:border-color 0.2s}
-.feature:hover{border-color:var(--accent)}
-.feature .icon{font-size:2rem;margin-bottom:0.8rem}
-.feature h3{font-size:1.1rem;font-weight:700;margin-bottom:0.4rem}
-.feature p{color:var(--text-dim);font-size:0.95rem}
-pre{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;overflow-x:auto;font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:0.85rem;line-height:1.8;margin:1rem 0}
-code{font-family:'SF Mono','Fira Code','Cascadia Code',monospace}
-.pip-code{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1.2rem;display:inline-block;font-family:'SF Mono','Fira Code',monospace;font-size:0.9rem;margin:0.5rem 0}
+.winner-badge{display:inline-block;background:var(--green-light);color:var(--green);padding:0.1rem 0.45rem;border-radius:4px;font-size:0.72rem;font-weight:700;margin-left:0.3rem}
+.timeout-cell{color:var(--text-light);font-style:italic}
+.summary-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin:2rem 0}
+.summary-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);padding:1.4rem;text-align:center;box-shadow:var(--shadow-sm)}
+.summary-card .big{font-size:2rem;font-weight:900;color:var(--accent)}
+.summary-card .lbl{font-size:0.82rem;color:var(--text-dim);margin-top:0.3rem}
+
+/* ── Compare bars ── */
 .compare-bar{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem}
-.compare-bar .name{width:130px;font-size:0.85rem;font-weight:600;flex-shrink:0}
+.compare-bar .name{width:130px;font-size:0.85rem;font-weight:600;flex-shrink:0;color:var(--text)}
 .compare-bar .bar-track{flex:1;height:28px;background:var(--surface2);border-radius:6px;overflow:hidden;position:relative}
-.compare-bar .bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:0.6rem;font-size:0.75rem;font-weight:700;color:#fff;min-width:40px}
+.compare-bar .bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:0.6rem;font-size:0.75rem;font-weight:700;color:#fff;min-width:40px;transition:width 0.6s ease}
 .compare-bar .bar-fill.indigo{background:var(--gradient)}
-.compare-bar .bar-fill.gray{background:#4b5563}
-footer{border-top:1px solid var(--border);padding:3rem 2rem;text-align:center;color:var(--text-dim);font-size:0.85rem}
-footer a{color:var(--accent2)}
+.compare-bar .bar-fill.gray{background:#6b7280}
+
+/* ── Features ── */
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.feature{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);padding:1.8rem;transition:border-color 0.2s,box-shadow 0.2s;box-shadow:var(--shadow-sm)}
+.feature:hover{border-color:var(--accent);box-shadow:var(--shadow-md)}
+.feature .icon{font-size:1.8rem;margin-bottom:0.6rem}
+.feature h3{font-size:1.05rem;font-weight:700;margin-bottom:0.4rem}
+.feature p{color:var(--text-dim);font-size:0.93rem}
+
+/* ── Code blocks ── */
+pre{background:#1e293b;border:1px solid #334155;border-radius:var(--radius);padding:1.5rem;overflow-x:auto;font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:0.85rem;line-height:1.8;margin:1rem 0;box-shadow:var(--shadow-md)}
+code{font-family:'SF Mono','Fira Code','Cascadia Code',monospace}
+.pip-code{background:var(--accent-light);border:1px solid #bfdbfe;border-radius:8px;padding:0.7rem 1.2rem;display:inline-block;font-family:'SF Mono','Fira Code',monospace;font-size:0.9rem;margin:0.5rem 0;color:var(--accent);font-weight:600}
+
+/* ── Lightbox ── */
+.lightbox-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:1000;background:rgba(0,0,0,0.85);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:center;justify-content:center;cursor:zoom-out}
+.lightbox-overlay.active{display:flex}
+.lightbox-overlay img{max-width:92vw;max-height:92vh;border-radius:8px;box-shadow:0 24px 80px rgba(0,0,0,0.4);cursor:default}
+.lightbox-close{position:absolute;top:1.2rem;right:1.5rem;color:#fff;font-size:2rem;font-weight:300;cursor:pointer;line-height:1;opacity:0.7;transition:opacity 0.2s;background:none;border:none;padding:0}
+.lightbox-close:hover{opacity:1}
+
+/* ── Footer ── */
+footer{border-top:1px solid var(--border-light);padding:3rem 2rem;text-align:center;color:var(--text-dim);font-size:0.85rem;background:var(--surface)}
+footer a{color:var(--accent)}
+footer a:hover{text-decoration:underline}
+
+/* ── Responsive ── */
 @media(max-width:768px){
-nav .nav-links{gap:0.8rem}
-nav .nav-links a:not(.btn){display:none}
-.phase-diagram img{max-width:100%}
-.compare-bar .name{width:90px;font-size:0.75rem}
+  nav{padding:0 1rem}
+  nav .nav-links{gap:0.8rem}
+  nav .nav-links a{font-size:0.82rem}
+  .hero{padding:6rem 1.2rem 3rem}
+  section{padding:3.5rem 1.2rem}
+  .bench-wrap{padding:3.5rem 1.2rem}
+  .phase-diagram img{max-width:100%}
+  .compare-bar .name{width:90px;font-size:0.78rem}
 }
 </style>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"DelTriC","description":"Delaunay Triangulation Clustering — density-robust clustering with built-in outlier detection","applicationCategory":"Machine Learning Library","operatingSystem":"Python","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"keywords":"clustering, outlier detection, anomaly detection, Delaunay triangulation, unsupervised learning"}
-</script>
 </head>
 <body>
+
+<!-- Navigation -->
 <nav>
-  <div class="logo"><span>&#x25B3;</span> DelTriC</div>
+  <a href="#" class="logo" style="text-decoration:none">
+    <img src="kinit_logo.png" alt="KInIT">
+    <span class="logo-text">Del<span>TriC</span></span>
+  </a>
   <div class="nav-links">
-    <a href="#how-it-works">How It Works</a>
+    <a href="#how">How it works</a>
     <a href="#benchmarks">Benchmarks</a>
     <a href="#install">Install</a>
-    <a href="https://github.com/deltric/deltric" class="btn">GitHub &#x2197;</a>
+    <a href="https://pypi.org/project/deltric/" class="btn">Get it on PyPI →</a>
   </div>
 </nav>
+
+<!-- Hero -->
 <div class="hero">
-  <h1><span class="highlight">DelTriC</span><br>Delaunay Triangulation<br>Clustering</h1>
-  <p class="subtitle">Density-robust clustering with built-in outlier detection. No need to specify <em>k</em>. Handles arbitrary shapes. Often <strong>beats HDBSCAN</strong> on combined clustering and outlier detection.</p>
+  <h1>Delaunay Triangulation<br><span class="highlight">Clustering & Outlier Detection</span></h1>
+  <p class="subtitle">A scikit-learn compatible algorithm that combines density-robust clustering with built-in outlier detection — often beating HDBSCAN on both tasks simultaneously.</p>
   <div class="cta-row">
-    <a href="#install" class="btn-primary">pip install deltric</a>
-    <a href="#benchmarks" class="btn-secondary">See Benchmarks &#x2193;</a>
+    <a href="https://pypi.org/project/deltric/" class="btn-primary">pip install deltric →</a>
+    <a href="https://github.com/deltric/deltric" class="btn-secondary">View on GitHub</a>
   </div>
   <div class="code-snippet">
     <span class="comment"># Auto-param mode — just pass your data</span><br>
-    <span class="kw">from</span> deltric <span class="kw">import</span> DelTriC<br><br>
+    <span class="kw">from</span> deltric <span class="kw">import</span> <span class="fn">DelTriC</span><br>
     model = <span class="fn">DelTriC</span>()<br>
-    labels = model.<span class="fn">fit_predict</span>(X)<br><br>
-    <span class="comment"># labels == -1  → outlier</span><br>
-    <span class="comment"># labels &gt;=  0  → cluster id</span>
+    labels = model.<span class="fn">fit_predict</span>(X)<br>
+    <span class="fn">print</span>(<span class="str">f"Found {n_clusters} clusters, {n_outliers} outliers"</span>)
   </div>
 </div>
-<section>
-  <h2>Why DelTriC?</h2>
-  <p class="section-desc">A fundamentally different approach to clustering that naturally handles varying densities, arbitrary shapes, and outliers — all at once.</p>
-  <div class="features">
-    <div class="feature"><div class="icon">&#x1F3AF;</div><h3>No <em>k</em> Required</h3><p>Automatically determines the number of clusters from the data. No more guessing or elbow methods.</p></div>
-    <div class="feature"><div class="icon">&#x1F537;</div><h3>Arbitrary Shapes</h3><p>Delaunay triangulation captures the natural geometry of your data — moons, circles, spirals, all fair game.</p></div>
-    <div class="feature"><div class="icon">&#x1F50D;</div><h3>Built-in Outlier Detection</h3><p>Outliers emerge naturally as isolated points and tiny components. One algorithm, two tasks.</p></div>
-    <div class="feature"><div class="icon">&#x26A1;</div><h3>Auto-Param Mode</h3><p>Neural-net-derived heuristics pick optimal parameters from your data's edge-length statistics. Just call <code>fit()</code>.</p></div>
-    <div class="feature"><div class="icon">&#x1F527;</div><h3>scikit-learn Compatible</h3><p>Drops into any sklearn pipeline. Supports <code>fit()</code>, <code>fit_predict()</code>, <code>get_params()</code>, <code>set_params()</code>.</p></div>
-    <div class="feature"><div class="icon">&#x1F4CA;</div><h3>Benchmark Proven</h3><p>Evaluated on 23 real-world datasets. Competitive with or beating HDBSCAN on AUC and F1 for outlier detection.</p></div>
-  </div>
-</section>
-<section id="how-it-works">
-  <h2>How It Works</h2>
-  <p class="section-desc">DelTriC uses the mathematical structure of Delaunay triangulation to find clusters — connecting nearby points and cutting edges that bridge different clusters or cross outlier regions.</p>
+
+<!-- How it works -->
+<section id="how">
+  <h2>How it works</h2>
+  <p class="section-desc">DelTriC builds a Delaunay triangulation over the data, then uses a novel neighbor-bridge pruning strategy to separate clusters from outliers — all without assuming uniform density.</p>
   <div class="steps">
-    <div class="step"><div class="step-num">1</div><div><h3>Project to 2D</h3><p>High-dimensional data is projected to 2D using <strong>UMAP</strong> (preserves local structure) or <strong>PCA</strong> (fast, linear). This makes Delaunay triangulation tractable.</p></div></div>
-    <div class="step"><div class="step-num">2</div><div><h3>Delaunay Triangulation</h3><p>Every point is connected to its natural neighbors, forming a mesh of triangles. The result is a complete graph where cluster structure is encoded in edge lengths.</p></div></div>
-    <div class="step"><div class="step-num">3</div><div><h3>Neighbor-Bridge Pruning</h3><p>Edges are pruned using <em>local</em> statistics: for each point, we compute the median and IQR of its neighbor edge lengths. Edges longer than <code>median + prune_param x IQR</code> are cut. This makes the algorithm naturally robust to varying densities.</p></div></div>
-    <div class="step"><div class="step-num">4</div><div><h3>Connected Components &rarr; Clusters</h3><p>The remaining graph's connected components are the clusters. Small components (&le; 5 points) are labeled as outliers (&minus;1).</p></div></div>
-    <div class="step"><div class="step-num">5</div><div><h3>Outlier Refinement</h3><p>A final pass merges borderline anomaly points into nearby clusters or keeps them as outliers based on the <code>anomaly_sensitivity</code> parameter.</p></div></div>
-  </div>
-  <h3 style="margin-top:3rem;margin-bottom:1rem;font-size:1.2rem;">The Pruning Process Visually</h3>
-  <p class="section-desc">Each pair shows a different synthetic dataset. Left: full Delaunay triangulation. Right: after neighbor-bridge pruning — clusters emerge naturally.</p>
-  <div class="tri-gallery" id="tri-gallery"></div>
-  <h3 style="margin-top:3rem;margin-bottom:1rem;font-size:1.2rem;">Phase Diagram: Before &amp; After Pruning</h3>
-  <div class="phase-diagram">
-    <img src="images/phases/nb_bridge_pca_phases.png" alt="DelTriC PCA phase diagram showing full triangulation vs pruned clusters" loading="lazy">
-    <img src="images/phases/nb_bridge_umap_phases.png" alt="DelTriC UMAP phase diagram showing full triangulation vs pruned clusters" loading="lazy">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <h3>Project to lower dimension</h3>
+        <p>Optionally reduce dimensionality with PCA or UMAP to make the Delaunay triangulation tractable and robust.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <h3>Build Delaunay triangulation</h3>
+        <p>Construct the triangulation over the projected points. Each edge connects natural neighbors in the geometric sense.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <h3>Neighbor-bridge pruning</h3>
+        <p>Edges are classified as within-cluster, between-cluster, or outlier edges using local density statistics. Outlier edges are pruned.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div>
+        <h3>Extract clusters & outliers</h3>
+        <p>Connected components of the remaining graph form clusters. Points connected only by pruned edges are flagged as outliers.</p>
+      </div>
+    </div>
   </div>
 </section>
-<section id="benchmarks" class="bench-section">
+
+<!-- Triangulation gallery -->
+<section id="gallery">
+  <h2>Triangulation in action</h2>
+  <p class="section-desc">Click any image to enlarge. Each pair shows the full Delaunay triangulation (left) and the result after neighbor-bridge pruning (right).</p>
+  <div class="tri-gallery">
+    <div class="tri-card" onclick="openLightbox(this)">
+      <img src="images/triangulation/tri_test1_density_full.png" alt="Full Delaunay triangulation — Varying Density" loading="lazy">
+      <div class="label">Full Triangulation — Varying Density</div>
+    </div>
+    <div class="tri-card" onclick="openLightbox(this)">
+      <img src="images/triangulation/tri_test1_density_pruning.png" alt="After pruning — Varying Density" loading="lazy">
+      <div class="label">After Pruning — Varying Density</div>
+    </div>
+    <div class="tri-card" onclick="openLightbox(this)">
+      <img src="images/triangulation/tri_test2_bridge_full.png" alt="Full Delaunay triangulation — Bridge Clusters" loading="lazy">
+      <div class="label">Full Triangulation — Bridge Clusters</div>
+    </div>
+    <div class="tri-card" onclick="openLightbox(this)">
+      <img src="images/triangulation/tri_test2_bridge_pruning.png" alt="After pruning — Bridge Clusters" loading="lazy">
+      <div class="label">After Pruning — Bridge Clusters</div>
+    </div>
+    <div class="tri-card" onclick="openLightbox(this)">
+      <img src="images/triangulation/tri_test3_circles_full.png" alt="Full Delaunay triangulation — Concentric Circles" loading="lazy">
+      <div class="label">Full Triangulation — Concentric Circles</div>
+    </div>
+    <div class="tri-card" onclick="openLightbox(this)">
+      <img src="images/triangulation/tri_test3_circles_pruning.png" alt="After pruning — Concentric Circles" loading="lazy">
+      <div class="label">After Pruning — Concentric Circles</div>
+    </div>
+    <div class="tri-card" onclick="openLightbox(this)">
+      <img src="images/triangulation/tri_test4_moons_full.png" alt="Full Delaunay triangulation — Moons" loading="lazy">
+      <div class="label">Full Triangulation — Moons</div>
+    </div>
+    <div class="tri-card" onclick="openLightbox(this)">
+      <img src="images/triangulation/tri_test4_moons_pruning.png" alt="After pruning — Moons" loading="lazy">
+      <div class="label">After Pruning — Moons</div>
+    </div>
+    <div class="tri-card" onclick="openLightbox(this)">
+      <img src="images/triangulation/tri_test5_mixed_full.png" alt="Full Delaunay triangulation — Mixed Sizes" loading="lazy">
+      <div class="label">Full Triangulation — Mixed Sizes</div>
+    </div>
+    <div class="tri-card" onclick="openLightbox(this)">
+      <img src="images/triangulation/tri_test5_mixed_pruning.png" alt="After pruning — Mixed Sizes" loading="lazy">
+      <div class="label">After Pruning — Mixed Sizes</div>
+    </div>
+    <div class="tri-card" onclick="openLightbox(this)">
+      <img src="images/triangulation/tri_test6_multiscale_full.png" alt="Full Delaunay triangulation — Multi-Scale" loading="lazy">
+      <div class="label">Full Triangulation — Multi-Scale</div>
+    </div>
+    <div class="tri-card" onclick="openLightbox(this)">
+      <img src="images/triangulation/tri_test6_multiscale_pruning.png" alt="After pruning — Multi-Scale" loading="lazy">
+      <div class="label">After Pruning — Multi-Scale</div>
+    </div>
+    <div class="tri-card" onclick="openLightbox(this)">
+      <img src="images/triangulation/tri_test8_wellsep_full.png" alt="Full Delaunay triangulation — Well-Separated" loading="lazy">
+      <div class="label">Full Triangulation — Well-Separated</div>
+    </div>
+    <div class="tri-card" onclick="openLightbox(this)">
+      <img src="images/triangulation/tri_test8_wellsep_pruning.png" alt="After pruning — Well-Separated" loading="lazy">
+      <div class="label">After Pruning — Well-Separated</div>
+    </div>
+  </div>
+</section>
+
+<!-- Phase diagram -->
+<section>
+  <h2>Algorithm phases</h2>
+  <p class="section-desc">The neighbor-bridge pruning operates in two phases: first identifying outlier edges, then pruning between-cluster bridges. Click to enlarge.</p>
+  <div class="phase-diagram">
+    <div class="phase-item">
+      <img src="images/phases/nb_bridge_pca_phases.png" alt="Phase diagram — PCA projection" loading="lazy" onclick="openLightbox(this)">
+      <div class="phase-caption">PCA projection</div>
+    </div>
+    <div class="phase-item">
+      <img src="images/phases/nb_bridge_umap_phases.png" alt="Phase diagram — UMAP projection" loading="lazy" onclick="openLightbox(this)">
+      <div class="phase-caption">UMAP projection</div>
+    </div>
+  </div>
+</section>
+
+<!-- Benchmarks -->
+<div class="bench-section" id="benchmarks">
   <div class="bench-wrap">
     <h2>Benchmarks</h2>
-    <p class="section-desc">Evaluated on 23 real-world outlier-detection datasets against HDBSCAN and K-Means. DelTriC runs in both PCA and UMAP projection modes.</p>
-    <div class="summary-cards">
-      <div class="summary-card"><div class="big">6</div><div class="lbl">AUC wins — DelTriC PCA (out of 23 datasets)</div></div>
-      <div class="summary-card"><div class="big">3</div><div class="lbl">AUC wins — DelTriC UMAP (out of 23 datasets)</div></div>
-      <div class="summary-card"><div class="big">0.63</div><div class="lbl">Mean AUC — DelTriC UMAP (vs 0.69 HDBSCAN, 0.62 K-Means)</div></div>
-      <div class="summary-card"><div class="big">23</div><div class="lbl">Real-world datasets tested</div></div>
+    <p class="section-desc">DelTriC is evaluated on standard outlier detection and clustering benchmarks against HDBSCAN and K-Means. Data is loaded dynamically from benchmark CSV files.</p>
+
+    <div class="summary-cards" id="summary-cards">
+      <!-- Filled by JS -->
     </div>
-    <h3 style="margin:2.5rem 0 1rem;font-size:1.2rem;">Outlier Detection — AUC Score</h3>
-    <p class="section-desc">Higher is better. Best result per dataset is <span class="best">highlighted green</span>. <span class="winner-badge">WIN</span> marks the overall winner per dataset.</p>
+
+    <h3 class="bench-subtitle">Outlier Detection — AUC</h3>
+    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">Area Under the ROC Curve on real-world outlier detection datasets. Higher is better.</p>
     <div style="overflow-x:auto;">
     <table>
-      <thead><tr><th>Dataset</th><th>DelTriC PCA</th><th>DelTriC UMAP</th><th>HDBSCAN</th><th>K-Means</th></tr></thead>
+      <thead><tr><th>Dataset</th><th>DelTriC</th><th>HDBSCAN</th><th>K-Means</th></tr></thead>
       <tbody id="auc-tbody"></tbody>
     </table>
     </div>
-    <h3 style="margin:2.5rem 0 1rem;font-size:1.2rem;">Outlier Detection — F1 Score</h3>
+
+    <h3 class="bench-subtitle">Outlier Detection — F1 Score</h3>
+    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">F1 score (precision-recall harmonic mean) on real-world outlier detection datasets. Higher is better.</p>
     <div style="overflow-x:auto;">
     <table>
-      <thead><tr><th>Dataset</th><th>DelTriC PCA</th><th>DelTriC UMAP</th><th>HDBSCAN</th><th>K-Means</th></tr></thead>
+      <thead><tr><th>Dataset</th><th>DelTriC</th><th>HDBSCAN</th><th>K-Means</th></tr></thead>
       <tbody id="f1-tbody"></tbody>
     </table>
     </div>
-    <h3 style="margin:2.5rem 0 1rem;font-size:1.2rem;">Visual Summary — AUC Wins</h3>
+
+    <h3 class="bench-subtitle">Clustering Quality — ARI</h3>
+    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">Adjusted Rand Index on synthetic clustering datasets. Higher is better. Timeout = dataset too large within time limit.</p>
+    <div style="overflow-x:auto;">
+    <table>
+      <thead><tr><th>Dataset</th><th>DelTriC</th><th>HDBSCAN</th><th>K-Means</th><th>True k</th></tr></thead>
+      <tbody id="cluster-ari-tbody"></tbody>
+    </table>
+    </div>
+
+    <h3 class="bench-subtitle">Clustering Quality — NMI</h3>
+    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">Normalized Mutual Information on synthetic clustering datasets. Higher is better.</p>
+    <div style="overflow-x:auto;">
+    <table>
+      <thead><tr><th>Dataset</th><th>DelTriC</th><th>HDBSCAN</th><th>K-Means</th><th>True k</th></tr></thead>
+      <tbody id="cluster-nmi-tbody"></tbody>
+    </table>
+    </div>
+
+    <h3 class="bench-subtitle" style="margin-top:2.5rem;">Visual Summary — AUC Wins</h3>
     <div id="auc-bars" style="max-width:600px;"></div>
   </div>
 </section>
+
+<!-- Install -->
 <section id="install">
   <h2>Install &amp; Use</h2>
   <p class="section-desc">Install from PyPI and start clustering in 3 lines.</p>
@@ -231,54 +410,188 @@ pipe = <span class="fn">Pipeline</span>([
 ])
 labels = pipe.<span class="fn">fit_predict</span>(X)</pre>
 </section>
+
+<!-- CTA -->
 <section style="text-align:center;padding-bottom:6rem;">
   <h2>Ready to try it?</h2>
   <p class="section-desc" style="margin-left:auto;margin-right:auto;">Install DelTriC and discover clusters your current algorithm is missing.</p>
-  <a href="https://pypi.org/project/deltric/" class="btn-primary" style="font-size:1.1rem;padding:1rem 2.5rem;">pip install deltric &#x2192;</a>
+  <a href="https://pypi.org/project/deltric/" class="btn-primary" style="font-size:1.1rem;padding:1rem 2.5rem;">pip install deltric →</a>
   <br><br>
-  <a href="https://github.com/deltric/deltric" style="color:var(--text-dim);font-size:0.9rem;">View source on GitHub &#x2197;</a>
+  <a href="https://github.com/deltric/deltric" style="color:var(--text-dim);font-size:0.9rem;">View source on GitHub ↗</a>
 </section>
+
+<!-- Footer -->
 <footer>
   <p>DelTriC — Delaunay Triangulation Clustering</p>
-  <p style="margin-top:0.5rem;"><a href="https://pypi.org/project/deltric/">PyPI</a> &middot; <a href="https://github.com/deltric/deltric">GitHub</a> &middot; <a href="https://github.com/deltric/deltric/issues">Issues</a></p>
+  <p style="margin-top:0.5rem;"><a href="https://pypi.org/project/deltric/">PyPI</a> · <a href="https://github.com/deltric/deltric">GitHub</a> · <a href="https://github.com/deltric/deltric/issues">Issues</a></p>
   <p style="margin-top:1rem;font-size:0.75rem;">Licensed under MIT</p>
 </footer>
+
+<!-- Lightbox overlay -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+  <img src="" alt="Enlarged view" id="lightbox-img">
+</div>
+
+<script src="benchmark-data.js"></script>
 <script>
-const datasets=["ALOI","Annthyroid","Arrhythmia","Cardiotocography","Glass","HeartDisease","Hepatitis","InternetAds","Ionosphere","KDDCup99","Lymphography","PageBlocks","Parkinson","PenDigits","Pima","Shuttle","SpamBase","Stamps","WBC","WDBC","WPBC","Waveform","Wilt"];
-const aucData={"ALOI":{pca:0.5198,umap:0.5206,hdbscan:0.6974,kmeans:0.509},"Annthyroid":{pca:0.516,umap:0.5152,hdbscan:0.54,kmeans:0.5203},"Arrhythmia":{pca:0.64,umap:0.6004,hdbscan:0.5505,kmeans:0.5984},"Cardiotocography":{pca:0.553,umap:0.5858,hdbscan:0.632,kmeans:0.6373},"Glass":{pca:0.5623,umap:0.729,hdbscan:0.6656,kmeans:0.5287},"HeartDisease":{pca:0.5581,umap:0.4833,hdbscan:0.7067,kmeans:0.6162},"Hepatitis":{pca:0.4478,umap:0.7214,hdbscan:null,kmeans:0.4701},"InternetAds":{pca:0.7362,umap:0.6842,hdbscan:null,kmeans:0.7162},"Ionosphere":{pca:0.6644,umap:0.8222,hdbscan:0.7244,kmeans:0.8244},"KDDCup99":{pca:0.6798,umap:0.5428,hdbscan:0.6524,kmeans:0.5927},"Lymphography":{pca:0.581,umap:0.8228,hdbscan:0.8157,kmeans:0.8192},"PageBlocks":{pca:0.6805,umap:0.5901,hdbscan:0.8054,kmeans:0.7989},"Parkinson":{pca:0.9896,umap:0.7396,hdbscan:0.9583,kmeans:0.9896},"PenDigits":{pca:0.4614,umap:0.5113,hdbscan:0.9325,kmeans:0.4987},"Pima":{pca:0.5032,umap:0.5499,hdbscan:0.6822,kmeans:0.5874},"Shuttle":{pca:0.6513,umap:0.5734,hdbscan:0.8771,kmeans:0.6473},"SpamBase":{pca:0.6067,umap:0.5849,hdbscan:0.6572,kmeans:0.5647},"Stamps":{pca:0.5711,umap:0.5479,hdbscan:0.5824,kmeans:0.5646},"WBC":{pca:0.9577,umap:0.9577,hdbscan:0.9218,kmeans:0.7836},"WDBC":{pca:0.879,umap:0.8748,hdbscan:0.7273,kmeans:0.636},"WPBC":{pca:0.4735,umap:0.4735,hdbscan:0.3885,kmeans:0.4868},"Waveform":{pca:0.5054,umap:0.513,hdbscan:0.5542,kmeans:0.5784},"Wilt":{pca:0.4875,umap:0.49,hdbscan:0.5613,kmeans:0.4653}};
-const f1Data={"ALOI":{pca:0.0663,umap:0.0721,hdbscan:0.0978,kmeans:0.0496},"Annthyroid":{pca:0.0829,umap:0.0687,hdbscan:0.1324,kmeans:0.0901},"Arrhythmia":{pca:0.2759,umap:0.2222,hdbscan:0.0991,kmeans:0.2143},"Cardiotocography":{pca:0.1654,umap:0.2329,hdbscan:0.3226,kmeans:0.2828},"Glass":{pca:0.129,umap:0.2941,hdbscan:0.1667,kmeans:0.0952},"HeartDisease":{pca:0.1667,umap:0,hdbscan:0.1373,kmeans:0.2353},"Hepatitis":{pca:0,umap:0.2,hdbscan:0.0822,kmeans:0},"InternetAds":{pca:0.4941,umap:0.3571,hdbscan:0.0951,kmeans:0.4124},"Ionosphere":{pca:0.4444,umap:0.5333,hdbscan:0.0882,kmeans:0.5714},"KDDCup99":{pca:0.0901,umap:0.0843,hdbscan:0.0207,kmeans:0.1652},"Lymphography":{pca:0.0916,umap:0.6154,hdbscan:0.5333,kmeans:0.5714},"PageBlocks":{pca:0.475,umap:0.2824,hdbscan:0.4453,kmeans:0.5501},"Parkinson":{pca:0.8,umap:0.5,hdbscan:0.5,kmeans:0.8},"PenDigits":{pca:0,umap:0.0069,hdbscan:0.0292,kmeans:0},"Pima":{pca:0.0465,umap:0.1404,hdbscan:0.1731,kmeans:0.2},"Shuttle":{pca:0.3636,umap:0.1818,hdbscan:0.5263,kmeans:0.2667},"SpamBase":{pca:0.2381,umap:0.2321,hdbscan:0.1348,kmeans:0.1634},"Stamps":{pca:0.1818,umap:0.1481,hdbscan:0.2308,kmeans:0.1622},"WBC":{pca:0.5263,umap:0.5263,hdbscan:0.5806,kmeans:0.5217},"WDBC":{pca:0.4848,umap:0.4444,hdbscan:0.1011,kmeans:0.2609},"WPBC":{pca:0,umap:0,hdbscan:0.0227,kmeans:0},"Waveform":{pca:0.0301,umap:0.0557,hdbscan:0.063,kmeans:0.1652},"Wilt":{pca:0,umap:0.0104,hdbscan:0.1143,kmeans:0.0034}};
-function fmt(v){return v===null||v===undefined?"&mdash;":v.toFixed(4)}
-function buildTable(tbodyId,data){
-  const tbody=document.getElementById(tbodyId);
-  datasets.forEach(ds=>{
-    const d=data[ds];
-    const vals=[d.pca,d.umap,d.hdbscan,d.kmeans];
-    const best=Math.max(...vals.filter(v=>v!==null&&v!==undefined));
-    let html="<tr><td>"+ds+"</td>";
-    ["pca","umap","hdbscan","kmeans"].forEach(k=>{
-      const v=d[k];
-      const cls=(v===best&&v>0)?" class='best'":""; 
-      html+="<td"+cls+">"+fmt(v);
-      if(v===best&&v>0) html+=" <span class='winner-badge'>WIN</span>";
-      html+="</td>";
-    });
-    tbody.innerHTML+=html+"</tr>";
-  });
+// ── Helpers ──
+function fmt(v, decimals){
+  if(v===null||v===undefined) return '<span class="timeout-cell">—</span>';
+  return v.toFixed(decimals||4);
 }
-buildTable("auc-tbody",aucData);
-buildTable("f1-tbody",f1Data);
-const aucWins={"DelTriC PCA":6,"DelTriC UMAP":3,"HDBSCAN":10,"K-Means":4};
-const barC=document.getElementById("auc-bars");
-Object.entries(aucWins).forEach(([name,count])=>{
-  const pct=(count/12)*100;
-  const cls=name.includes("DelTriC")?"indigo":"gray";
-  barC.innerHTML+='<div class="compare-bar"><div class="name">'+name+'</div><div class="bar-track"><div class="bar-fill '+cls+'"="width:'+pct+'%">'+count+'</div></div></div>';
-});
-const triScenarios=[{p:"tri_test1_density",t:"Varying Density"},{p:"tri_test2_bridge",t:"Bridge Clusters"},{p:"tri_test3_circles",t:"Concentric Circles"},{p:"tri_test4_moons",t:"Moons"},{p:"tri_test5_mixed",t:"Mixed Sizes"},{p:"tri_test6_multiscale",t:"Multi-Scale"},{p:"tri_test8_wellsep",t:"Well-Separated"}];
-const gal=document.getElementById("tri-gallery");
-triScenarios.forEach(s=>{
-  gal.innerHTML+='<div class="tri-card"><img src="images/triangulation/'+s.p+'_full.png" alt="Full Delaunay triangulation - '+s.t+'" loading="lazy"><div class="label">Full Triangulation &mdash; '+s.t+'</div></div>';
-  gal.innerHTML+='<div class="tri-card"><img src="images/triangulation/'+s.p+'_pruning.png" alt="After neighbor-bridge pruning - '+s.t+'" loading="lazy"><div class="label">After Pruning &mdash; '+s.t+'</div></div>';
+function fmtTime(v){
+  if(v===null||v===undefined) return '—';
+  return v.toFixed(1)+'s';
+}
+
+// ── Build outlier tables ──
+(function(){
+  const outlierDatasets = Object.keys(OUTLIER_DATA).sort();
+  const algos = ['deltric','hdbscan','kmeans--'];
+  const algoLabels = {'deltric':'DelTriC','hdbscan':'HDBSCAN','kmeans--':'K-Means'};
+
+  // AUC table
+  const aucBody = document.getElementById('auc-tbody');
+  outlierDatasets.forEach(ds => {
+    const d = OUTLIER_DATA[ds];
+    const vals = algos.map(a => (d[a] && d[a].auc!==null && d[a].auc!==undefined) ? d[a].auc : null);
+    const validVals = vals.filter(v => v !== null);
+    const best = validVals.length ? Math.max(...validVals) : null;
+    let html = '<tr><td>'+ds+'</td>';
+    algos.forEach((a,i) => {
+      const v = vals[i];
+      const isBest = (v !== null && v === best);
+      html += '<td'+(isBest?" class='best'":"")+'>' + fmt(v);
+      if(isBest) html += ' <span class="winner-badge">WIN</span>';
+      html += '</td>';
+    });
+    aucBody.innerHTML += html + '</tr>';
+  });
+
+  // F1 table
+  const f1Body = document.getElementById('f1-tbody');
+  outlierDatasets.forEach(ds => {
+    const d = OUTLIER_DATA[ds];
+    const vals = algos.map(a => (d[a] && d[a].f1!==null && d[a].f1!==undefined) ? d[a].f1 : null);
+    const validVals = vals.filter(v => v !== null);
+    const best = validVals.length ? Math.max(...validVals) : null;
+    let html = '<tr><td>'+ds+'</td>';
+    algos.forEach((a,i) => {
+      const v = vals[i];
+      const isBest = (v !== null && v === best);
+      html += '<td'+(isBest?" class='best'":"")+'>' + fmt(v);
+      if(isBest) html += ' <span class="winner-badge">WIN</span>';
+      html += '</td>';
+    });
+    f1Body.innerHTML += html + '</tr>';
+  });
+
+  // AUC Wins bar chart
+  const wins = {'DelTriC':0,'HDBSCAN':0,'K-Means':0};
+  outlierDatasets.forEach(ds => {
+    const d = OUTLIER_DATA[ds];
+    const vals = {};
+    algos.forEach(a => { vals[a] = (d[a] && d[a].auc!==null) ? d[a].auc : null; });
+    const valid = algos.filter(a => vals[a] !== null);
+    if(!valid.length) return;
+    const bestVal = Math.max(...valid.map(a => vals[a]));
+    const winners = valid.filter(a => vals[a] === bestVal);
+    if(winners.length === 1) {
+      wins[algoLabels[winners[0]]]++;
+    }
+  });
+  const total = Object.values(wins).reduce((a,b)=>a+b,0);
+  const barC = document.getElementById('auc-bars');
+  Object.entries(wins).forEach(([name,count]) => {
+    const pct = total > 0 ? (count/total)*100 : 0;
+    const cls = name.includes('DelTriC') ? 'indigo' : 'gray';
+    barC.innerHTML += '<div class="compare-bar"><div class="name">'+name+'</div><div class="bar-track"><div class="bar-fill '+cls+'" style="width:'+pct.toFixed(0)+'%">'+count+'</div></div></div>';
+  });
+
+  // Summary cards
+  const summary = document.getElementById('summary-cards');
+  const nDatasets = outlierDatasets.length;
+  const nDeltricOk = outlierDatasets.filter(ds => OUTLIER_DATA[ds].deltric && OUTLIER_DATA[ds].deltric.status==='ok').length;
+  const nDeltricTimeout = outlierDatasets.filter(ds => OUTLIER_DATA[ds].deltric && OUTLIER_DATA[ds].deltric.status==='timeout').length;
+  summary.innerHTML += '<div class="summary-card"><div class="big">'+nDatasets+'</div><div class="lbl">Outlier datasets</div></div>';
+  summary.innerHTML += '<div class="summary-card"><div class="big">'+nDeltricOk+'</div><div class="lbl">DelTriC completed</div></div>';
+  summary.innerHTML += '<div class="summary-card"><div class="big">'+Object.keys(CLUSTER_DATA).length+'</div><div class="lbl">Clustering datasets</div></div>';
+})();
+
+// ── Build clustering tables ──
+(function(){
+  const clusterDatasets = Object.keys(CLUSTER_DATA).sort();
+  const algos = ['deltric','hdbscan','kmeans--'];
+  const algoLabels = {'deltric':'DelTriC','hdbscan':'HDBSCAN','kmeans--':'K-Means'};
+
+  // ARI table
+  const ariBody = document.getElementById('cluster-ari-tbody');
+  clusterDatasets.forEach(ds => {
+    const d = CLUSTER_DATA[ds];
+    const trueK = d[algos[0]] && d[algos[0]].true_k;
+    const vals = algos.map(a => (d[a] && d[a].ari!==null && d[a].ari!==undefined) ? d[a].ari : null);
+    const validVals = vals.filter(v => v !== null);
+    const best = validVals.length ? Math.max(...validVals) : null;
+    let html = '<tr><td>'+ds+'</td>';
+    algos.forEach((a,i) => {
+      const v = vals[i];
+      const isBest = (v !== null && v === best);
+      const status = d[a] ? d[a].status : 'missing';
+      if(status === 'timeout') {
+        html += '<td class="timeout-cell">timeout</td>';
+      } else {
+        html += '<td'+(isBest?" class='best'":"")+'>' + fmt(v);
+        if(isBest) html += ' <span class="winner-badge">WIN</span>';
+        html += '</td>';
+      }
+    });
+    html += '<td>' + (trueK!==null&&trueK!==undefined ? trueK : '—') + '</td>';
+    ariBody.innerHTML += html + '</tr>';
+  });
+
+  // NMI table
+  const nmiBody = document.getElementById('cluster-nmi-tbody');
+  clusterDatasets.forEach(ds => {
+    const d = CLUSTER_DATA[ds];
+    const trueK = d[algos[0]] && d[algos[0]].true_k;
+    const vals = algos.map(a => (d[a] && d[a].nmi!==null && d[a].nmi!==undefined) ? d[a].nmi : null);
+    const validVals = vals.filter(v => v !== null);
+    const best = validVals.length ? Math.max(...validVals) : null;
+    let html = '<tr><td>'+ds+'</td>';
+    algos.forEach((a,i) => {
+      const v = vals[i];
+      const isBest = (v !== null && v === best);
+      const status = d[a] ? d[a].status : 'missing';
+      if(status === 'timeout') {
+        html += '<td class="timeout-cell">timeout</td>';
+      } else {
+        html += '<td'+(isBest?" class='best'":"")+'>' + fmt(v);
+        if(isBest) html += ' <span class="winner-badge">WIN</span>';
+        html += '</td>';
+      }
+    });
+    html += '<td>' + (trueK!==null&&trueK!==undefined ? trueK : '—') + '</td>';
+    nmiBody.innerHTML += html + '</tr>';
+  });
+})();
+
+// ── Lightbox ──
+function openLightbox(el){
+  var img = el.tagName === 'IMG' ? el : el.querySelector('img');
+  if(!img) return;
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox-img').alt = img.alt || 'Enlarged view';
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e){
+  if(e) e.stopPropagation();
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeLightbox();
 });
 </script>
 </body>
