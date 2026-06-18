@@ -4,11 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DelTriC — Delaunay Triangulation Clustering | Outlier Detection & Clustering</title>
-<meta name="description" content="DelTriC: Density-robust clustering with built-in outlier detection using Delaunay triangulation. Beats HDBSCAN on combined clustering and outlier detection. scikit-learn compatible.">
-<meta name="keywords" content="clustering, outlier detection, anomaly detection, Delaunay triangulation, unsupervised learning, machine learning, scikit-learn, HDBSCAN alternative, density clustering, Python clustering library">
+<meta name="description" content="DelTriC is a scikit-learn compatible Python library for density-robust clustering with built-in outlier detection using Delaunay triangulation. Often beats HDBSCAN on combined clustering and outlier detection tasks.">
+<meta name="keywords" content="clustering, outlier detection, anomaly detection, Delaunay triangulation, unsupervised learning, machine learning, scikit-learn, HDBSCAN alternative, density clustering, Python clustering library, DelTriC">
 <meta name="author" content="DelTriC Contributors">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deltric.github.io/">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="bingbot" content="index, follow">
+<link rel="canonical" href="https://tomasjavurek.github.io/deltric-pages/">
+<!-- Structured data for Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DelTriC",
+  "description": "Density-robust clustering with built-in outlier detection using Delaunay triangulation. scikit-learn compatible Python library.",
+  "url": "https://tomasjavurek.github.io/deltric-pages/",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Cross-platform",
+  "programmingLanguage": "Python",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "DelTriC Contributors"
+  }
+}
+</script>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -16,7 +40,7 @@
 <meta property="og:title" content="DelTriC — Delaunay Triangulation Clustering">
 <meta property="og:description" content="Density-robust clustering with built-in outlier detection. scikit-learn compatible. Often beats HDBSCAN on both clustering and outlier detection.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://deltric.github.io/">
+<meta property="og:url" content="https://tomasjavurek.github.io/deltric-pages/">
 <meta property="og:image" content="https://deltric.github.io/images/phases/nb_bridge_umap_phases.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="DelTriC — Delaunay Triangulation Clustering">
@@ -563,13 +587,21 @@ document.addEventListener('keydown', function(e){
   var canvas = document.getElementById('particles');
   if(!canvas) return;
   var ctx = canvas.getContext('2d');
-  var N = 20; // number of particles
-  var CONNECT_DIST = 180; // max distance for connection
+  var N = 20;
+  var CONNECT_DIST = 180;
   var particles = [];
+  var W = 0, H = 0;
 
   function resize(){
-    canvas.width = canvas.parentElement.offsetWidth;
-    canvas.height = canvas.parentElement.offsetHeight;
+    var dpr = window.devicePixelRatio || 1;
+    var parent = canvas.parentElement;
+    W = parent.clientWidth;
+    H = parent.clientHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
   function init(){
@@ -577,40 +609,37 @@ document.addEventListener('keydown', function(e){
     particles = [];
     for(var i=0; i<N; i++){
       particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
-        r: Math.random() * 1.5 + 1
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        r: Math.random() * 1.5 + 1.2
       });
     }
   }
 
   function draw(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, W, H);
 
-    // Update positions
     for(var i=0; i<N; i++){
       var p = particles[i];
       p.x += p.vx;
       p.y += p.vy;
-      // Bounce off edges
-      if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
-      if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
-      p.x = Math.max(0, Math.min(canvas.width, p.x));
-      p.y = Math.max(0, Math.min(canvas.height, p.y));
+      if(p.x < 0 || p.x > W) p.vx *= -1;
+      if(p.y < 0 || p.y > H) p.vy *= -1;
+      p.x = Math.max(0, Math.min(W, p.x));
+      p.y = Math.max(0, Math.min(H, p.y));
     }
 
-    // Draw connections
     for(var i=0; i<N; i++){
       for(var j=i+1; j<N; j++){
         var dx = particles[i].x - particles[j].x;
         var dy = particles[i].y - particles[j].y;
         var dist = Math.sqrt(dx*dx + dy*dy);
         if(dist < CONNECT_DIST){
-          var alpha = (1 - dist / CONNECT_DIST) * 0.25;
-          ctx.strokeStyle = 'rgba(26,86,219,' + alpha + ')';
-          ctx.lineWidth = 0.8;
+          var alpha = (1 - dist / CONNECT_DIST) * 0.3;
+          ctx.strokeStyle = 'rgba(26,86,219,' + alpha.toFixed(3) + ')';
+          ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
@@ -619,9 +648,8 @@ document.addEventListener('keydown', function(e){
       }
     }
 
-    // Draw dots
     for(var i=0; i<N; i++){
-      ctx.fillStyle = 'rgba(26,86,219,0.35)';
+      ctx.fillStyle = 'rgba(26,86,219,0.4)';
       ctx.beginPath();
       ctx.arc(particles[i].x, particles[i].y, particles[i].r, 0, Math.PI*2);
       ctx.fill();
@@ -630,9 +658,14 @@ document.addEventListener('keydown', function(e){
     requestAnimationFrame(draw);
   }
 
-  window.addEventListener('resize', resize);
-  init();
-  draw();
+  window.addEventListener('resize', function(){ resize(); });
+  // Wait for layout to settle before first init
+  if(document.readyState === 'complete'){
+    init();
+    draw();
+  } else {
+    window.addEventListener('load', function(){ init(); draw(); });
+  }
 })();
 
 </script>
