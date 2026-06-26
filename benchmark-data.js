@@ -887,7 +887,7 @@ var CLUSTER_DATA = {
       "nmi": null,
       "silhouette": null,
       "n_pred_clusters": null,
-      "time_seconds": 600.21
+      "time_seconds": 123.01
     },
     "kmeans--": {
       "status": "timeout",
@@ -899,7 +899,7 @@ var CLUSTER_DATA = {
       "nmi": null,
       "silhouette": null,
       "n_pred_clusters": null,
-      "time_seconds": 600.13
+      "time_seconds": 122.9
     },
     "hdbscan": {
       "status": "timeout",
@@ -911,7 +911,7 @@ var CLUSTER_DATA = {
       "nmi": null,
       "silhouette": null,
       "n_pred_clusters": null,
-      "time_seconds": 600.12
+      "time_seconds": 122.97
     }
   },
   "aniso_2d_3c": {
@@ -925,7 +925,7 @@ var CLUSTER_DATA = {
       "nmi": 0.7339228409926766,
       "silhouette": 0.8925677706760683,
       "n_pred_clusters": 2,
-      "time_seconds": 0.26
+      "time_seconds": 0.38
     },
     "kmeans--": {
       "status": "ok",
@@ -937,7 +937,7 @@ var CLUSTER_DATA = {
       "nmi": 0.7050646589958034,
       "silhouette": 0.6653159107429877,
       "n_pred_clusters": 3,
-      "time_seconds": 0.47
+      "time_seconds": 0.55
     },
     "hdbscan": {
       "status": "ok",
@@ -947,9 +947,9 @@ var CLUSTER_DATA = {
       "ari": 0.571101573676681,
       "ami": 0.7334753100145154,
       "nmi": 0.733680436651211,
-      "silhouette": 0.8829236518539967,
+      "silhouette": 0.8829236518539965,
       "n_pred_clusters": 2,
-      "time_seconds": 0.06
+      "time_seconds": 0.04
     }
   },
   "aniso_2d_5c": {
@@ -963,7 +963,7 @@ var CLUSTER_DATA = {
       "nmi": 0.9028876187595094,
       "silhouette": 0.7329344630444662,
       "n_pred_clusters": 4,
-      "time_seconds": 0.51
+      "time_seconds": 0.41
     },
     "kmeans--": {
       "status": "ok",
@@ -973,9 +973,9 @@ var CLUSTER_DATA = {
       "ari": 0.9127984926162119,
       "ami": 0.9189814518076278,
       "nmi": 0.919142933547631,
-      "silhouette": 0.628007239473161,
+      "silhouette": 0.6280072394731608,
       "n_pred_clusters": 5,
-      "time_seconds": 0.73
+      "time_seconds": 0.62
     },
     "hdbscan": {
       "status": "ok",
@@ -987,7 +987,7 @@ var CLUSTER_DATA = {
       "nmi": 0.9021969387058857,
       "silhouette": 0.7136267191913225,
       "n_pred_clusters": 4,
-      "time_seconds": 0.07
+      "time_seconds": 0.06
     }
   },
   "aniso_5d_3c": {
@@ -999,9 +999,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.5760346134017322,
+      "silhouette": 0.5746233062941389,
       "n_pred_clusters": 3,
-      "time_seconds": 12.44
+      "time_seconds": 8.92
     },
     "kmeans--": {
       "status": "ok",
@@ -1013,7 +1013,7 @@ var CLUSTER_DATA = {
       "nmi": 0.9844915632115511,
       "silhouette": 0.5720834599965314,
       "n_pred_clusters": 3,
-      "time_seconds": 0.5
+      "time_seconds": 0.54
     },
     "hdbscan": {
       "status": "ok",
@@ -1025,7 +1025,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.5831374039735766,
       "n_pred_clusters": 3,
-      "time_seconds": 0.05
+      "time_seconds": 0.04
     }
   },
   "blobs_large_10d_10c": {
@@ -1037,9 +1037,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.7420509367171101,
+      "silhouette": 0.7419922887702819,
       "n_pred_clusters": 10,
-      "time_seconds": 25.32
+      "time_seconds": 22.0
     },
     "kmeans--": {
       "status": "ok",
@@ -1051,7 +1051,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.7418376749492314,
       "n_pred_clusters": 10,
-      "time_seconds": 0.67
+      "time_seconds": 0.93
     },
     "hdbscan": {
       "status": "ok",
@@ -1061,9 +1061,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.7418376749492314,
+      "silhouette": 0.7418376749492313,
       "n_pred_clusters": 10,
-      "time_seconds": 0.23
+      "time_seconds": 0.21
     }
   },
   "blobs_large_2d_20c": {
@@ -1075,9 +1075,9 @@ var CLUSTER_DATA = {
       "ari": 0.10615656401093342,
       "ami": 0.4832834421241262,
       "nmi": 0.485419612888021,
-      "silhouette": 0.32668891695479546,
+      "silhouette": 0.3266889169547954,
       "n_pred_clusters": 5,
-      "time_seconds": 1.04
+      "time_seconds": 0.74
     },
     "kmeans--": {
       "status": "ok",
@@ -1089,7 +1089,7 @@ var CLUSTER_DATA = {
       "nmi": 0.7761160422912429,
       "silhouette": 0.40497230294034386,
       "n_pred_clusters": 20,
-      "time_seconds": 1.03
+      "time_seconds": 1.05
     },
     "hdbscan": {
       "status": "ok",
@@ -1101,7 +1101,7 @@ var CLUSTER_DATA = {
       "nmi": 0.7795886425741705,
       "silhouette": 0.538182315986792,
       "n_pred_clusters": 9,
-      "time_seconds": 0.15
+      "time_seconds": 0.14
     }
   },
   "blobs_large_3d_8c": {
@@ -1110,12 +1110,12 @@ var CLUSTER_DATA = {
       "n_samples": 5000,
       "n_features": 3,
       "true_k": 8,
-      "ari": 0.9424540515763133,
-      "ami": 0.947632027252555,
-      "nmi": 0.947852541555829,
-      "silhouette": 0.4550716286653657,
-      "n_pred_clusters": 13,
-      "time_seconds": 27.56
+      "ari": 0.861384536650365,
+      "ami": 0.94202870249655,
+      "nmi": 0.9422014310333624,
+      "silhouette": 0.45911738492006626,
+      "n_pred_clusters": 9,
+      "time_seconds": 21.35
     },
     "kmeans--": {
       "status": "ok",
@@ -1127,7 +1127,7 @@ var CLUSTER_DATA = {
       "nmi": 0.9763827039285813,
       "silhouette": 0.621073850525644,
       "n_pred_clusters": 8,
-      "time_seconds": 0.88
+      "time_seconds": 1.57
     },
     "hdbscan": {
       "status": "ok",
@@ -1137,9 +1137,9 @@ var CLUSTER_DATA = {
       "ari": 0.8645117535233456,
       "ami": 0.9539605280996384,
       "nmi": 0.9540602542753341,
-      "silhouette": 0.6919714045941242,
+      "silhouette": 0.6919714045941243,
       "n_pred_clusters": 7,
-      "time_seconds": 0.16
+      "time_seconds": 0.14
     }
   },
   "blobs_medium_10d_5c": {
@@ -1151,9 +1151,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.7445267580482359,
+      "silhouette": 0.7444806781810421,
       "n_pred_clusters": 5,
-      "time_seconds": 13.79
+      "time_seconds": 10.36
     },
     "kmeans--": {
       "status": "ok",
@@ -1165,7 +1165,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.7441701693549371,
       "n_pred_clusters": 5,
-      "time_seconds": 0.52
+      "time_seconds": 0.49
     },
     "hdbscan": {
       "status": "ok",
@@ -1189,9 +1189,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.8137382037142752,
+      "silhouette": 0.8136318046400014,
       "n_pred_clusters": 5,
-      "time_seconds": 12.9
+      "time_seconds": 10.58
     },
     "kmeans--": {
       "status": "ok",
@@ -1203,7 +1203,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.8136083230732322,
       "n_pred_clusters": 5,
-      "time_seconds": 0.48
+      "time_seconds": 0.47
     },
     "hdbscan": {
       "status": "ok",
@@ -1213,7 +1213,7 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.8136083230732323,
+      "silhouette": 0.8136083230732322,
       "n_pred_clusters": 5,
       "time_seconds": 0.07
     }
@@ -1229,7 +1229,7 @@ var CLUSTER_DATA = {
       "nmi": 0.8743936540172883,
       "silhouette": 0.662482123802613,
       "n_pred_clusters": 7,
-      "time_seconds": 0.53
+      "time_seconds": 0.37
     },
     "kmeans--": {
       "status": "ok",
@@ -1239,9 +1239,9 @@ var CLUSTER_DATA = {
       "ari": 0.8008913345406179,
       "ami": 0.8770519183078903,
       "nmi": 0.8781446292468417,
-      "silhouette": 0.5299661765952812,
+      "silhouette": 0.5299661765952813,
       "n_pred_clusters": 10,
-      "time_seconds": 0.55
+      "time_seconds": 0.69
     },
     "hdbscan": {
       "status": "ok",
@@ -1253,7 +1253,7 @@ var CLUSTER_DATA = {
       "nmi": 0.9067789415812246,
       "silhouette": 0.6058474621342524,
       "n_pred_clusters": 11,
-      "time_seconds": 0.05
+      "time_seconds": 0.07
     }
   },
   "blobs_medium_50d_5c": {
@@ -1265,9 +1265,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.7901406043302606,
+      "silhouette": 0.7900770256695763,
       "n_pred_clusters": 5,
-      "time_seconds": 12.31
+      "time_seconds": 11.16
     },
     "kmeans--": {
       "status": "ok",
@@ -1279,7 +1279,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.7900231679814221,
       "n_pred_clusters": 5,
-      "time_seconds": 0.41
+      "time_seconds": 0.57
     },
     "hdbscan": {
       "status": "ok",
@@ -1315,9 +1315,9 @@ var CLUSTER_DATA = {
       "ari": 0.6296346217958053,
       "ami": 0.6914129215231721,
       "nmi": 0.6945271542432687,
-      "silhouette": 0.4903606095489289,
+      "silhouette": 0.49036060954892885,
       "n_pred_clusters": 5,
-      "time_seconds": 0.54
+      "time_seconds": 0.57
     },
     "hdbscan": {
       "status": "ok",
@@ -1329,7 +1329,7 @@ var CLUSTER_DATA = {
       "nmi": 0.7282507000009294,
       "silhouette": 0.709070717261025,
       "n_pred_clusters": 3,
-      "time_seconds": 0.03
+      "time_seconds": 0.04
     }
   },
   "blobs_small_5d_3c": {
@@ -1341,9 +1341,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.8288257103124574,
+      "silhouette": 0.8287093040321796,
       "n_pred_clusters": 3,
-      "time_seconds": 11.37
+      "time_seconds": 7.77
     },
     "kmeans--": {
       "status": "ok",
@@ -1367,7 +1367,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.8287568633932344,
       "n_pred_clusters": 3,
-      "time_seconds": 0.04
+      "time_seconds": 0.03
     }
   },
   "blobs_tiny_2d_3c": {
@@ -1381,7 +1381,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.8079098030972652,
       "n_pred_clusters": 3,
-      "time_seconds": 0.05
+      "time_seconds": 0.04
     },
     "kmeans--": {
       "status": "ok",
@@ -1391,9 +1391,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.8004919954105459,
+      "silhouette": 0.800491995410546,
       "n_pred_clusters": 3,
-      "time_seconds": 0.47
+      "time_seconds": 0.35
     },
     "hdbscan": {
       "status": "ok",
@@ -1403,9 +1403,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.8004919954105459,
+      "silhouette": 0.800491995410546,
       "n_pred_clusters": 3,
-      "time_seconds": 0.03
+      "time_seconds": 0.04
     }
   },
   "cifar10": {
@@ -1419,7 +1419,7 @@ var CLUSTER_DATA = {
       "nmi": null,
       "silhouette": null,
       "n_pred_clusters": null,
-      "time_seconds": 600.26
+      "time_seconds": 123.0
     },
     "kmeans--": {
       "status": "timeout",
@@ -1431,7 +1431,7 @@ var CLUSTER_DATA = {
       "nmi": null,
       "silhouette": null,
       "n_pred_clusters": null,
-      "time_seconds": 600.13
+      "time_seconds": 123.12
     },
     "hdbscan": {
       "status": "timeout",
@@ -1443,7 +1443,7 @@ var CLUSTER_DATA = {
       "nmi": null,
       "silhouette": null,
       "n_pred_clusters": null,
-      "time_seconds": 600.12
+      "time_seconds": 122.32
     }
   },
   "circles_2d_2000": {
@@ -1457,7 +1457,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.11492597562525154,
       "n_pred_clusters": 2,
-      "time_seconds": 0.44
+      "time_seconds": 0.35
     },
     "kmeans--": {
       "status": "ok",
@@ -1467,7 +1467,7 @@ var CLUSTER_DATA = {
       "ari": -0.00046441037693939225,
       "ami": -0.00033511051311043566,
       "nmi": 2.597375572012872e-05,
-      "silhouette": 0.35399434047232525,
+      "silhouette": 0.3539943404723252,
       "n_pred_clusters": 2,
       "time_seconds": 0.7
     },
@@ -1479,7 +1479,7 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.11318146581375628,
+      "silhouette": 0.11318146581375625,
       "n_pred_clusters": 2,
       "time_seconds": 0.05
     }
@@ -1507,7 +1507,7 @@ var CLUSTER_DATA = {
       "nmi": 1.1543852922255368e-05,
       "silhouette": 0.35194072775989377,
       "n_pred_clusters": 2,
-      "time_seconds": 0.47
+      "time_seconds": 0.49
     },
     "hdbscan": {
       "status": "ok",
@@ -1519,7 +1519,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.11230458884564473,
       "n_pred_clusters": 2,
-      "time_seconds": 0.04
+      "time_seconds": 0.03
     }
   },
   "close_2d_3c_tight": {
@@ -1533,7 +1533,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.8155603449786046,
       "n_pred_clusters": 3,
-      "time_seconds": 0.17
+      "time_seconds": 0.29
     },
     "kmeans--": {
       "status": "ok",
@@ -1545,7 +1545,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.799279742125191,
       "n_pred_clusters": 3,
-      "time_seconds": 0.39
+      "time_seconds": 0.51
     },
     "hdbscan": {
       "status": "ok",
@@ -1555,9 +1555,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.799279742125191,
+      "silhouette": 0.7992797421251909,
       "n_pred_clusters": 3,
-      "time_seconds": 0.05
+      "time_seconds": 0.04
     }
   },
   "close_2d_5c_tight": {
@@ -1571,7 +1571,7 @@ var CLUSTER_DATA = {
       "nmi": 0.7355463452546186,
       "silhouette": 0.704898662489709,
       "n_pred_clusters": 3,
-      "time_seconds": 0.45
+      "time_seconds": 0.52
     },
     "kmeans--": {
       "status": "ok",
@@ -1581,9 +1581,9 @@ var CLUSTER_DATA = {
       "ari": 0.9237242702664644,
       "ami": 0.9170501574965185,
       "nmi": 0.9172154878152164,
-      "silhouette": 0.6301730783223015,
+      "silhouette": 0.6301730783223016,
       "n_pred_clusters": 5,
-      "time_seconds": 0.76
+      "time_seconds": 0.81
     },
     "hdbscan": {
       "status": "ok",
@@ -1595,7 +1595,7 @@ var CLUSTER_DATA = {
       "nmi": 0.7424834172925042,
       "silhouette": 0.696140895029843,
       "n_pred_clusters": 3,
-      "time_seconds": 0.06
+      "time_seconds": 0.05
     }
   },
   "close_5d_3c_tight": {
@@ -1607,9 +1607,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.7609754870490851,
+      "silhouette": 0.7610665474935865,
       "n_pred_clusters": 3,
-      "time_seconds": 8.88
+      "time_seconds": 8.28
     },
     "kmeans--": {
       "status": "ok",
@@ -1621,7 +1621,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.759669753607187,
       "n_pred_clusters": 3,
-      "time_seconds": 0.45
+      "time_seconds": 0.49
     },
     "hdbscan": {
       "status": "ok",
@@ -1642,12 +1642,12 @@ var CLUSTER_DATA = {
       "n_samples": 1797,
       "n_features": 64,
       "true_k": 10,
-      "ari": 0.889516932851522,
-      "ami": 0.910815802691967,
-      "nmi": 0.9122637638503585,
-      "silhouette": 0.13620183258993873,
-      "n_pred_clusters": 15,
-      "time_seconds": 8.44
+      "ari": 0.8627728185017548,
+      "ami": 0.8933501826886273,
+      "nmi": 0.8951863586038058,
+      "silhouette": 0.12889643486448676,
+      "n_pred_clusters": 16,
+      "time_seconds": 9.61
     },
     "kmeans--": {
       "status": "ok",
@@ -1657,9 +1657,9 @@ var CLUSTER_DATA = {
       "ari": 0.5344065110201505,
       "ami": 0.667806757043924,
       "nmi": 0.6712443410741852,
-      "silhouette": 0.13937726851699628,
+      "silhouette": 0.1393772685169963,
       "n_pred_clusters": 10,
-      "time_seconds": 0.69
+      "time_seconds": 0.86
     },
     "hdbscan": {
       "status": "ok",
@@ -1685,7 +1685,7 @@ var CLUSTER_DATA = {
       "nmi": null,
       "silhouette": null,
       "n_pred_clusters": null,
-      "time_seconds": 600.15
+      "time_seconds": 123.19
     },
     "kmeans--": {
       "status": "timeout",
@@ -1697,7 +1697,7 @@ var CLUSTER_DATA = {
       "nmi": null,
       "silhouette": null,
       "n_pred_clusters": null,
-      "time_seconds": 600.13
+      "time_seconds": 122.98
     },
     "hdbscan": {
       "status": "timeout",
@@ -1709,7 +1709,7 @@ var CLUSTER_DATA = {
       "nmi": null,
       "silhouette": null,
       "n_pred_clusters": null,
-      "time_seconds": 600.12
+      "time_seconds": 122.29
     }
   },
   "hd_100d_10c": {
@@ -1721,9 +1721,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.6400182473059889,
+      "silhouette": 0.639885909737982,
       "n_pred_clusters": 10,
-      "time_seconds": 11.52
+      "time_seconds": 13.98
     },
     "kmeans--": {
       "status": "ok",
@@ -1735,7 +1735,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.6397786226615626,
       "n_pred_clusters": 10,
-      "time_seconds": 1.02
+      "time_seconds": 1.04
     },
     "hdbscan": {
       "status": "ok",
@@ -1747,7 +1747,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.6397786226615626,
       "n_pred_clusters": 10,
-      "time_seconds": 0.7
+      "time_seconds": 0.65
     }
   },
   "hd_100d_5c": {
@@ -1759,9 +1759,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.6120882913001346,
+      "silhouette": 0.6120708980848493,
       "n_pred_clusters": 5,
-      "time_seconds": 9.02
+      "time_seconds": 9.82
     },
     "kmeans--": {
       "status": "ok",
@@ -1773,7 +1773,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.6120203471010482,
       "n_pred_clusters": 5,
-      "time_seconds": 0.41
+      "time_seconds": 0.58
     },
     "hdbscan": {
       "status": "ok",
@@ -1783,9 +1783,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.6120203471010484,
+      "silhouette": 0.6120203471010482,
       "n_pred_clusters": 5,
-      "time_seconds": 0.39
+      "time_seconds": 0.34
     }
   },
   "hd_200d_5c": {
@@ -1795,11 +1795,11 @@ var CLUSTER_DATA = {
       "n_features": 200,
       "true_k": 5,
       "ari": 1.0,
-      "ami": 1.0,
-      "nmi": 1.0,
-      "silhouette": 0.6189842012231761,
+      "ami": 0.9999999999999999,
+      "nmi": 0.9999999999999999,
+      "silhouette": 0.6188612010388549,
       "n_pred_clusters": 5,
-      "time_seconds": 9.68
+      "time_seconds": 9.74
     },
     "kmeans--": {
       "status": "ok",
@@ -1809,9 +1809,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.6188274350074242,
+      "silhouette": 0.6188274350074241,
       "n_pred_clusters": 5,
-      "time_seconds": 0.76
+      "time_seconds": 1.47
     },
     "hdbscan": {
       "status": "ok",
@@ -1823,7 +1823,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.6188274350074241,
       "n_pred_clusters": 5,
-      "time_seconds": 0.79
+      "time_seconds": 0.7
     }
   },
   "hd_50d_5c": {
@@ -1835,9 +1835,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.6135128507515287,
+      "silhouette": 0.6136411879173197,
       "n_pred_clusters": 5,
-      "time_seconds": 9.72
+      "time_seconds": 9.63
     },
     "kmeans--": {
       "status": "ok",
@@ -1849,7 +1849,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.6131247470489086,
       "n_pred_clusters": 5,
-      "time_seconds": 0.59
+      "time_seconds": 0.48
     },
     "hdbscan": {
       "status": "ok",
@@ -1859,9 +1859,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.6131247470489087,
+      "silhouette": 0.6131247470489086,
       "n_pred_clusters": 5,
-      "time_seconds": 0.16
+      "time_seconds": 0.15
     }
   },
   "imbalanced_2d_5c": {
@@ -1875,7 +1875,7 @@ var CLUSTER_DATA = {
       "nmi": 0.9925614345088312,
       "silhouette": 0.7866839971150054,
       "n_pred_clusters": 5,
-      "time_seconds": 0.52
+      "time_seconds": 0.48
     },
     "kmeans--": {
       "status": "ok",
@@ -1885,9 +1885,9 @@ var CLUSTER_DATA = {
       "ari": 0.5987946015950991,
       "ami": 0.8153289111379122,
       "nmi": 0.8157079390415343,
-      "silhouette": 0.5275579058595418,
+      "silhouette": 0.5275579058595419,
       "n_pred_clusters": 5,
-      "time_seconds": 0.88
+      "time_seconds": 0.66
     },
     "hdbscan": {
       "status": "ok",
@@ -1899,7 +1899,7 @@ var CLUSTER_DATA = {
       "nmi": 0.9982836916145689,
       "silhouette": 0.7453575208305879,
       "n_pred_clusters": 5,
-      "time_seconds": 0.09
+      "time_seconds": 0.08
     }
   },
   "imbalanced_5d_4c": {
@@ -1909,11 +1909,11 @@ var CLUSTER_DATA = {
       "n_features": 5,
       "true_k": 4,
       "ari": 1.0,
-      "ami": 1.0000000000000002,
-      "nmi": 1.0000000000000002,
-      "silhouette": 0.585368750885878,
+      "ami": 1.0,
+      "nmi": 1.0,
+      "silhouette": 0.5848159482074986,
       "n_pred_clusters": 3,
-      "time_seconds": 11.34
+      "time_seconds": 12.1
     },
     "kmeans--": {
       "status": "ok",
@@ -1923,9 +1923,9 @@ var CLUSTER_DATA = {
       "ari": 0.5841380999811062,
       "ami": 0.7869650253464855,
       "nmi": 0.7872477064603869,
-      "silhouette": 0.3776660643096542,
+      "silhouette": 0.37766606430965427,
       "n_pred_clusters": 4,
-      "time_seconds": 0.86
+      "time_seconds": 1.02
     },
     "hdbscan": {
       "status": "ok",
@@ -1937,7 +1937,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.584728489765937,
       "n_pred_clusters": 4,
-      "time_seconds": 0.09
+      "time_seconds": 0.07
     }
   },
   "iris": {
@@ -1946,12 +1946,12 @@ var CLUSTER_DATA = {
       "n_samples": 150,
       "n_features": 4,
       "true_k": 3,
-      "ari": 0.47216775850548365,
-      "ami": 0.6285896806197233,
-      "nmi": 0.6364416333600222,
-      "silhouette": 0.3380182366668985,
-      "n_pred_clusters": 5,
-      "time_seconds": 7.2
+      "ari": 0.45363611263157383,
+      "ami": 0.6480156001888193,
+      "nmi": 0.6530663752219389,
+      "silhouette": 0.4766529941946572,
+      "n_pred_clusters": 3,
+      "time_seconds": 6.91
     },
     "kmeans--": {
       "status": "ok",
@@ -1961,9 +1961,9 @@ var CLUSTER_DATA = {
       "ari": 0.6201351808870379,
       "ami": 0.655222847923487,
       "nmi": 0.659486892724918,
-      "silhouette": 0.45994823920518635,
+      "silhouette": 0.45994823920518646,
       "n_pred_clusters": 3,
-      "time_seconds": 0.53
+      "time_seconds": 0.6
     },
     "hdbscan": {
       "status": "ok",
@@ -1973,9 +1973,9 @@ var CLUSTER_DATA = {
       "ari": 0.5732137135533483,
       "ami": 0.733897220251618,
       "nmi": 0.7359995839197113,
-      "silhouette": 0.5899174203809068,
+      "silhouette": 0.5899174203809067,
       "n_pred_clusters": 2,
-      "time_seconds": 0.04
+      "time_seconds": 0.03
     }
   },
   "manifold_scurve_3c_1500": {
@@ -1984,12 +1984,12 @@ var CLUSTER_DATA = {
       "n_samples": 1500,
       "n_features": 3,
       "true_k": 3,
-      "ari": 0.01454493818598501,
-      "ami": 0.08205364408913943,
-      "nmi": 0.08895662370160035,
-      "silhouette": 0.1716669914129402,
+      "ari": 0.04509300103982284,
+      "ami": 0.1007932348137569,
+      "nmi": 0.107735453323316,
+      "silhouette": 0.1484059354925609,
       "n_pred_clusters": 14,
-      "time_seconds": 8.34
+      "time_seconds": 8.17
     },
     "kmeans--": {
       "status": "ok",
@@ -2001,7 +2001,7 @@ var CLUSTER_DATA = {
       "nmi": 0.05862316708133592,
       "silhouette": 0.28070256246845726,
       "n_pred_clusters": 3,
-      "time_seconds": 0.54
+      "time_seconds": 0.47
     },
     "hdbscan": {
       "status": "ok",
@@ -2013,7 +2013,7 @@ var CLUSTER_DATA = {
       "nmi": 0.09874479919104408,
       "silhouette": 0.26088473004925666,
       "n_pred_clusters": 34,
-      "time_seconds": 0.05
+      "time_seconds": 0.04
     }
   },
   "manifold_scurve_5c_2500": {
@@ -2022,12 +2022,12 @@ var CLUSTER_DATA = {
       "n_samples": 2500,
       "n_features": 3,
       "true_k": 5,
-      "ari": 0.00931884589213875,
-      "ami": 0.07489691627129075,
-      "nmi": 0.08463813361116379,
-      "silhouette": 0.09995567154317593,
-      "n_pred_clusters": 17,
-      "time_seconds": 9.73
+      "ari": -0.0026275872039939157,
+      "ami": 0.10554241656431385,
+      "nmi": 0.11217995647928256,
+      "silhouette": 0.004938879170132473,
+      "n_pred_clusters": 10,
+      "time_seconds": 10.21
     },
     "kmeans--": {
       "status": "ok",
@@ -2039,7 +2039,7 @@ var CLUSTER_DATA = {
       "nmi": 0.08226640020894811,
       "silhouette": 0.3097461637600157,
       "n_pred_clusters": 5,
-      "time_seconds": 0.27
+      "time_seconds": 0.84
     },
     "hdbscan": {
       "status": "ok",
@@ -2063,9 +2063,9 @@ var CLUSTER_DATA = {
       "ari": 0.0,
       "ami": 0.0,
       "nmi": 0.0,
-      "silhouette": 0.1368082381091257,
-      "n_pred_clusters": 23,
-      "time_seconds": 8.35
+      "silhouette": -0.05357895139006223,
+      "n_pred_clusters": 11,
+      "time_seconds": 8.11
     },
     "kmeans--": {
       "status": "ok",
@@ -2077,7 +2077,7 @@ var CLUSTER_DATA = {
       "nmi": 0.0,
       "silhouette": 0.2613893445825102,
       "n_pred_clusters": 2,
-      "time_seconds": 0.55
+      "time_seconds": 0.63
     },
     "hdbscan": {
       "status": "ok",
@@ -2089,7 +2089,7 @@ var CLUSTER_DATA = {
       "nmi": 0.0,
       "silhouette": 0.3597114624301917,
       "n_pred_clusters": 57,
-      "time_seconds": 0.04
+      "time_seconds": 0.82
     }
   },
   "manifold_swiss_5c_2500": {
@@ -2101,9 +2101,9 @@ var CLUSTER_DATA = {
       "ari": 0.0,
       "ami": 0.0,
       "nmi": 0.0,
-      "silhouette": -0.0009033956014727387,
-      "n_pred_clusters": 18,
-      "time_seconds": 9.79
+      "silhouette": 0.018996567468189764,
+      "n_pred_clusters": 20,
+      "time_seconds": 9.87
     },
     "kmeans--": {
       "status": "ok",
@@ -2115,7 +2115,7 @@ var CLUSTER_DATA = {
       "nmi": 0.0,
       "silhouette": 0.2598957892523772,
       "n_pred_clusters": 2,
-      "time_seconds": 0.97
+      "time_seconds": 0.76
     },
     "hdbscan": {
       "status": "ok",
@@ -2125,9 +2125,9 @@ var CLUSTER_DATA = {
       "ari": 0.0,
       "ami": 0.0,
       "nmi": 0.0,
-      "silhouette": 0.10965513771468244,
+      "silhouette": 0.10965513771468241,
       "n_pred_clusters": 2,
-      "time_seconds": 0.06
+      "time_seconds": 0.05
     }
   },
   "manyclusters_10d_20c": {
@@ -2137,11 +2137,11 @@ var CLUSTER_DATA = {
       "n_features": 10,
       "true_k": 20,
       "ari": 1.0,
-      "ami": 1.0,
-      "nmi": 1.0,
-      "silhouette": 0.7736594772880875,
+      "ami": 1.0000000000000002,
+      "nmi": 1.0000000000000002,
+      "silhouette": 0.7733343488440954,
       "n_pred_clusters": 20,
-      "time_seconds": 13.55
+      "time_seconds": 14.84
     },
     "kmeans--": {
       "status": "ok",
@@ -2153,7 +2153,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.7731219559754311,
       "n_pred_clusters": 20,
-      "time_seconds": 0.76
+      "time_seconds": 0.87
     },
     "hdbscan": {
       "status": "ok",
@@ -2165,7 +2165,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.7731219559754311,
       "n_pred_clusters": 20,
-      "time_seconds": 0.13
+      "time_seconds": 0.14
     }
   },
   "manyclusters_2d_50c": {
@@ -2179,7 +2179,7 @@ var CLUSTER_DATA = {
       "nmi": 0.5089564411206081,
       "silhouette": 0.40913157318853616,
       "n_pred_clusters": 6,
-      "time_seconds": 0.64
+      "time_seconds": 0.63
     },
     "kmeans--": {
       "status": "ok",
@@ -2189,9 +2189,9 @@ var CLUSTER_DATA = {
       "ari": 0.5055628810997902,
       "ami": 0.7625143394425739,
       "nmi": 0.7792341949235416,
-      "silhouette": 0.36548537525655506,
+      "silhouette": 0.365485375256555,
       "n_pred_clusters": 50,
-      "time_seconds": 2.0
+      "time_seconds": 1.2
     },
     "hdbscan": {
       "status": "ok",
@@ -2203,7 +2203,7 @@ var CLUSTER_DATA = {
       "nmi": 0.5495696387685621,
       "silhouette": 0.28266384233061953,
       "n_pred_clusters": 8,
-      "time_seconds": 0.13
+      "time_seconds": 0.14
     }
   },
   "manyclusters_5d_30c": {
@@ -2212,12 +2212,12 @@ var CLUSTER_DATA = {
       "n_samples": 5000,
       "n_features": 5,
       "true_k": 30,
-      "ari": 0.9971628804663649,
-      "ami": 0.9979766252600926,
-      "nmi": 0.9980294125146157,
-      "silhouette": 0.6524405846962463,
+      "ari": 0.9967425269388972,
+      "ami": 0.9976146934172234,
+      "nmi": 0.9976764327516575,
+      "silhouette": 0.6512737771801671,
       "n_pred_clusters": 30,
-      "time_seconds": 18.2
+      "time_seconds": 19.79
     },
     "kmeans--": {
       "status": "ok",
@@ -2227,9 +2227,9 @@ var CLUSTER_DATA = {
       "ari": 0.99795230321897,
       "ami": 0.9984907348856651,
       "nmi": 0.9985296175859143,
-      "silhouette": 0.6504578696423668,
+      "silhouette": 0.650457869642367,
       "n_pred_clusters": 30,
-      "time_seconds": 0.96
+      "time_seconds": 1.08
     },
     "hdbscan": {
       "status": "ok",
@@ -2241,7 +2241,7 @@ var CLUSTER_DATA = {
       "nmi": 0.9791239527437134,
       "silhouette": 0.6804493253006622,
       "n_pred_clusters": 27,
-      "time_seconds": 0.15
+      "time_seconds": 0.14
     }
   },
   "mnist": {
@@ -2255,7 +2255,7 @@ var CLUSTER_DATA = {
       "nmi": null,
       "silhouette": null,
       "n_pred_clusters": null,
-      "time_seconds": 600.16
+      "time_seconds": 123.01
     },
     "kmeans--": {
       "status": "timeout",
@@ -2267,7 +2267,7 @@ var CLUSTER_DATA = {
       "nmi": null,
       "silhouette": null,
       "n_pred_clusters": null,
-      "time_seconds": 600.13
+      "time_seconds": 123.02
     },
     "hdbscan": {
       "status": "timeout",
@@ -2279,7 +2279,7 @@ var CLUSTER_DATA = {
       "nmi": null,
       "silhouette": null,
       "n_pred_clusters": null,
-      "time_seconds": 600.12
+      "time_seconds": 122.34
     }
   },
   "moons_2d_2000": {
@@ -2293,7 +2293,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.3948220612994138,
       "n_pred_clusters": 2,
-      "time_seconds": 0.39
+      "time_seconds": 0.4
     },
     "kmeans--": {
       "status": "ok",
@@ -2305,7 +2305,7 @@ var CLUSTER_DATA = {
       "nmi": 0.3693284655028564,
       "silhouette": 0.48980334347370397,
       "n_pred_clusters": 2,
-      "time_seconds": 0.8
+      "time_seconds": 0.57
     },
     "hdbscan": {
       "status": "ok",
@@ -2329,9 +2329,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.37898080136336804,
+      "silhouette": 0.3789808013633681,
       "n_pred_clusters": 2,
-      "time_seconds": 0.07
+      "time_seconds": 0.06
     },
     "kmeans--": {
       "status": "ok",
@@ -2343,7 +2343,7 @@ var CLUSTER_DATA = {
       "nmi": 0.35694825028129945,
       "silhouette": 0.48711556383493965,
       "n_pred_clusters": 2,
-      "time_seconds": 0.47
+      "time_seconds": 0.41
     },
     "hdbscan": {
       "status": "ok",
@@ -2353,9 +2353,9 @@ var CLUSTER_DATA = {
       "ari": 0.9919678392294453,
       "ami": 0.9810915086401318,
       "nmi": 0.9811189803356759,
-      "silhouette": 0.3754787639259357,
+      "silhouette": 0.37547876392593577,
       "n_pred_clusters": 2,
-      "time_seconds": 0.04
+      "time_seconds": 0.03
     }
   },
   "no_struct_10d_gauss_1000": {
@@ -2364,12 +2364,12 @@ var CLUSTER_DATA = {
       "n_samples": 1000,
       "n_features": 10,
       "true_k": 1,
-      "ari": 0.0,
-      "ami": 0.0,
-      "nmi": 0.0,
-      "silhouette": -0.01679966747690966,
-      "n_pred_clusters": 16,
-      "time_seconds": 7.61
+      "ari": null,
+      "ami": null,
+      "nmi": null,
+      "silhouette": null,
+      "n_pred_clusters": 1,
+      "time_seconds": 9.6
     },
     "kmeans--": {
       "status": "ok",
@@ -2379,9 +2379,9 @@ var CLUSTER_DATA = {
       "ari": 0.0,
       "ami": 0.0,
       "nmi": 0.0,
-      "silhouette": 0.0729817392331353,
+      "silhouette": 0.07298173923313528,
       "n_pred_clusters": 2,
-      "time_seconds": 0.48
+      "time_seconds": 0.64
     },
     "hdbscan": {
       "status": "ok",
@@ -2391,9 +2391,9 @@ var CLUSTER_DATA = {
       "ari": 0.0,
       "ami": 0.0,
       "nmi": 0.0,
-      "silhouette": 0.13981382912421242,
+      "silhouette": 0.13981382912421236,
       "n_pred_clusters": 3,
-      "time_seconds": 0.05
+      "time_seconds": 0.04
     }
   },
   "no_struct_2d_uniform_2000": {
@@ -2402,12 +2402,12 @@ var CLUSTER_DATA = {
       "n_samples": 2000,
       "n_features": 2,
       "true_k": 1,
-      "ari": 0.0,
-      "ami": 0.0,
-      "nmi": 0.0,
-      "silhouette": 0.0629996915362922,
-      "n_pred_clusters": 3,
-      "time_seconds": 0.54
+      "ari": null,
+      "ami": null,
+      "nmi": null,
+      "silhouette": null,
+      "n_pred_clusters": 1,
+      "time_seconds": 0.5
     },
     "kmeans--": {
       "status": "ok",
@@ -2417,9 +2417,9 @@ var CLUSTER_DATA = {
       "ari": 0.0,
       "ami": 0.0,
       "nmi": 0.0,
-      "silhouette": 0.35554957861904546,
+      "silhouette": 0.3555495786190454,
       "n_pred_clusters": 2,
-      "time_seconds": 0.71
+      "time_seconds": 0.86
     },
     "hdbscan": {
       "status": "ok",
@@ -2429,7 +2429,7 @@ var CLUSTER_DATA = {
       "ari": 0.0,
       "ami": 0.0,
       "nmi": 0.0,
-      "silhouette": 0.3986695767140056,
+      "silhouette": 0.39866957671400555,
       "n_pred_clusters": 50,
       "time_seconds": 0.05
     }
@@ -2440,12 +2440,12 @@ var CLUSTER_DATA = {
       "n_samples": 500,
       "n_features": 2,
       "true_k": 1,
-      "ari": 0.0,
-      "ami": 0.0,
-      "nmi": 0.0,
-      "silhouette": 0.19953926098902927,
-      "n_pred_clusters": 2,
-      "time_seconds": 0.11
+      "ari": null,
+      "ami": null,
+      "nmi": null,
+      "silhouette": null,
+      "n_pred_clusters": 1,
+      "time_seconds": 0.1
     },
     "kmeans--": {
       "status": "ok",
@@ -2455,9 +2455,9 @@ var CLUSTER_DATA = {
       "ari": 0.0,
       "ami": 0.0,
       "nmi": 0.0,
-      "silhouette": 0.35921638673974104,
+      "silhouette": 0.359216386739741,
       "n_pred_clusters": 2,
-      "time_seconds": 0.67
+      "time_seconds": 0.47
     },
     "hdbscan": {
       "status": "ok",
@@ -2469,7 +2469,7 @@ var CLUSTER_DATA = {
       "nmi": 0.0,
       "silhouette": 0.4053249707587394,
       "n_pred_clusters": 24,
-      "time_seconds": 0.04
+      "time_seconds": 0.03
     }
   },
   "no_struct_5d_uniform_1000": {
@@ -2481,9 +2481,9 @@ var CLUSTER_DATA = {
       "ari": 0.0,
       "ami": 0.0,
       "nmi": 0.0,
-      "silhouette": 0.15754621502240382,
-      "n_pred_clusters": 20,
-      "time_seconds": 8.09
+      "silhouette": 0.0018799986633995529,
+      "n_pred_clusters": 3,
+      "time_seconds": 8.97
     },
     "kmeans--": {
       "status": "ok",
@@ -2493,9 +2493,9 @@ var CLUSTER_DATA = {
       "ari": 0.0,
       "ami": 0.0,
       "nmi": 0.0,
-      "silhouette": 0.14995795940618387,
+      "silhouette": 0.14995795940618392,
       "n_pred_clusters": 2,
-      "time_seconds": 0.44
+      "time_seconds": 0.51
     },
     "hdbscan": {
       "status": "ok",
@@ -2517,11 +2517,11 @@ var CLUSTER_DATA = {
       "n_features": 10,
       "true_k": 4,
       "ari": 1.0,
-      "ami": 0.9999999999999999,
-      "nmi": 0.9999999999999999,
-      "silhouette": 0.6794397468794158,
+      "ami": 1.0,
+      "nmi": 1.0,
+      "silhouette": 0.6789395145642108,
       "n_pred_clusters": 4,
-      "time_seconds": 8.99
+      "time_seconds": 9.32
     },
     "kmeans--": {
       "status": "ok",
@@ -2533,7 +2533,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.6778436356213595,
       "n_pred_clusters": 4,
-      "time_seconds": 0.72
+      "time_seconds": 0.48
     },
     "hdbscan": {
       "status": "ok",
@@ -2543,9 +2543,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.6778436356213596,
+      "silhouette": 0.6778436356213595,
       "n_pred_clusters": 4,
-      "time_seconds": 0.07
+      "time_seconds": 0.06
     }
   },
   "varied_2d_3c": {
@@ -2557,9 +2557,9 @@ var CLUSTER_DATA = {
       "ari": 0.5934617573197813,
       "ami": 0.7382555554332468,
       "nmi": 0.7384683875356605,
-      "silhouette": 0.7241188351202184,
+      "silhouette": 0.7241188351202182,
       "n_pred_clusters": 2,
-      "time_seconds": 0.32
+      "time_seconds": 0.29
     },
     "kmeans--": {
       "status": "ok",
@@ -2569,9 +2569,9 @@ var CLUSTER_DATA = {
       "ari": 0.7313283703233153,
       "ami": 0.7329138327338063,
       "nmi": 0.7332406270002069,
-      "silhouette": 0.5787000961609609,
+      "silhouette": 0.578700096160961,
       "n_pred_clusters": 3,
-      "time_seconds": 0.46
+      "time_seconds": 0.54
     },
     "hdbscan": {
       "status": "ok",
@@ -2583,7 +2583,7 @@ var CLUSTER_DATA = {
       "nmi": 0.7245561884776108,
       "silhouette": 0.6846588480551474,
       "n_pred_clusters": 2,
-      "time_seconds": 0.05
+      "time_seconds": 0.04
     }
   },
   "varied_2d_5c": {
@@ -2597,7 +2597,7 @@ var CLUSTER_DATA = {
       "nmi": 0.4716725647271504,
       "silhouette": 0.5202404323075529,
       "n_pred_clusters": 2,
-      "time_seconds": 0.43
+      "time_seconds": 0.38
     },
     "kmeans--": {
       "status": "ok",
@@ -2609,7 +2609,7 @@ var CLUSTER_DATA = {
       "nmi": 0.7528165925384224,
       "silhouette": 0.523655711213458,
       "n_pred_clusters": 5,
-      "time_seconds": 0.98
+      "time_seconds": 0.75
     },
     "hdbscan": {
       "status": "ok",
@@ -2619,9 +2619,9 @@ var CLUSTER_DATA = {
       "ari": 0.6883799533942176,
       "ami": 0.7858207261430282,
       "nmi": 0.7866945419038736,
-      "silhouette": 0.5918348324333689,
+      "silhouette": 0.5918348324333688,
       "n_pred_clusters": 7,
-      "time_seconds": 0.07
+      "time_seconds": 0.06
     }
   },
   "varied_5d_3c": {
@@ -2633,9 +2633,9 @@ var CLUSTER_DATA = {
       "ari": 1.0,
       "ami": 1.0,
       "nmi": 1.0,
-      "silhouette": 0.8034459250868661,
+      "silhouette": 0.8031221890821171,
       "n_pred_clusters": 3,
-      "time_seconds": 7.93
+      "time_seconds": 8.86
     },
     "kmeans--": {
       "status": "ok",
@@ -2647,7 +2647,7 @@ var CLUSTER_DATA = {
       "nmi": 1.0,
       "silhouette": 0.7983387941573301,
       "n_pred_clusters": 3,
-      "time_seconds": 0.67
+      "time_seconds": 0.5
     },
     "hdbscan": {
       "status": "ok",
@@ -2668,12 +2668,12 @@ var CLUSTER_DATA = {
       "n_samples": 178,
       "n_features": 13,
       "true_k": 3,
-      "ari": 0.8335069303720516,
-      "ami": 0.8194634318446041,
-      "nmi": 0.8214250384129349,
-      "silhouette": 0.29505507889873434,
+      "ari": 0.820349474653244,
+      "ami": 0.8104923800455484,
+      "nmi": 0.8125167563711589,
+      "silhouette": 0.29003827235804897,
       "n_pred_clusters": 3,
-      "time_seconds": 7.04
+      "time_seconds": 6.03
     },
     "kmeans--": {
       "status": "ok",
@@ -2685,7 +2685,7 @@ var CLUSTER_DATA = {
       "nmi": 0.8758935341223069,
       "silhouette": 0.2848589191898987,
       "n_pred_clusters": 3,
-      "time_seconds": 0.48
+      "time_seconds": 0.55
     },
     "hdbscan": {
       "status": "ok",
