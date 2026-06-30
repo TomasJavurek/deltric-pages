@@ -11,7 +11,7 @@ var OUTLIER_DATA = {
       "ami": null,
       "precision": null,
       "recall": null,
-      "time_seconds": 600.21
+      "time_seconds": 632.78
     },
     "kmeans--": {
       "status": "timeout",
@@ -23,7 +23,7 @@ var OUTLIER_DATA = {
       "ami": null,
       "precision": null,
       "recall": null,
-      "time_seconds": 600.12
+      "time_seconds": 635.06
     },
     "hdbscan": {
       "status": "timeout",
@@ -35,7 +35,7 @@ var OUTLIER_DATA = {
       "ami": null,
       "precision": null,
       "recall": null,
-      "time_seconds": 600.92
+      "time_seconds": 636.02
     }
   },
   "Annthyroid": {
@@ -43,13 +43,13 @@ var OUTLIER_DATA = {
       "status": "ok",
       "n_samples": 6942,
       "n_features": 21,
-      "auc": 0.5694815083472984,
-      "f1": 0.15518913676042678,
-      "ari": 0.08129452908636595,
-      "ami": 0.014985280849066694,
-      "precision": 0.11695906432748537,
-      "recall": 0.23054755043227665,
-      "time_seconds": 20.86
+      "auc": 0.5310319362542141,
+      "f1": 0.10609037328094302,
+      "ari": 0.03647572707569389,
+      "ami": 0.0032406495998014515,
+      "precision": 0.08047690014903129,
+      "recall": 0.15561959654178675,
+      "time_seconds": 28.75
     },
     "kmeans--": {
       "status": "ok",
@@ -61,7 +61,7 @@ var OUTLIER_DATA = {
       "ami": 0.0037146750830495795,
       "precision": 0.09221902017291066,
       "recall": 0.09221902017291066,
-      "time_seconds": 1.14
+      "time_seconds": 1.18
     },
     "hdbscan": {
       "status": "ok",
@@ -73,7 +73,7 @@ var OUTLIER_DATA = {
       "ami": 0.03074577497617428,
       "precision": 0.19434628975265017,
       "recall": 0.1585014409221902,
-      "time_seconds": 0.78
+      "time_seconds": 0.84
     }
   },
   "Arrhythmia": {
@@ -81,13 +81,13 @@ var OUTLIER_DATA = {
       "status": "ok",
       "n_samples": 256,
       "n_features": 259,
-      "auc": 0.5594262295081968,
-      "f1": 0.10810810810810811,
-      "ari": 0.008889131448755696,
-      "ami": -0.0017860511852322769,
-      "precision": 0.06060606060606061,
-      "recall": 0.5,
-      "time_seconds": 7.12
+      "auc": 0.7288251366120218,
+      "f1": 0.22535211267605634,
+      "ari": 0.11316631971454842,
+      "ami": 0.053082563014120836,
+      "precision": 0.13559322033898305,
+      "recall": 0.6666666666666666,
+      "time_seconds": 7.62
     },
     "kmeans--": {
       "status": "ok",
@@ -99,7 +99,7 @@ var OUTLIER_DATA = {
       "ami": -0.008067317334744466,
       "precision": 0.08333333333333333,
       "recall": 0.08333333333333333,
-      "time_seconds": 0.69
+      "time_seconds": 0.54
     },
     "hdbscan": {
       "status": "ok",
@@ -111,7 +111,7 @@ var OUTLIER_DATA = {
       "ami": 0.0,
       "precision": 0.046875,
       "recall": 1.0,
-      "time_seconds": 0.06
+      "time_seconds": 0.04
     }
   },
   "Cardiotocography": {
@@ -119,13 +119,13 @@ var OUTLIER_DATA = {
       "status": "ok",
       "n_samples": 1734,
       "n_features": 21,
-      "auc": 0.6436272296229397,
-      "f1": 0.34394904458598724,
-      "ari": 0.2927383448658892,
-      "ami": 0.12402704824987085,
-      "precision": 0.38028169014084506,
-      "recall": 0.313953488372093,
-      "time_seconds": 8.63
+      "auc": 0.6347792955520434,
+      "f1": 0.3132530120481928,
+      "ari": 0.25856691582699187,
+      "ami": 0.10006835606762915,
+      "precision": 0.325,
+      "recall": 0.3023255813953488,
+      "time_seconds": 10.64
     },
     "kmeans--": {
       "status": "ok",
@@ -137,7 +137,7 @@ var OUTLIER_DATA = {
       "ami": 0.07103895467170392,
       "precision": 0.26744186046511625,
       "recall": 0.26744186046511625,
-      "time_seconds": 0.78
+      "time_seconds": 0.86
     },
     "hdbscan": {
       "status": "ok",
@@ -149,7 +149,7 @@ var OUTLIER_DATA = {
       "ami": 0.07426200547934016,
       "precision": 0.2523364485981308,
       "recall": 0.313953488372093,
-      "time_seconds": 0.11
+      "time_seconds": 0.1
     }
   },
   "Glass": {
@@ -157,13 +157,13 @@ var OUTLIER_DATA = {
       "status": "ok",
       "n_samples": 214,
       "n_features": 7,
-      "auc": 0.9170731707317072,
-      "f1": 0.34615384615384615,
-      "ari": 0.2357169994662109,
-      "ami": 0.2046583667099332,
-      "precision": 0.20930232558139536,
+      "auc": 0.921951219512195,
+      "f1": 0.36,
+      "ari": 0.2523365092424505,
+      "ami": 0.21558656478039617,
+      "precision": 0.21951219512195122,
       "recall": 1.0,
-      "time_seconds": 6.67
+      "time_seconds": 7.12
     },
     "kmeans--": {
       "status": "ok",
@@ -195,13 +195,13 @@ var OUTLIER_DATA = {
       "status": "ok",
       "n_samples": 157,
       "n_features": 13,
-      "auc": 0.6490476190476191,
-      "f1": 0.15384615384615385,
-      "ari": 0.04855175802034374,
-      "ami": 0.011881319364357346,
-      "precision": 0.08888888888888889,
-      "recall": 0.5714285714285714,
-      "time_seconds": 6.21
+      "auc": 0.5676190476190476,
+      "f1": 0.1111111111111111,
+      "ari": 0.019016822347485467,
+      "ami": -0.004830438552756316,
+      "precision": 0.06382978723404255,
+      "recall": 0.42857142857142855,
+      "time_seconds": 9.05
     },
     "kmeans--": {
       "status": "ok",
@@ -225,7 +225,7 @@ var OUTLIER_DATA = {
       "ami": 0.017831436234817772,
       "precision": 0.05511811023622047,
       "recall": 1.0,
-      "time_seconds": 0.03
+      "time_seconds": 0.04
     }
   },
   "Hepatitis": {
@@ -239,7 +239,7 @@ var OUTLIER_DATA = {
       "ami": 0.0,
       "precision": 0.0,
       "recall": 0.0,
-      "time_seconds": 6.85
+      "time_seconds": 7.16
     },
     "kmeans--": {
       "status": "ok",
@@ -251,7 +251,7 @@ var OUTLIER_DATA = {
       "ami": -0.015114656199290085,
       "precision": 0.0,
       "recall": 0.0,
-      "time_seconds": 0.18
+      "time_seconds": 0.48
     },
     "hdbscan": {
       "status": "ok",
@@ -263,7 +263,7 @@ var OUTLIER_DATA = {
       "ami": 0.0,
       "precision": 0.04285714285714286,
       "recall": 1.0,
-      "time_seconds": 0.03
+      "time_seconds": 0.04
     }
   },
   "InternetAds": {
@@ -271,13 +271,13 @@ var OUTLIER_DATA = {
       "status": "ok",
       "n_samples": 1682,
       "n_features": 1555,
-      "auc": 0.6460382025150486,
-      "f1": 0.2605042016806723,
-      "ari": 0.1840878928026089,
-      "ami": 0.06025237283514212,
-      "precision": 0.2012987012987013,
+      "auc": 0.653234698134573,
+      "f1": 0.28837209302325584,
+      "ari": 0.21715471304697206,
+      "ami": 0.07665028793778966,
+      "precision": 0.2366412213740458,
       "recall": 0.36904761904761907,
-      "time_seconds": 10.09
+      "time_seconds": 13.88
     },
     "kmeans--": {
       "status": "ok",
@@ -289,7 +289,7 @@ var OUTLIER_DATA = {
       "ami": 0.11090462619382539,
       "precision": 0.3333333333333333,
       "recall": 0.3333333333333333,
-      "time_seconds": 3.92
+      "time_seconds": 5.49
     },
     "hdbscan": {
       "status": "ok",
@@ -301,7 +301,7 @@ var OUTLIER_DATA = {
       "ami": 0.1047627220783707,
       "precision": 0.17447916666666666,
       "recall": 0.7976190476190477,
-      "time_seconds": 4.18
+      "time_seconds": 4.42
     }
   },
   "Ionosphere": {
@@ -309,13 +309,13 @@ var OUTLIER_DATA = {
       "status": "ok",
       "n_samples": 231,
       "n_features": 32,
-      "auc": 0.8333333333333333,
-      "f1": 0.8,
-      "ari": 0.7885223171662046,
-      "ami": 0.6783688725837288,
-      "precision": 1.0,
-      "recall": 0.6666666666666666,
-      "time_seconds": 7.41
+      "auc": 0.86,
+      "f1": 0.16,
+      "ari": 0.07091849298202413,
+      "ami": 0.08185238501419168,
+      "precision": 0.08695652173913043,
+      "recall": 1.0,
+      "time_seconds": 7.11
     },
     "kmeans--": {
       "status": "ok",
@@ -327,7 +327,7 @@ var OUTLIER_DATA = {
       "ami": 0.44516975253633534,
       "precision": 0.6666666666666666,
       "recall": 0.6666666666666666,
-      "time_seconds": 0.52
+      "time_seconds": 0.63
     },
     "hdbscan": {
       "status": "ok",
@@ -339,7 +339,7 @@ var OUTLIER_DATA = {
       "ami": 0.0676029357976124,
       "precision": 0.075,
       "recall": 1.0,
-      "time_seconds": 0.05
+      "time_seconds": 0.04
     }
   },
   "KDDCup99": {
@@ -353,7 +353,7 @@ var OUTLIER_DATA = {
       "ami": null,
       "precision": null,
       "recall": null,
-      "time_seconds": 600.15
+      "time_seconds": 635.79
     },
     "kmeans--": {
       "status": "timeout",
@@ -365,7 +365,7 @@ var OUTLIER_DATA = {
       "ami": null,
       "precision": null,
       "recall": null,
-      "time_seconds": 600.12
+      "time_seconds": 633.89
     },
     "hdbscan": {
       "status": "timeout",
@@ -377,7 +377,7 @@ var OUTLIER_DATA = {
       "ami": null,
       "precision": null,
       "recall": null,
-      "time_seconds": 606.01
+      "time_seconds": 634.31
     }
   },
   "Lymphography": {
@@ -385,13 +385,13 @@ var OUTLIER_DATA = {
       "status": "ok",
       "n_samples": 148,
       "n_features": 3,
-      "auc": 0.7159624413145541,
-      "f1": 0.14705882352941177,
-      "ari": 0.024073082580478036,
-      "ami": 0.02751615801203195,
-      "precision": 0.08064516129032258,
+      "auc": 0.6737089201877935,
+      "f1": 0.125,
+      "ari": 0.0018653932248918071,
+      "ami": 0.015022126767439933,
+      "precision": 0.06756756756756757,
       "recall": 0.8333333333333334,
-      "time_seconds": 6.48
+      "time_seconds": 12.66
     },
     "kmeans--": {
       "status": "ok",
@@ -403,7 +403,7 @@ var OUTLIER_DATA = {
       "ami": -0.00650094528819907,
       "precision": 0.0,
       "recall": 0.0,
-      "time_seconds": 0.51
+      "time_seconds": 0.47
     },
     "hdbscan": {
       "status": "ok",
@@ -423,13 +423,13 @@ var OUTLIER_DATA = {
       "status": "ok",
       "n_samples": 5139,
       "n_features": 10,
-      "auc": 0.7852058480954331,
-      "f1": 0.41344956413449563,
-      "ari": 0.3309522360280793,
-      "ami": 0.17263887392053037,
-      "precision": 0.30347349177330896,
-      "recall": 0.6484375,
-      "time_seconds": 17.26
+      "auc": 0.739568400573418,
+      "f1": 0.18566100290095316,
+      "ari": 0.035154394840161494,
+      "ami": 0.05348867886786996,
+      "precision": 0.10384793694946685,
+      "recall": 0.875,
+      "time_seconds": 40.09
     },
     "kmeans--": {
       "status": "ok",
@@ -441,7 +441,7 @@ var OUTLIER_DATA = {
       "ami": 0.2573107809582423,
       "precision": 0.515625,
       "recall": 0.515625,
-      "time_seconds": 1.1
+      "time_seconds": 1.05
     },
     "hdbscan": {
       "status": "ok",
@@ -453,7 +453,7 @@ var OUTLIER_DATA = {
       "ami": 0.15671962023168806,
       "precision": 0.18602885345482156,
       "recall": 0.95703125,
-      "time_seconds": 0.19
+      "time_seconds": 0.32
     }
   },
   "Parkinson": {
@@ -461,13 +461,13 @@ var OUTLIER_DATA = {
       "status": "ok",
       "n_samples": 50,
       "n_features": 22,
-      "auc": 0.84375,
-      "f1": 0.21052631578947367,
-      "ari": 0.07744512008813492,
-      "ami": 0.08037832554498182,
-      "precision": 0.11764705882352941,
+      "auc": 0.8645833333333334,
+      "f1": 0.23529411764705882,
+      "ari": 0.10713338636966321,
+      "ami": 0.09876502402389081,
+      "precision": 0.13333333333333333,
       "recall": 1.0,
-      "time_seconds": 6.59
+      "time_seconds": 14.81
     },
     "kmeans--": {
       "status": "ok",
@@ -491,7 +491,7 @@ var OUTLIER_DATA = {
       "ami": 0.13724128974096064,
       "precision": 0.16666666666666666,
       "recall": 1.0,
-      "time_seconds": 0.04
+      "time_seconds": 0.03
     }
   },
   "PenDigits": {
@@ -505,7 +505,7 @@ var OUTLIER_DATA = {
       "ami": null,
       "precision": null,
       "recall": null,
-      "time_seconds": 607.8
+      "time_seconds": 632.57
     },
     "kmeans--": {
       "status": "timeout",
@@ -517,361 +517,7 @@ var OUTLIER_DATA = {
       "ami": null,
       "precision": null,
       "recall": null,
-      "time_seconds": 607.47
-    },
-    "hdbscan": {
-      "status": "timeout",
-      "n_samples": 9868,
-      "n_features": 16,
-      "auc": null,
-      "f1": null,
-      "ari": null,
-      "ami": null,
-      "precision": null,
-      "recall": null,
-      "time_seconds": 608.49
-    }
-  },
-  "Pima": {
-    "deltric": {
-      "status": "ok",
-      "n_samples": 526,
-      "n_features": 8,
-      "auc": 0.5547692307692308,
-      "f1": 0.11214953271028037,
-      "ari": 0.011434853338950977,
-      "ami": 0.0005093602457601931,
-      "precision": 0.06382978723404255,
-      "recall": 0.46153846153846156,
-      "time_seconds": 7.0
-    },
-    "kmeans--": {
-      "status": "ok",
-      "n_samples": 526,
-      "n_features": 8,
-      "auc": 0.5953846153846154,
-      "f1": 0.23076923076923078,
-      "ari": 0.1745943203308784,
-      "ami": 0.047889495255611335,
-      "precision": 0.23076923076923078,
-      "recall": 0.23076923076923078,
-      "time_seconds": 0.73
-    },
-    "hdbscan": {
-      "status": "ok",
-      "n_samples": 526,
-      "n_features": 8,
-      "auc": 0.6250769230769231,
-      "f1": 0.21686746987951808,
-      "ari": 0.136432526516134,
-      "ami": 0.03562852438170353,
-      "precision": 0.15789473684210525,
-      "recall": 0.34615384615384615,
-      "time_seconds": 0.05
-    }
-  },
-  "Shuttle": {
-    "deltric": {
-      "status": "ok",
-      "n_samples": 1013,
-      "n_features": 9,
-      "auc": 0.9580000000000001,
-      "f1": 0.23636363636363636,
-      "ari": 0.19835695657559993,
-      "ami": 0.15839780220886054,
-      "precision": 0.13402061855670103,
-      "recall": 1.0,
-      "time_seconds": 7.86
-    },
-    "kmeans--": {
-      "status": "ok",
-      "n_samples": 1013,
-      "n_features": 9,
-      "auc": 0.8051923076923077,
-      "f1": 0.6153846153846154,
-      "ari": 0.6041922967600039,
-      "ami": 0.42003878634260217,
-      "precision": 0.6153846153846154,
-      "recall": 0.6153846153846154,
-      "time_seconds": 0.61
-    },
-    "hdbscan": {
-      "status": "ok",
-      "n_samples": 1013,
-      "n_features": 9,
-      "auc": 0.992,
-      "f1": 0.6190476190476191,
-      "ari": 0.6020807971032593,
-      "ami": 0.49068748224848485,
-      "precision": 0.4482758620689655,
-      "recall": 1.0,
-      "time_seconds": 0.05
-    }
-  },
-  "SpamBase": {
-    "deltric": {
-      "status": "ok",
-      "n_samples": 2661,
-      "n_features": 57,
-      "auc": 0.5846979989530788,
-      "f1": 0.19076923076923077,
-      "ari": 0.12430847261490417,
-      "ami": 0.029285456007450215,
-      "precision": 0.16145833333333334,
-      "recall": 0.23308270676691728,
-      "time_seconds": 10.41
-    },
-    "kmeans--": {
-      "status": "ok",
-      "n_samples": 2661,
-      "n_features": 57,
-      "auc": 0.5607526529932425,
-      "f1": 0.16541353383458646,
-      "ari": 0.11026967913837614,
-      "ami": 0.02361076089576466,
-      "precision": 0.16541353383458646,
-      "recall": 0.16541353383458646,
-      "time_seconds": 1.12
-    },
-    "hdbscan": {
-      "status": "ok",
-      "n_samples": 2661,
-      "n_features": 57,
-      "auc": 0.6265763300656705,
-      "f1": 0.12439729990356799,
-      "ari": -0.045163875877708703,
-      "ami": 0.02738124111898979,
-      "precision": 0.06646058732612056,
-      "recall": 0.9699248120300752,
-      "time_seconds": 0.36
-    }
-  },
-  "Stamps": {
-    "deltric": {
-      "status": "ok",
-      "n_samples": 325,
-      "n_features": 9,
-      "auc": 0.5479368932038835,
-      "f1": 0.14814814814814814,
-      "ari": 0.10366295963171199,
-      "ami": 0.01446873323083458,
-      "precision": 0.18181818181818182,
-      "recall": 0.125,
-      "time_seconds": 6.6
-    },
-    "kmeans--": {
-      "status": "ok",
-      "n_samples": 325,
-      "n_features": 9,
-      "auc": 0.5727144012944984,
-      "f1": 0.1875,
-      "ari": 0.132316277613001,
-      "ami": 0.024891236362041314,
-      "precision": 0.1875,
-      "recall": 0.1875,
-      "time_seconds": 0.69
-    },
-    "hdbscan": {
-      "status": "ok",
-      "n_samples": 325,
-      "n_features": 9,
-      "auc": 0.7262338187702265,
-      "f1": 0.3050847457627119,
-      "ari": 0.21285292448318216,
-      "ami": 0.08824282185377658,
-      "precision": 0.20930232558139536,
-      "recall": 0.5625,
-      "time_seconds": 0.04
-    }
-  },
-  "WBC": {
-    "deltric": {
-      "status": "ok",
-      "n_samples": 223,
-      "n_features": 9,
-      "auc": 0.8544600938967136,
-      "f1": 0.24390243902439024,
-      "ari": 0.10321918268065611,
-      "ami": 0.1251576230723396,
-      "precision": 0.1388888888888889,
-      "recall": 1.0,
-      "time_seconds": 6.43
-    },
-    "kmeans--": {
-      "status": "ok",
-      "n_samples": 223,
-      "n_features": 9,
-      "auc": 0.7382629107981221,
-      "f1": 0.5,
-      "ari": 0.45292401538257526,
-      "ami": 0.24002859825710818,
-      "precision": 0.5,
-      "recall": 0.5,
-      "time_seconds": 0.62
-    },
-    "hdbscan": {
-      "status": "ok",
-      "n_samples": 223,
-      "n_features": 9,
-      "auc": null,
-      "f1": 0.08583690987124463,
-      "ari": 0.0,
-      "ami": 0.0,
-      "precision": 0.04484304932735426,
-      "recall": 1.0,
-      "time_seconds": 0.04
-    }
-  },
-  "WDBC": {
-    "deltric": {
-      "status": "ok",
-      "n_samples": 367,
-      "n_features": 30,
-      "auc": 0.7763305322128852,
-      "f1": 0.1258741258741259,
-      "ari": 0.036113629877278335,
-      "ami": 0.04190234154846842,
-      "precision": 0.06766917293233082,
-      "recall": 0.9,
-      "time_seconds": 7.37
-    },
-    "kmeans--": {
-      "status": "ok",
-      "n_samples": 367,
-      "n_features": 30,
-      "auc": 0.6401960784313725,
-      "f1": 0.3,
-      "ari": 0.2689854372659098,
-      "ami": 0.10788925428961746,
-      "precision": 0.3,
-      "recall": 0.3,
-      "time_seconds": 0.7
-    },
-    "hdbscan": {
-      "status": "ok",
-      "n_samples": 367,
-      "n_features": 30,
-      "auc": 0.6918767507002801,
-      "f1": 0.08333333333333333,
-      "ari": -0.019220906161616536,
-      "ami": 0.02937886620959439,
-      "precision": 0.043478260869565216,
-      "recall": 1.0,
-      "time_seconds": 0.05
-    }
-  },
-  "WPBC": {
-    "deltric": {
-      "status": "ok",
-      "n_samples": 154,
-      "n_features": 33,
-      "auc": 0.4900662251655629,
-      "f1": 0.0,
-      "ari": -0.019327365585363115,
-      "ami": -0.008861982640846533,
-      "precision": 0.0,
-      "recall": 0.0,
-      "time_seconds": 6.49
-    },
-    "kmeans--": {
-      "status": "ok",
-      "n_samples": 154,
-      "n_features": 33,
-      "auc": 0.4900662251655629,
-      "f1": 0.0,
-      "ari": -0.019327365585363115,
-      "ami": -0.008861982640846533,
-      "precision": 0.0,
-      "recall": 0.0,
-      "time_seconds": 0.64
-    },
-    "hdbscan": {
-      "status": "ok",
-      "n_samples": 154,
-      "n_features": 33,
-      "auc": null,
-      "f1": 0.03821656050955414,
-      "ari": 0.0,
-      "ami": 0.0,
-      "precision": 0.01948051948051948,
-      "recall": 1.0,
-      "time_seconds": 0.04
-    }
-  },
-  "Waveform": {
-    "deltric": {
-      "status": "ok",
-      "n_samples": 3443,
-      "n_features": 21,
-      "auc": 0.5465868979958121,
-      "f1": 0.07003891050583658,
-      "ari": 0.01135085358963207,
-      "ami": 0.0012334539499045112,
-      "precision": 0.03879310344827586,
-      "recall": 0.36,
-      "time_seconds": 11.89
-    },
-    "kmeans--": {
-      "status": "ok",
-      "n_samples": 3443,
-      "n_features": 21,
-      "auc": 0.5777355668561172,
-      "f1": 0.18,
-      "ari": 0.14760814233763886,
-      "ami": 0.04360549196973281,
-      "precision": 0.18,
-      "recall": 0.18,
-      "time_seconds": 1.66
-    },
-    "hdbscan": {
-      "status": "ok",
-      "n_samples": 3443,
-      "n_features": 21,
-      "auc": 0.5192940472629375,
-      "f1": 0.05858230814294083,
-      "ari": -0.03144502057190937,
-      "ami": 0.0066731637287579595,
-      "precision": 0.030175015087507542,
-      "recall": 1.0,
-      "time_seconds": 0.29
-    }
-  },
-  "Wilt": {
-    "deltric": {
-      "status": "ok",
-      "n_samples": 4819,
-      "n_features": 5,
-      "auc": 0.4775872245260714,
-      "f1": 0.020905923344947737,
-      "ari": -0.03510110535211603,
-      "ami": 0.004272828972809738,
-      "precision": 0.01892744479495268,
-      "recall": 0.023346303501945526,
-      "time_seconds": 17.12
-    },
-    "kmeans--": {
-      "status": "ok",
-      "n_samples": 4819,
-      "n_features": 5,
-      "auc": 0.47388765593628296,
-      "f1": 0.0038910505836575876,
-      "ari": -0.04607721333441772,
-      "ami": 0.010223469768910287,
-      "precision": 0.0038910505836575876,
-      "recall": 0.0038910505836575876,
-      "time_seconds": 1.34
-    },
-    "hdbscan": {
-      "status": "ok",
-      "n_samples": 4819,
-      "n_features": 5,
-      "auc": 0.543593498653229,
-      "f1": 0.10990913024664647,
-      "ari": -0.05320046943128527,
-      "ami": 0.01272722276149376,
-      "precision": 0.0581901489117984,
-      "recall": 0.9883268482490273,
-      "time_seconds": 0.13
+      "time_seconds": 633.93
     }
   }
 };
