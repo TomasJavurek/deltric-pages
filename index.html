@@ -537,6 +537,7 @@ function isTrivialRow(vals){
 (function(){
   const clusterDatasets = Object.keys(CLUSTER_DATA).sort();
   const algos = ['deltric','hdbscan','kmeans--'];
+  const commonAriRows = [];
 
   const ariBody = document.getElementById('cluster-ari-tbody');
   clusterDatasets.forEach(ds => {
@@ -561,7 +562,23 @@ function isTrivialRow(vals){
     });
     html += '<td>' + (trueK!==null&&trueK!==undefined ? trueK : '—') + '</td>';
     ariBody.innerHTML += html + '</tr>';
+    // The aggregate must compare like with like: include a data set only
+    // when every algorithm returned a finite ARI (therefore no timeout).
+    if (algos.every(a => d[a] && Number.isFinite(d[a].ari))) {
+      commonAriRows.push(vals);
+    }
   });
+  if (commonAriRows.length) {
+    const means = algos.map((_, index) =>
+      commonAriRows.reduce((sum, values) => sum + values[index], 0) /
+      commonAriRows.length
+    );
+    let html = '<tr class="average-row"><td><strong>Average ARI (n=' +
+      commonAriRows.length + ')</strong></td>';
+    means.forEach(value => { html += '<td><strong>' + fmt(value) + '</strong></td>'; });
+    html += '<td>—</td></tr>';
+    ariBody.innerHTML += html;
+  }
 })();
 
 // ── Lightbox ──
