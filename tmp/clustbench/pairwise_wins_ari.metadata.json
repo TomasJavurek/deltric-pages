@@ -1,0 +1,50 @@
+{
+  "metric": "ari",
+  "tolerance": 1e-12,
+  "groups": {
+    "2D": {
+      "source_result_prefixes": [
+        "synth_2D",
+        "curated_2D"
+      ],
+      "algorithms": [
+        "deltric",
+        "hdbscan",
+        "umap_hdbscan",
+        "kmeans",
+        "genie",
+        "optics"
+      ],
+      "dataset_count_by_algorithm": {
+        "deltric": 10,
+        "hdbscan": 10,
+        "umap_hdbscan": 10,
+        "kmeans": 10,
+        "genie": 10,
+        "optics": 10
+      }
+    },
+    "multiD": {
+      "source_result_prefixes": [
+        "synth_multiD",
+        "real_multiD"
+      ],
+      "algorithms": [
+        "deltric",
+        "hdbscan",
+        "umap_hdbscan",
+        "kmeans",
+        "genie",
+        "optics"
+      ],
+      "dataset_count_by_algorithm": {
+        "deltric": 20,
+        "hdbscan": 20,
+        "umap_hdbscan": 20,
+        "kmeans": 20,
+        "genie": 20,
+        "optics": 20
+      }
+    }
+  }
+}

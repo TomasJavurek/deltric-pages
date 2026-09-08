@@ -2701,3 +2701,127 @@ var CLUSTER_DATA = {
     }
   }
 };
+var CLUSTBENCH_PAIRWISE = {
+  "2D": {
+    "algorithms": [
+      "deltric",
+      "hdbscan",
+      "umap_hdbscan",
+      "kmeans",
+      "genie",
+      "optics"
+    ],
+    "wins": {
+      "deltric": {
+        "deltric": 0,
+        "hdbscan": 3,
+        "umap_hdbscan": 2,
+        "kmeans": 5,
+        "genie": 3,
+        "optics": 3
+      },
+      "hdbscan": {
+        "deltric": 7,
+        "hdbscan": 0,
+        "umap_hdbscan": 5,
+        "kmeans": 7,
+        "genie": 4,
+        "optics": 9
+      },
+      "umap_hdbscan": {
+        "deltric": 8,
+        "hdbscan": 5,
+        "umap_hdbscan": 0,
+        "kmeans": 5,
+        "genie": 3,
+        "optics": 10
+      },
+      "kmeans": {
+        "deltric": 5,
+        "hdbscan": 3,
+        "umap_hdbscan": 5,
+        "kmeans": 0,
+        "genie": 3,
+        "optics": 7
+      },
+      "genie": {
+        "deltric": 7,
+        "hdbscan": 6,
+        "umap_hdbscan": 7,
+        "kmeans": 7,
+        "genie": 0,
+        "optics": 9
+      },
+      "optics": {
+        "deltric": 7,
+        "hdbscan": 1,
+        "umap_hdbscan": 0,
+        "kmeans": 3,
+        "genie": 1,
+        "optics": 0
+      }
+    },
+    "comparable_datasets": 10
+  },
+  "multiD": {
+    "algorithms": [
+      "deltric",
+      "hdbscan",
+      "umap_hdbscan",
+      "kmeans",
+      "genie",
+      "optics"
+    ],
+    "wins": {
+      "deltric": {
+        "deltric": 0,
+        "hdbscan": 8,
+        "umap_hdbscan": 8,
+        "kmeans": 8,
+        "genie": 5,
+        "optics": 18
+      },
+      "hdbscan": {
+        "deltric": 11,
+        "hdbscan": 0,
+        "umap_hdbscan": 5,
+        "kmeans": 6,
+        "genie": 5,
+        "optics": 17
+      },
+      "umap_hdbscan": {
+        "deltric": 11,
+        "hdbscan": 12,
+        "umap_hdbscan": 0,
+        "kmeans": 6,
+        "genie": 6,
+        "optics": 19
+      },
+      "kmeans": {
+        "deltric": 12,
+        "hdbscan": 13,
+        "umap_hdbscan": 13,
+        "kmeans": 0,
+        "genie": 9,
+        "optics": 18
+      },
+      "genie": {
+        "deltric": 15,
+        "hdbscan": 11,
+        "umap_hdbscan": 11,
+        "kmeans": 9,
+        "genie": 0,
+        "optics": 17
+      },
+      "optics": {
+        "deltric": 1,
+        "hdbscan": 2,
+        "umap_hdbscan": 1,
+        "kmeans": 2,
+        "genie": 3,
+        "optics": 0
+      }
+    },
+    "comparable_datasets": 20
+  }
+};

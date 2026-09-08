@@ -160,6 +160,10 @@ tbody tr.trivial:hover{opacity:0.65}
 .summary-card .lbl{font-size:0.82rem;color:var(--text-dim);margin-top:0.3rem}
 .summary-card .detail{font-size:0.8rem;line-height:1.45;color:var(--text-dim);margin:0.55rem 0 0}
 .summary-card .detail a{color:var(--accent);font-weight:600}
+.pairwise-table td{white-space:nowrap;font-variant-numeric:tabular-nums;font-size:0.82rem}
+.pairwise-table .pairwise-positive{color:var(--green);font-weight:700}
+.pairwise-table .pairwise-negative{color:#b91c1c;font-weight:700}
+.pairwise-note{font-size:0.82rem;color:var(--text-dim);margin:-0.2rem 0 0.9rem}
 
 /* ── Compare bars ── */
 .compare-bar{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem}
@@ -386,6 +390,18 @@ footer a:hover{text-decoration:underline}
     </table>
     </div>
 
+    <h3 class="bench-subtitle">ClustBench Pairwise Comparison — ARI</h3>
+    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;max-width:900px;">A compact selection from ClustBench Suite v1.1.0: 10 synthetic multi-dimensional, 10 real multi-dimensional, 5 synthetic 2-D, and 5 curated 2-D reference problems. Inputs are standardized; each run has a 120-second limit. DelTriC uses the component-growth configuration, direct HDBSCAN operates in original space, and UMAP+HDBSCAN uses a deterministic 2-D UMAP embedding. A common minimum cluster size of 10 is used where supported. K-means and Genie receive the reference <em>k</em>, so they are oracle-<em>k</em> reference baselines.</p>
+    <p class="pairwise-note">Each cell is <strong>row wins – column wins – ties</strong> by ARI on the same datasets. Green means the row algorithm wins more often; red means it loses more often.</p>
+    <h4 style="font-size:1rem;margin:1.2rem 0 0.6rem;">2-D datasets (n=10)</h4>
+    <div style="overflow-x:auto;">
+      <table class="pairwise-table"><thead id="clustbench-2d-head"></thead><tbody id="clustbench-2d-body"></tbody></table>
+    </div>
+    <h4 style="font-size:1rem;margin:1.4rem 0 0.6rem;">Multi-dimensional datasets (n=20)</h4>
+    <div style="overflow-x:auto;">
+      <table class="pairwise-table"><thead id="clustbench-multid-head"></thead><tbody id="clustbench-multid-body"></tbody></table>
+    </div>
+
     <h3 class="bench-subtitle">Outlier Detection — F1 Score</h3>
     <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">F1 score (precision-recall harmonic mean) on real-world outlier detection datasets. Higher is better. Trivial rows (all 0.0 or all 1.0) are greyed out.</p>
     <div style="overflow-x:auto;">
@@ -554,6 +570,36 @@ function isTrivialRow(vals){
       '<p class="detail">Standardized inputs; <code>min_cluster_size=10</code>; <code>min_samples=None</code>; otherwise library defaults.</p></div>'+
     '<div class="summary-card"><div class="big">K-Means--</div><div class="lbl">Reference setup</div>'+
       '<p class="detail">Clustering uses the ground-truth <em>k</em>. Outlier scoring uses known contamination, so it is an upper-bound reference.</p></div>';
+})();
+
+// ── Build ClustBench pairwise ARI tables ──
+(function(){
+  const labels = {
+    deltric: 'DelTriC', hdbscan: 'HDBSCAN', umap_hdbscan: '2D UMAP + HDBSCAN',
+    kmeans: 'K-Means*', genie: 'Genie*', optics: 'OPTICS'
+  };
+  function render(dimension, headId, bodyId){
+    const data = CLUSTBENCH_PAIRWISE[dimension];
+    const head = document.getElementById(headId);
+    const body = document.getElementById(bodyId);
+    const algos = data.algorithms;
+    head.innerHTML = '<tr><th>Row algorithm</th>' +
+      algos.map(a => '<th>'+labels[a]+'</th>').join('') + '</tr>';
+    algos.forEach(row => {
+      let html = '<tr><td>'+labels[row]+'</td>';
+      algos.forEach(column => {
+        const wins = data.wins[row][column];
+        const losses = data.wins[column][row];
+        const ties = data.comparable_datasets - wins - losses;
+        const cls = wins > losses ? 'pairwise-positive' :
+          (wins < losses ? 'pairwise-negative' : '');
+        html += '<td class="'+cls+'">'+wins+'–'+losses+'–'+ties+'</td>';
+      });
+      body.innerHTML += html + '</tr>';
+    });
+  }
+  render('2D', 'clustbench-2d-head', 'clustbench-2d-body');
+  render('multiD', 'clustbench-multid-head', 'clustbench-multid-body');
 })();
 
 // ── Build clustering ARI table ──
