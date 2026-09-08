@@ -393,8 +393,14 @@ footer a:hover{text-decoration:underline}
     </table>
     </div>
 
-    <h3 class="bench-subtitle" style="margin-top:2.5rem;">Visual Summary — AUC Wins</h3>
-    <div id="auc-bars" style="max-width:600px;"></div>
+    <h3 class="bench-subtitle" style="margin-top:2.5rem;">Outlier Detection — Average Metrics</h3>
+    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">Average F1, precision, and recall over datasets where all three algorithms produced each metric.</p>
+    <div style="overflow-x:auto;max-width:600px;">
+    <table>
+      <thead><tr><th>Algorithm</th><th>Avg F1</th><th>Avg Precision</th><th>Avg Recall</th></tr></thead>
+      <tbody id="outlier-average-tbody"></tbody>
+    </table>
+    </div>
   </div>
 </section>
 
@@ -502,27 +508,38 @@ function isTrivialRow(vals){
     f1Body.innerHTML += html + '</tr>';
   });
 
-  // AUC Wins bar chart
-  const wins = {'DelTriC':0,'HDBSCAN':0,'K-Means':0};
-  outlierDatasets.forEach(ds => {
-    const d = OUTLIER_DATA[ds];
-    const vals = {};
-    algos.forEach(a => { vals[a] = (d[a] && d[a].auc!==null) ? d[a].auc : null; });
-    const valid = algos.filter(a => vals[a] !== null);
-    if(!valid.length) return;
-    const bestVal = Math.max(...valid.map(a => vals[a]));
-    const winners = valid.filter(a => vals[a] === bestVal);
-    if(winners.length === 1) {
-      wins[algoLabels[winners[0]]]++;
-    }
+  // Average only complete, directly comparable outlier rows. A timeout or a
+  // missing metric therefore cannot improve an algorithm's displayed mean.
+  const outlierMetrics = ['f1', 'precision', 'recall'];
+  const commonOutlierRows = outlierDatasets.filter(ds =>
+    algos.every(a => OUTLIER_DATA[ds][a] &&
+      outlierMetrics.every(metric => OUTLIER_DATA[ds][a][metric] !== null))
+  );
+  const averageBody = document.getElementById('outlier-average-tbody');
+  const averages = {};
+  algos.forEach(a => {
+    averages[a] = {};
+    outlierMetrics.forEach(metric => {
+      averages[a][metric] = commonOutlierRows.length ?
+        commonOutlierRows.reduce((sum, ds) => sum + OUTLIER_DATA[ds][a][metric], 0) /
+          commonOutlierRows.length : null;
+    });
   });
-  const total = Object.values(wins).reduce((a,b)=>a+b,0);
-  const barC = document.getElementById('auc-bars');
-  Object.entries(wins).forEach(([name,count]) => {
-    const pct = total > 0 ? (count/total)*100 : 0;
-    const cls = name.includes('DelTriC') ? 'indigo' : 'gray';
-    barC.innerHTML += '<div class="compare-bar"><div class="name">'+name+'</div><div class="bar-track"><div class="bar-fill '+cls+'" style="width:'+pct.toFixed(0)+'%">'+count+'</div></div></div>';
+  const bestAverage = {};
+  outlierMetrics.forEach(metric => {
+    bestAverage[metric] = Math.max(...algos.map(a => averages[a][metric]));
   });
+  algos.forEach(a => {
+    let html = '<tr><td><strong>'+algoLabels[a]+'</strong></td>';
+    outlierMetrics.forEach(metric => {
+      const value = averages[a][metric];
+      html += '<td'+(value === bestAverage[metric] ? " class='best'" : '')+'>'+fmt(value)+'</td>';
+    });
+    averageBody.innerHTML += html + '</tr>';
+  });
+  averageBody.insertAdjacentHTML('afterbegin',
+    '<tr class="average-row"><td colspan="4"><strong>Comparable datasets (n='+
+    commonOutlierRows.length+')</strong></td></tr>');
 
   // Summary cards
   const summary = document.getElementById('summary-cards');
@@ -577,7 +594,7 @@ function isTrivialRow(vals){
       commonAriRows.length + ')</strong></td>';
     means.forEach(value => { html += '<td><strong>' + fmt(value) + '</strong></td>'; });
     html += '<td>—</td></tr>';
-    ariBody.innerHTML += html;
+    ariBody.insertAdjacentHTML('afterbegin', html);
   }
 })();
 
