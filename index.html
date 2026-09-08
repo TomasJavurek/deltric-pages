@@ -158,6 +158,8 @@ tbody tr.trivial:hover{opacity:0.65}
 .summary-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);padding:1.4rem;text-align:center;box-shadow:var(--shadow-sm)}
 .summary-card .big{font-size:2rem;font-weight:900;color:var(--accent)}
 .summary-card .lbl{font-size:0.82rem;color:var(--text-dim);margin-top:0.3rem}
+.summary-card .detail{font-size:0.8rem;line-height:1.45;color:var(--text-dim);margin:0.55rem 0 0}
+.summary-card .detail a{color:var(--accent);font-weight:600}
 
 /* ── Compare bars ── */
 .compare-bar{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem}
@@ -375,21 +377,21 @@ footer a:hover{text-decoration:underline}
       <!-- Filled by JS -->
     </div>
 
-    <h3 class="bench-subtitle">Outlier Detection — F1 Score</h3>
-    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">F1 score (precision-recall harmonic mean) on real-world outlier detection datasets. Higher is better. Trivial rows (all 0.0 or all 1.0) are greyed out.</p>
-    <div style="overflow-x:auto;">
-    <table>
-      <thead><tr><th>Dataset</th><th>DelTriC</th><th>HDBSCAN</th><th>K-Means</th></tr></thead>
-      <tbody id="f1-tbody"></tbody>
-    </table>
-    </div>
-
     <h3 class="bench-subtitle">Clustering Quality — ARI</h3>
     <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">Adjusted Rand Index on synthetic clustering datasets. Higher is better. Timeout = dataset too large within time limit. Trivial rows are greyed out.</p>
     <div style="overflow-x:auto;">
     <table>
       <thead><tr><th>Dataset</th><th>DelTriC</th><th>HDBSCAN</th><th>K-Means</th><th>True k</th></tr></thead>
       <tbody id="cluster-ari-tbody"></tbody>
+    </table>
+    </div>
+
+    <h3 class="bench-subtitle">Outlier Detection — F1 Score</h3>
+    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">F1 score (precision-recall harmonic mean) on real-world outlier detection datasets. Higher is better. Trivial rows (all 0.0 or all 1.0) are greyed out.</p>
+    <div style="overflow-x:auto;">
+    <table>
+      <thead><tr><th>Dataset</th><th>DelTriC</th><th>HDBSCAN</th><th>K-Means</th></tr></thead>
+      <tbody id="f1-tbody"></tbody>
     </table>
     </div>
 
@@ -541,13 +543,17 @@ function isTrivialRow(vals){
     '<tr class="average-row"><td colspan="4"><strong>Comparable datasets (n='+
     commonOutlierRows.length+')</strong></td></tr>');
 
-  // Summary cards
+  // Benchmark provenance and baseline setup.
   const summary = document.getElementById('summary-cards');
-  const nDatasets = outlierDatasets.length;
-  const nDeltricOk = outlierDatasets.filter(ds => OUTLIER_DATA[ds].deltric && OUTLIER_DATA[ds].deltric.status==='ok').length;
-  summary.innerHTML += '<div class="summary-card"><div class="big">'+nDatasets+'</div><div class="lbl">Outlier datasets</div></div>';
-  summary.innerHTML += '<div class="summary-card"><div class="big">'+nDeltricOk+'</div><div class="lbl">DelTriC completed</div></div>';
-  summary.innerHTML += '<div class="summary-card"><div class="big">'+Object.keys(CLUSTER_DATA).length+'</div><div class="lbl">Clustering datasets</div></div>';
+  summary.innerHTML =
+    '<div class="summary-card"><div class="big">48</div><div class="lbl">Clustering datasets</div>'+
+      '<p class="detail">41 synthetic shape/density cases plus 7 public reference datasets.</p></div>'+
+    '<div class="summary-card"><div class="big">23</div><div class="lbl">Outlier datasets</div>'+
+      '<p class="detail">Real ARFF datasets from the <a href="https://github.com/BraulioSanchez/clustering-based-outlier-detection" target="_blank" rel="noopener">DAMI / BraulioSanchez mirror</a>.</p></div>'+
+    '<div class="summary-card"><div class="big">HDBSCAN</div><div class="lbl">Baseline setup</div>'+
+      '<p class="detail">Standardized inputs; <code>min_cluster_size=10</code>; <code>min_samples=None</code>; otherwise library defaults.</p></div>'+
+    '<div class="summary-card"><div class="big">K-Means--</div><div class="lbl">Reference setup</div>'+
+      '<p class="detail">Clustering uses the ground-truth <em>k</em>. Outlier scoring uses known contamination, so it is an upper-bound reference.</p></div>';
 })();
 
 // ── Build clustering ARI table ──
