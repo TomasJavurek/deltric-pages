@@ -1,7 +1,7 @@
 row_wins_over_column,deltric,hdbscan,umap_hdbscan,kmeans,genie,optics
-deltric,0,3,2,5,3,3
-hdbscan,7,0,5,7,4,9
-umap_hdbscan,8,5,0,5,3,10
-kmeans,5,3,5,0,3,7
+deltric,0,2,1,4,3,2
+hdbscan,8,0,5,7,4,9
+umap_hdbscan,9,5,0,5,3,10
+kmeans,6,3,5,0,3,7
 genie,7,6,7,7,0,9
-optics,7,1,0,3,1,0
+optics,8,1,0,3,1,0

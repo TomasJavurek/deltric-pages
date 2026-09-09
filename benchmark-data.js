@@ -2714,14 +2714,14 @@ var CLUSTBENCH_PAIRWISE = {
     "wins": {
       "deltric": {
         "deltric": 0,
-        "hdbscan": 3,
-        "umap_hdbscan": 2,
-        "kmeans": 5,
+        "hdbscan": 2,
+        "umap_hdbscan": 1,
+        "kmeans": 4,
         "genie": 3,
-        "optics": 3
+        "optics": 2
       },
       "hdbscan": {
-        "deltric": 7,
+        "deltric": 8,
         "hdbscan": 0,
         "umap_hdbscan": 5,
         "kmeans": 7,
@@ -2729,7 +2729,7 @@ var CLUSTBENCH_PAIRWISE = {
         "optics": 9
       },
       "umap_hdbscan": {
-        "deltric": 8,
+        "deltric": 9,
         "hdbscan": 5,
         "umap_hdbscan": 0,
         "kmeans": 5,
@@ -2737,7 +2737,7 @@ var CLUSTBENCH_PAIRWISE = {
         "optics": 10
       },
       "kmeans": {
-        "deltric": 5,
+        "deltric": 6,
         "hdbscan": 3,
         "umap_hdbscan": 5,
         "kmeans": 0,
@@ -2753,7 +2753,7 @@ var CLUSTBENCH_PAIRWISE = {
         "optics": 9
       },
       "optics": {
-        "deltric": 7,
+        "deltric": 8,
         "hdbscan": 1,
         "umap_hdbscan": 0,
         "kmeans": 3,
@@ -2775,14 +2775,14 @@ var CLUSTBENCH_PAIRWISE = {
     "wins": {
       "deltric": {
         "deltric": 0,
-        "hdbscan": 8,
-        "umap_hdbscan": 8,
+        "hdbscan": 12,
+        "umap_hdbscan": 10,
         "kmeans": 8,
-        "genie": 5,
-        "optics": 18
+        "genie": 8,
+        "optics": 17
       },
       "hdbscan": {
-        "deltric": 11,
+        "deltric": 6,
         "hdbscan": 0,
         "umap_hdbscan": 5,
         "kmeans": 6,
@@ -2790,7 +2790,7 @@ var CLUSTBENCH_PAIRWISE = {
         "optics": 17
       },
       "umap_hdbscan": {
-        "deltric": 11,
+        "deltric": 8,
         "hdbscan": 12,
         "umap_hdbscan": 0,
         "kmeans": 6,
@@ -2798,7 +2798,7 @@ var CLUSTBENCH_PAIRWISE = {
         "optics": 19
       },
       "kmeans": {
-        "deltric": 12,
+        "deltric": 11,
         "hdbscan": 13,
         "umap_hdbscan": 13,
         "kmeans": 0,
@@ -2806,7 +2806,7 @@ var CLUSTBENCH_PAIRWISE = {
         "optics": 18
       },
       "genie": {
-        "deltric": 15,
+        "deltric": 11,
         "hdbscan": 11,
         "umap_hdbscan": 11,
         "kmeans": 9,
@@ -2814,7 +2814,7 @@ var CLUSTBENCH_PAIRWISE = {
         "optics": 17
       },
       "optics": {
-        "deltric": 1,
+        "deltric": 2,
         "hdbscan": 2,
         "umap_hdbscan": 1,
         "kmeans": 2,
