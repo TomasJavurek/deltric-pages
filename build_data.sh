@@ -3,14 +3,13 @@ set -euo pipefail
 OUTLIER_CSV="./tmp/outlier_global.csv"
 CLUSTER_CSV="./tmp/clustering_global.csv"
 OUTPUT="./benchmark-data.js"
-CLUSTBENCH_2D_CSV="./tmp/clustbench/pairwise_wins_2D_ari.csv"
-CLUSTBENCH_MULTID_CSV="./tmp/clustbench/pairwise_wins_multiD_ari.csv"
-CLUSTBENCH_METADATA="./tmp/clustbench/pairwise_wins_ari.metadata.json"
+CLUSTBENCH_2D_CSV="./tmp/clustbench/deltric_vs_baselines_2D_ari.csv"
+CLUSTBENCH_MULTID_CSV="./tmp/clustbench/deltric_vs_baselines_multiD_ari.csv"
 
-python3 - "$OUTLIER_CSV" "$CLUSTER_CSV" "$CLUSTBENCH_2D_CSV" "$CLUSTBENCH_MULTID_CSV" "$CLUSTBENCH_METADATA" "$OUTPUT" << 'PYEOF'
+python3 - "$OUTLIER_CSV" "$CLUSTER_CSV" "$CLUSTBENCH_2D_CSV" "$CLUSTBENCH_MULTID_CSV" "$OUTPUT" << 'PYEOF'
 import csv, json, sys, math
 
-outlier_csv, cluster_csv, pairwise_2d_csv, pairwise_multid_csv, pairwise_metadata, output = sys.argv[1:]
+outlier_csv, cluster_csv, deltric_2d_csv, deltric_multid_csv, output = sys.argv[1:]
 
 def to_float(v):
     try:
@@ -72,26 +71,27 @@ def parse_cluster(path):
             }
     return data
 
-def parse_pairwise(path, dimension, metadata):
+def parse_deltric_comparison(path):
     with open(path) as f:
-        reader = csv.DictReader(f)
-        algorithms = [name for name in reader.fieldnames if name != 'row_wins_over_column']
-        wins = {}
-        for row in reader:
-            wins[row['row_wins_over_column']] = {
-                algo: to_int(row.get(algo)) for algo in algorithms
-            }
-    counts = metadata.get('groups', {}).get(dimension, {}).get('dataset_count_by_algorithm', {})
-    comparable = min(counts.values()) if counts else None
-    return {'algorithms': algorithms, 'wins': wins, 'comparable_datasets': comparable}
+        rows = []
+        for row in csv.DictReader(f):
+            rows.append({
+                'comparator': row['comparator'],
+                'deltric_mean': to_float(row['deltric_mean']),
+                'comparator_mean': to_float(row['comparator_mean']),
+                'mean_delta': to_float(row['mean_delta']),
+                'deltric_wins': to_int(row['deltric_wins']),
+                'deltric_losses': to_int(row['deltric_losses']),
+                'ties': to_int(row['ties']),
+                'comparable_datasets': to_int(row['comparable_datasets']),
+            })
+    return rows
 
 outlier = parse_outlier(outlier_csv)
 cluster = parse_cluster(cluster_csv)
-with open(pairwise_metadata) as f:
-    clustbench_meta = json.load(f)
 clustbench = {
-    '2D': parse_pairwise(pairwise_2d_csv, '2D', clustbench_meta),
-    'multiD': parse_pairwise(pairwise_multid_csv, 'multiD', clustbench_meta),
+    '2D': parse_deltric_comparison(deltric_2d_csv),
+    'multiD': parse_deltric_comparison(deltric_multid_csv),
 }
 
 with open(output, 'w') as f:
@@ -102,7 +102,7 @@ with open(output, 'w') as f:
     f.write('var CLUSTER_DATA = ')
     f.write(json.dumps(cluster, indent=2))
     f.write(';\n')
-    f.write('var CLUSTBENCH_PAIRWISE = ')
+    f.write('var CLUSTBENCH_DELTRIC_COMPARISON = ')
     f.write(json.dumps(clustbench, indent=2))
     f.write(';\n')
 

@@ -2701,127 +2701,109 @@ var CLUSTER_DATA = {
     }
   }
 };
-var CLUSTBENCH_PAIRWISE = {
-  "2D": {
-    "algorithms": [
-      "deltric",
-      "hdbscan",
-      "umap_hdbscan",
-      "kmeans",
-      "genie",
-      "optics"
-    ],
-    "wins": {
-      "deltric": {
-        "deltric": 0,
-        "hdbscan": 2,
-        "umap_hdbscan": 1,
-        "kmeans": 4,
-        "genie": 3,
-        "optics": 2
-      },
-      "hdbscan": {
-        "deltric": 8,
-        "hdbscan": 0,
-        "umap_hdbscan": 5,
-        "kmeans": 7,
-        "genie": 4,
-        "optics": 9
-      },
-      "umap_hdbscan": {
-        "deltric": 9,
-        "hdbscan": 5,
-        "umap_hdbscan": 0,
-        "kmeans": 5,
-        "genie": 3,
-        "optics": 10
-      },
-      "kmeans": {
-        "deltric": 6,
-        "hdbscan": 3,
-        "umap_hdbscan": 5,
-        "kmeans": 0,
-        "genie": 3,
-        "optics": 7
-      },
-      "genie": {
-        "deltric": 7,
-        "hdbscan": 6,
-        "umap_hdbscan": 7,
-        "kmeans": 7,
-        "genie": 0,
-        "optics": 9
-      },
-      "optics": {
-        "deltric": 8,
-        "hdbscan": 1,
-        "umap_hdbscan": 0,
-        "kmeans": 3,
-        "genie": 1,
-        "optics": 0
-      }
+var CLUSTBENCH_DELTRIC_COMPARISON = {
+  "2D": [
+    {
+      "comparator": "hdbscan",
+      "deltric_mean": 0.273606351322,
+      "comparator_mean": 0.61977538965,
+      "mean_delta": -0.346169038327,
+      "deltric_wins": 2,
+      "deltric_losses": 8,
+      "ties": 0,
+      "comparable_datasets": 10
     },
-    "comparable_datasets": 10
-  },
-  "multiD": {
-    "algorithms": [
-      "deltric",
-      "hdbscan",
-      "umap_hdbscan",
-      "kmeans",
-      "genie",
-      "optics"
-    ],
-    "wins": {
-      "deltric": {
-        "deltric": 0,
-        "hdbscan": 12,
-        "umap_hdbscan": 10,
-        "kmeans": 8,
-        "genie": 8,
-        "optics": 17
-      },
-      "hdbscan": {
-        "deltric": 6,
-        "hdbscan": 0,
-        "umap_hdbscan": 5,
-        "kmeans": 6,
-        "genie": 5,
-        "optics": 17
-      },
-      "umap_hdbscan": {
-        "deltric": 8,
-        "hdbscan": 12,
-        "umap_hdbscan": 0,
-        "kmeans": 6,
-        "genie": 6,
-        "optics": 19
-      },
-      "kmeans": {
-        "deltric": 11,
-        "hdbscan": 13,
-        "umap_hdbscan": 13,
-        "kmeans": 0,
-        "genie": 9,
-        "optics": 18
-      },
-      "genie": {
-        "deltric": 11,
-        "hdbscan": 11,
-        "umap_hdbscan": 11,
-        "kmeans": 9,
-        "genie": 0,
-        "optics": 17
-      },
-      "optics": {
-        "deltric": 2,
-        "hdbscan": 2,
-        "umap_hdbscan": 1,
-        "kmeans": 2,
-        "genie": 3,
-        "optics": 0
-      }
+    {
+      "comparator": "umap_hdbscan",
+      "deltric_mean": 0.273606351322,
+      "comparator_mean": 0.510763303921,
+      "mean_delta": -0.237156952599,
+      "deltric_wins": 1,
+      "deltric_losses": 9,
+      "ties": 0,
+      "comparable_datasets": 10
     },
-    "comparable_datasets": 20
-  }
+    {
+      "comparator": "kmeans",
+      "deltric_mean": 0.273606351322,
+      "comparator_mean": 0.460211395796,
+      "mean_delta": -0.186605044474,
+      "deltric_wins": 4,
+      "deltric_losses": 6,
+      "ties": 0,
+      "comparable_datasets": 10
+    },
+    {
+      "comparator": "genie",
+      "deltric_mean": 0.273606351322,
+      "comparator_mean": 0.723968148744,
+      "mean_delta": -0.450361797422,
+      "deltric_wins": 3,
+      "deltric_losses": 7,
+      "ties": 0,
+      "comparable_datasets": 10
+    },
+    {
+      "comparator": "optics",
+      "deltric_mean": 0.273606351322,
+      "comparator_mean": 0.246112017125,
+      "mean_delta": 0.0274943341977,
+      "deltric_wins": 2,
+      "deltric_losses": 8,
+      "ties": 0,
+      "comparable_datasets": 10
+    }
+  ],
+  "multiD": [
+    {
+      "comparator": "hdbscan",
+      "deltric_mean": 0.457449242658,
+      "comparator_mean": 0.365690120154,
+      "mean_delta": 0.091759122504,
+      "deltric_wins": 12,
+      "deltric_losses": 6,
+      "ties": 2,
+      "comparable_datasets": 20
+    },
+    {
+      "comparator": "umap_hdbscan",
+      "deltric_mean": 0.457449242658,
+      "comparator_mean": 0.492579445922,
+      "mean_delta": -0.0351302032638,
+      "deltric_wins": 10,
+      "deltric_losses": 8,
+      "ties": 2,
+      "comparable_datasets": 20
+    },
+    {
+      "comparator": "kmeans",
+      "deltric_mean": 0.457449242658,
+      "comparator_mean": 0.48204966707,
+      "mean_delta": -0.0246004244126,
+      "deltric_wins": 8,
+      "deltric_losses": 11,
+      "ties": 1,
+      "comparable_datasets": 20
+    },
+    {
+      "comparator": "genie",
+      "deltric_mean": 0.457449242658,
+      "comparator_mean": 0.503568941815,
+      "mean_delta": -0.0461196991568,
+      "deltric_wins": 8,
+      "deltric_losses": 11,
+      "ties": 1,
+      "comparable_datasets": 20
+    },
+    {
+      "comparator": "optics",
+      "deltric_mean": 0.457449242658,
+      "comparator_mean": 0.113941676811,
+      "mean_delta": 0.343507565847,
+      "deltric_wins": 17,
+      "deltric_losses": 2,
+      "ties": 1,
+      "comparable_datasets": 20
+    }
+  ]
 };
