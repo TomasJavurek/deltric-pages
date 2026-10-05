@@ -382,7 +382,7 @@ footer a:hover{text-decoration:underline}
     </div>
 
     <h3 class="bench-subtitle">Clustering Quality — ARI</h3>
-    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">Adjusted Rand Index on synthetic clustering datasets. Higher is better. Timeout = dataset too large within time limit. Trivial rows are greyed out.</p>
+    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">Adjusted Rand Index for the active ClustBench selections: 10 synthetic 2-D, 10 synthetic multi-D, and 10 real multi-D datasets. Higher is better. Timeout = dataset too large within time limit.</p>
     <div style="overflow-x:auto;">
     <table>
       <thead><tr><th>Dataset</th><th>DelTriC</th><th>HDBSCAN</th><th>K-Means</th><th>True k</th></tr></thead>
@@ -397,9 +397,13 @@ footer a:hover{text-decoration:underline}
     <div style="overflow-x:auto;">
       <table class="pairwise-table"><thead id="clustbench-2d-head"></thead><tbody id="clustbench-2d-body"></tbody></table>
     </div>
-    <h4 style="font-size:1rem;margin:1.4rem 0 0.6rem;">Multi-dimensional datasets (n=20)</h4>
+    <h4 style="font-size:1rem;margin:1.4rem 0 0.6rem;">Synthetic multi-dimensional datasets (n=10)</h4>
     <div style="overflow-x:auto;">
-      <table class="pairwise-table"><thead id="clustbench-multid-head"></thead><tbody id="clustbench-multid-body"></tbody></table>
+      <table class="pairwise-table"><thead id="clustbench-synth-multid-head"></thead><tbody id="clustbench-synth-multid-body"></tbody></table>
+    </div>
+    <h4 style="font-size:1rem;margin:1.4rem 0 0.6rem;">Real multi-dimensional datasets (n=10)</h4>
+    <div style="overflow-x:auto;">
+      <table class="pairwise-table"><thead id="clustbench-real-multid-head"></thead><tbody id="clustbench-real-multid-body"></tbody></table>
     </div>
 
     <h3 class="bench-subtitle">Outlier Detection — F1 Score</h3>
@@ -562,8 +566,8 @@ function isTrivialRow(vals){
   // Benchmark provenance and baseline setup.
   const summary = document.getElementById('summary-cards');
   summary.innerHTML =
-    '<div class="summary-card"><div class="big">48</div><div class="lbl">Clustering datasets</div>'+
-      '<p class="detail">41 synthetic shape/density cases plus 7 public reference datasets.</p></div>'+
+    '<div class="summary-card"><div class="big">30</div><div class="lbl">Clustering datasets</div>'+
+      '<p class="detail">Active ClustBench selection: 20 synthetic and 10 real reference datasets.</p></div>'+
     '<div class="summary-card"><div class="big">23</div><div class="lbl">Outlier datasets</div>'+
       '<p class="detail">Real ARFF datasets from the <a href="https://github.com/BraulioSanchez/clustering-based-outlier-detection" target="_blank" rel="noopener">DAMI / BraulioSanchez mirror</a>.</p></div>'+
     '<div class="summary-card"><div class="big">HDBSCAN</div><div class="lbl">Baseline setup</div>'+
@@ -590,7 +594,8 @@ function isTrivialRow(vals){
     });
   }
   render('2D', 'clustbench-2d-head', 'clustbench-2d-body');
-  render('multiD', 'clustbench-multid-head', 'clustbench-multid-body');
+  render('synthetic_multiD', 'clustbench-synth-multid-head', 'clustbench-synth-multid-body');
+  render('real_multiD', 'clustbench-real-multid-head', 'clustbench-real-multid-body');
 })();
 
 // ── Build clustering ARI table ──

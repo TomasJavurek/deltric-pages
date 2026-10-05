@@ -4,12 +4,13 @@ OUTLIER_CSV="./tmp/outlier_global.csv"
 CLUSTER_CSV="./tmp/clustering_global.csv"
 OUTPUT="./benchmark-data.js"
 CLUSTBENCH_2D_CSV="./tmp/clustbench/deltric_vs_baselines_2D_ari.csv"
-CLUSTBENCH_MULTID_CSV="./tmp/clustbench/deltric_vs_baselines_multiD_ari.csv"
+CLUSTBENCH_SYNTH_MULTID_CSV="./tmp/clustbench/deltric_vs_baselines_synth_multiD_ari.csv"
+CLUSTBENCH_REAL_MULTID_CSV="./tmp/clustbench/deltric_vs_baselines_real_multiD_ari.csv"
 
-python3 - "$OUTLIER_CSV" "$CLUSTER_CSV" "$CLUSTBENCH_2D_CSV" "$CLUSTBENCH_MULTID_CSV" "$OUTPUT" << 'PYEOF'
+python3 - "$OUTLIER_CSV" "$CLUSTER_CSV" "$CLUSTBENCH_2D_CSV" "$CLUSTBENCH_SYNTH_MULTID_CSV" "$CLUSTBENCH_REAL_MULTID_CSV" "$OUTPUT" << 'PYEOF'
 import csv, json, sys, math
 
-outlier_csv, cluster_csv, deltric_2d_csv, deltric_multid_csv, output = sys.argv[1:]
+outlier_csv, cluster_csv, deltric_2d_csv, deltric_synth_multid_csv, deltric_real_multid_csv, output = sys.argv[1:]
 
 def to_float(v):
     try:
@@ -91,7 +92,8 @@ outlier = parse_outlier(outlier_csv)
 cluster = parse_cluster(cluster_csv)
 clustbench = {
     '2D': parse_deltric_comparison(deltric_2d_csv),
-    'multiD': parse_deltric_comparison(deltric_multid_csv),
+    'synthetic_multiD': parse_deltric_comparison(deltric_synth_multid_csv),
+    'real_multiD': parse_deltric_comparison(deltric_real_multid_csv),
 }
 
 with open(output, 'w') as f:
