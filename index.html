@@ -116,19 +116,24 @@ section h2{font-size:clamp(1.7rem,3.5vw,2.3rem);font-weight:800;letter-spacing:-
 section .section-desc{color:var(--text-dim);font-size:1.05rem;max-width:680px;margin-bottom:2.5rem}
 
 /* ── How it works ── */
-.steps{display:grid;gap:1.2rem}
-.step{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);padding:1.5rem;display:flex;gap:1.2rem;align-items:flex-start;transition:border-color 0.2s,box-shadow 0.2s;box-shadow:var(--shadow-sm)}
-.step:hover{border-color:var(--accent);box-shadow:var(--shadow-md)}
-.step-num{background:var(--gradient);color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0}
-.step h3{font-size:1.05rem;font-weight:700;margin-bottom:0.3rem}
-.step p{color:var(--text-dim);font-size:0.93rem}
-
-/* ── Triangulation gallery ── */
-.tri-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-bottom:2rem}
-.tri-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;box-shadow:var(--shadow-sm);cursor:pointer}
-.tri-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-.tri-card img{width:100%;height:200px;object-fit:cover;display:block}
-.tri-card .label{padding:0.8rem 1rem;font-size:0.85rem;color:var(--text-dim);font-weight:600}
+.deltric-flow{max-width:950px;margin:2.2rem auto 0;text-align:center}
+.flow-node{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1rem 1.1rem;text-align:left}
+.flow-node h3{font-size:0.98rem;font-weight:750;margin-bottom:0.25rem;color:var(--text)}
+.flow-node p{font-size:0.84rem;line-height:1.45;color:var(--text-dim)}
+.flow-node.emphasis{border-color:#a5b4fc;background:linear-gradient(135deg,#eef2ff,#fff)}
+.flow-node.final{border-color:#86efac;background:linear-gradient(135deg,#f0fdf4,#fff)}
+.flow-input{display:inline-block;min-width:260px;text-align:center;padding:1rem 1.5rem;border-color:#a5b4fc;background:linear-gradient(135deg,#eef2ff,#fff)}
+.flow-input h3{font-size:1.05rem;margin:0}
+.flow-arrow{height:29px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.55rem;line-height:1;font-weight:700}
+.flow-split-label{font-size:0.76rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:800;color:var(--text-light);margin:0.1rem 0 0.65rem}
+.flow-branches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem;position:relative;text-align:left}
+.flow-path{padding:1.15rem;border:1px solid var(--border-light);border-radius:var(--radius);background:var(--surface2)}
+.flow-path-label{display:inline-block;margin-bottom:0.8rem;font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:var(--accent)}
+.flow-path .flow-arrow{height:24px;justify-content:flex-start;padding-left:1.1rem;font-size:1.25rem}
+.flow-note{margin-top:0.75rem;font-size:0.77rem;line-height:1.4;color:var(--text-dim);font-style:italic}
+.flow-merge{max-width:620px;margin:0 auto}
+.flow-merge .flow-node{margin-bottom:0}
+.flow-caption{max-width:760px;margin:1.4rem auto 0;font-size:0.87rem;color:var(--text-dim);line-height:1.55}
 
 /* ── Phase diagram ── */
 .phase-diagram{display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;margin:2rem 0}
@@ -221,6 +226,7 @@ footer a:hover{text-decoration:underline}
   .bench-wrap{padding:3.5rem 1.2rem}
   .phase-diagram img{max-width:100%}
   .compare-bar .name{width:90px;font-size:0.78rem}
+  .flow-branches{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -265,100 +271,68 @@ footer a:hover{text-decoration:underline}
 <!-- How it works -->
 <section id="how">
   <h2>How it works</h2>
-  <p class="section-desc">DelTriC builds a Delaunay triangulation over the data, then uses a novel neighbor-bridge pruning strategy to separate clusters from outliers — all without assuming uniform density.</p>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <div>
-        <h3>Project to lower dimension</h3>
-        <p>Optionally reduce dimensionality with PCA or UMAP to make the Delaunay triangulation tractable and robust.</p>
+  <p class="section-desc">DelTriC builds trustworthy dense seed components and grows them using original-space geometry. Projection supplies a tractable neighbourhood topology for multi-dimensional data; it does not replace the original distances used to make the clustering decisions.</p>
+  <div class="deltric-flow" aria-label="DelTriC algorithm pipeline">
+    <div class="flow-node flow-input">
+      <h3>Input data</h3>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-split-label">Choose the topology path</div>
+    <div class="flow-branches">
+      <div class="flow-path">
+        <div class="flow-path-label">Native 2-D data</div>
+        <div class="flow-node">
+          <h3>Keep the input geometry</h3>
+          <p>No projection: the two-dimensional input directly defines the neighbourhood topology.</p>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node emphasis">
+          <h3>Build the Delaunay graph</h3>
+          <p>Triangulation connects geometrically local candidate neighbours.</p>
+        </div>
+      </div>
+      <div class="flow-path">
+        <div class="flow-path-label">Multi-dimensional data</div>
+        <div class="flow-node">
+          <h3>UMAP topology projection</h3>
+          <p>Project to 2-D only to obtain a usable local-neighbourhood topology.</p>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node emphasis">
+          <h3>Build the Delaunay graph</h3>
+          <p>Triangulate the projected topology while retaining the original coordinates.</p>
+        </div>
+        <p class="flow-note">Original-space lengths remain the primary geometric signal.</p>
       </div>
     </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div>
-        <h3>Build Delaunay triangulation</h3>
-        <p>Construct the triangulation over the projected points. Each edge connects natural neighbors in the geometric sense.</p>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-merge">
+      <div class="flow-node emphasis">
+        <h3>Find dense seed components</h3>
+        <p>Short, locally coherent edges form conservative cluster nuclei, using the first significant edge-length mode with a robust fallback.</p>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-node emphasis">
+        <h3>Grow components conservatively</h3>
+        <p>Components expand round by round using their own original-space edge statistics, with a projected-space safety check when applicable.</p>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-node">
+        <h3>Resolve supported narrow connections</h3>
+        <p>Topology-aware cuts are considered only for components whose geometry supports a meaningful split.</p>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-node">
+        <h3>Reassign plausible boundary points</h3>
+        <p>A conservative original-space cost gate can merge suitable unassigned points into nearby finished components.</p>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-node final">
+        <h3>Final clusters and outliers</h3>
+        <p>Connected components become clusters; points that remain unsupported are labelled as outliers.</p>
       </div>
     </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div>
-        <h3>Neighbor-bridge pruning</h3>
-        <p>Edges are classified as within-cluster, between-cluster, or outlier edges using local density statistics. Outlier edges are pruned.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <div>
-        <h3>Extract clusters & outliers</h3>
-        <p>Connected components of the remaining graph form clusters. Points connected only by pruned edges are flagged as outliers.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Triangulation gallery -->
-<section id="gallery">
-  <h2>Triangulation in action</h2>
-  <p class="section-desc">Click any image to enlarge. Each pair shows the full Delaunay triangulation (left) and the result after neighbor-bridge pruning (right).</p>
-  <div class="tri-gallery">
-    <div class="tri-card" onclick="openLightbox(this)">
-      <img src="images/triangulation/tri_test1_density_full.png" alt="Full Delaunay triangulation — Varying Density" loading="lazy">
-      <div class="label">Full Triangulation — Varying Density</div>
-    </div>
-    <div class="tri-card" onclick="openLightbox(this)">
-      <img src="images/triangulation/tri_test1_density_pruning.png" alt="After pruning — Varying Density" loading="lazy">
-      <div class="label">After Pruning — Varying Density</div>
-    </div>
-    <div class="tri-card" onclick="openLightbox(this)">
-      <img src="images/triangulation/tri_test2_bridge_full.png" alt="Full Delaunay triangulation — Bridge Clusters" loading="lazy">
-      <div class="label">Full Triangulation — Bridge Clusters</div>
-    </div>
-    <div class="tri-card" onclick="openLightbox(this)">
-      <img src="images/triangulation/tri_test2_bridge_pruning.png" alt="After pruning — Bridge Clusters" loading="lazy">
-      <div class="label">After Pruning — Bridge Clusters</div>
-    </div>
-    <div class="tri-card" onclick="openLightbox(this)">
-      <img src="images/triangulation/tri_test3_circles_full.png" alt="Full Delaunay triangulation — Concentric Circles" loading="lazy">
-      <div class="label">Full Triangulation — Concentric Circles</div>
-    </div>
-    <div class="tri-card" onclick="openLightbox(this)">
-      <img src="images/triangulation/tri_test3_circles_pruning.png" alt="After pruning — Concentric Circles" loading="lazy">
-      <div class="label">After Pruning — Concentric Circles</div>
-    </div>
-    <div class="tri-card" onclick="openLightbox(this)">
-      <img src="images/triangulation/tri_test4_moons_full.png" alt="Full Delaunay triangulation — Moons" loading="lazy">
-      <div class="label">Full Triangulation — Moons</div>
-    </div>
-    <div class="tri-card" onclick="openLightbox(this)">
-      <img src="images/triangulation/tri_test4_moons_pruning.png" alt="After pruning — Moons" loading="lazy">
-      <div class="label">After Pruning — Moons</div>
-    </div>
-    <div class="tri-card" onclick="openLightbox(this)">
-      <img src="images/triangulation/tri_test5_mixed_full.png" alt="Full Delaunay triangulation — Mixed Sizes" loading="lazy">
-      <div class="label">Full Triangulation — Mixed Sizes</div>
-    </div>
-    <div class="tri-card" onclick="openLightbox(this)">
-      <img src="images/triangulation/tri_test5_mixed_pruning.png" alt="After pruning — Mixed Sizes" loading="lazy">
-      <div class="label">After Pruning — Mixed Sizes</div>
-    </div>
-    <div class="tri-card" onclick="openLightbox(this)">
-      <img src="images/triangulation/tri_test6_multiscale_full.png" alt="Full Delaunay triangulation — Multi-Scale" loading="lazy">
-      <div class="label">Full Triangulation — Multi-Scale</div>
-    </div>
-    <div class="tri-card" onclick="openLightbox(this)">
-      <img src="images/triangulation/tri_test6_multiscale_pruning.png" alt="After pruning — Multi-Scale" loading="lazy">
-      <div class="label">After Pruning — Multi-Scale</div>
-    </div>
-    <div class="tri-card" onclick="openLightbox(this)">
-      <img src="images/triangulation/tri_test8_wellsep_full.png" alt="Full Delaunay triangulation — Well-Separated" loading="lazy">
-      <div class="label">Full Triangulation — Well-Separated</div>
-    </div>
-    <div class="tri-card" onclick="openLightbox(this)">
-      <img src="images/triangulation/tri_test8_wellsep_pruning.png" alt="After pruning — Well-Separated" loading="lazy">
-      <div class="label">After Pruning — Well-Separated</div>
-    </div>
+    <p class="flow-caption">The two paths differ only in how the candidate-neighbour topology is obtained. The core cluster-growth and outlier decisions remain tied to the original feature space.</p>
   </div>
 </section>
 
