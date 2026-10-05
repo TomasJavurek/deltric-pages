@@ -164,6 +164,13 @@ tbody tr.trivial:hover{opacity:0.65}
 .pairwise-table .pairwise-positive{color:var(--green);font-weight:700}
 .pairwise-table .pairwise-negative{color:#b91c1c;font-weight:700}
 .pairwise-note{font-size:0.82rem;color:var(--text-dim);margin:-0.2rem 0 0.9rem}
+.cluster-breakdown-shell{position:relative;max-height:350px;overflow:hidden;transition:max-height 0.65s ease}
+.cluster-breakdown-shell.expanded{max-height:2800px}
+.cluster-breakdown-shell::after{content:"";position:absolute;z-index:2;left:0;right:0;bottom:0;height:112px;pointer-events:none;background:linear-gradient(to bottom,rgba(255,255,255,0),var(--surface) 86%);transition:opacity 0.2s ease}
+.cluster-breakdown-shell.expanded::after{opacity:0}
+.cluster-breakdown-shell table{margin-bottom:0}
+.cluster-breakdown-toggle{display:block;margin:0.85rem auto 0;padding:0.55rem 1rem;border:1px solid var(--accent);border-radius:7px;background:var(--surface);color:var(--accent);font:inherit;font-size:0.86rem;font-weight:700;cursor:pointer;transition:background 0.2s,color 0.2s}
+.cluster-breakdown-toggle:hover{background:var(--accent);color:#fff}
 
 /* ── Compare bars ── */
 .compare-bar{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem}
@@ -381,15 +388,6 @@ footer a:hover{text-decoration:underline}
       <!-- Filled by JS -->
     </div>
 
-    <h3 class="bench-subtitle">Clustering Quality — ARI</h3>
-    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">Adjusted Rand Index for the active ClustBench selections: 10 synthetic 2-D, 10 synthetic multi-D, and 10 real multi-D datasets. Higher is better. Timeout = dataset too large within time limit.</p>
-    <div style="overflow-x:auto;">
-    <table>
-      <thead><tr><th>Dataset</th><th>DelTriC</th><th>HDBSCAN</th><th>K-Means</th><th>True k</th></tr></thead>
-      <tbody id="cluster-ari-tbody"></tbody>
-    </table>
-    </div>
-
     <h3 class="bench-subtitle">ClustBench — DelTriC-centred ARI Comparison</h3>
     <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;max-width:900px;">A compact selection from ClustBench Suite v1.1.0: 10 synthetic multi-dimensional, 10 real multi-dimensional, 5 synthetic 2-D, and 5 curated 2-D reference problems. Inputs are standardized; each run has a 120-second limit. DelTriC uses the exact current stage pipeline: first-significant-mode seed selection with a conservative median fallback, UMAP triangulation topology, original-space component growth, restored intra-component edges, contracted Gomory–Hu pruning, and original-space cost-gate reassignment. Direct HDBSCAN operates in original space, while UMAP+HDBSCAN uses a deterministic 2-D UMAP embedding. A common minimum cluster size of 10 is used where supported. K-means and Genie receive the reference <em>k</em>, so they are oracle-<em>k</em> reference baselines.</p>
     <p class="pairwise-note">Each row compares a baseline directly with <strong>DelTriC</strong> on the same datasets. Mean ARI and its difference summarize average quality; wins–losses–ties reports per-dataset robustness.</p>
@@ -405,6 +403,18 @@ footer a:hover{text-decoration:underline}
     <div style="overflow-x:auto;">
       <table class="pairwise-table"><thead id="clustbench-real-multid-head"></thead><tbody id="clustbench-real-multid-body"></tbody></table>
     </div>
+
+    <h3 class="bench-subtitle">ClustBench — Dataset-level ARI Breakdown</h3>
+    <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">All 30 active datasets, with the 2-D, synthetic multi-D, and real multi-D collections labelled in the first column. The preview fades into the remaining rows; expand it to inspect every dataset.</p>
+    <div class="cluster-breakdown-shell" id="cluster-breakdown-shell">
+      <div style="overflow-x:auto;">
+        <table>
+          <thead><tr><th>Dataset</th><th>DelTriC</th><th>HDBSCAN</th><th>K-Means</th><th>True k</th></tr></thead>
+          <tbody id="cluster-ari-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+    <button class="cluster-breakdown-toggle" id="cluster-breakdown-toggle" type="button" aria-expanded="false">Show all 30 datasets ↓</button>
 
     <h3 class="bench-subtitle">Outlier Detection — F1 Score</h3>
     <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">F1 score (precision-recall harmonic mean) on real-world outlier detection datasets. Higher is better. Trivial rows (all 0.0 or all 1.0) are greyed out.</p>
@@ -644,6 +654,14 @@ function isTrivialRow(vals){
     html += '<td>—</td></tr>';
     ariBody.insertAdjacentHTML('afterbegin', html);
   }
+
+  const shell = document.getElementById('cluster-breakdown-shell');
+  const toggle = document.getElementById('cluster-breakdown-toggle');
+  toggle.addEventListener('click', () => {
+    const expanded = shell.classList.toggle('expanded');
+    toggle.setAttribute('aria-expanded', String(expanded));
+    toggle.textContent = expanded ? 'Show fewer datasets ↑' : 'Show all 30 datasets ↓';
+  });
 })();
 
 // ── Lightbox ──
