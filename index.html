@@ -117,13 +117,15 @@ section .section-desc{color:var(--text-dim);font-size:1.05rem;max-width:680px;ma
 
 /* ── How it works ── */
 .deltric-flow{max-width:950px;margin:2.2rem auto 0;text-align:center}
-.flow-node{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1rem 1.1rem;text-align:left}
+.flow-node{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1rem 1.1rem;text-align:left;overflow:hidden}
 .flow-node h3{font-size:0.98rem;font-weight:750;margin-bottom:0.25rem;color:var(--text)}
 .flow-node p{font-size:0.84rem;line-height:1.45;color:var(--text-dim)}
+.flow-icon{float:right;width:76px;height:56px;margin:0 0 0.3rem 0.8rem;stroke:#4f46e5;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.flow-icon .soft{stroke:#94a3b8}.flow-icon .accent{stroke:#14b8a6}.flow-icon .growth{stroke:#16a34a}.flow-icon .seed{stroke:#f97316}.flow-icon .cut{stroke:#e11d48}.flow-icon .outlier{fill:#334155;stroke:#334155}.flow-icon .dot{fill:#4f46e5;stroke:none}.flow-icon .orange-dot{fill:#f97316;stroke:none}.flow-icon .green-dot{fill:#16a34a;stroke:none}.flow-icon .blue-dot{fill:#0284c7;stroke:none}.flow-icon .pink-dot{fill:#db2777;stroke:none}
 .flow-node.emphasis{border-color:#a5b4fc;background:linear-gradient(135deg,#eef2ff,#fff)}
 .flow-node.final{border-color:#86efac;background:linear-gradient(135deg,#f0fdf4,#fff)}
 .flow-input{display:inline-block;min-width:260px;text-align:center;padding:1rem 1.5rem;border-color:#a5b4fc;background:linear-gradient(135deg,#eef2ff,#fff)}
-.flow-input h3{font-size:1.05rem;margin:0}
+.flow-input h3{font-size:1.05rem;margin:0}.flow-input .flow-icon{float:none;vertical-align:middle;width:64px;height:42px;margin:0 0.65rem 0 0}
 .flow-arrow{height:29px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.55rem;line-height:1;font-weight:700}
 .flow-split-label{font-size:0.76rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:800;color:var(--text-light);margin:0.1rem 0 0.65rem}
 .flow-branches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem;position:relative;text-align:left}
@@ -278,6 +280,7 @@ footer a:hover{text-decoration:underline}
   <p class="section-desc">DelTriC builds trustworthy dense seed components and grows them using original-space geometry. Projection supplies a tractable neighbourhood topology for multi-dimensional data; it does not replace the original distances used to make the clustering decisions.</p>
   <div class="deltric-flow" aria-label="DelTriC algorithm pipeline">
     <div class="flow-node flow-input">
+      <svg class="flow-icon" viewBox="0 0 100 60" aria-hidden="true"><circle class="dot" cx="22" cy="18" r="3"/><circle class="dot" cx="39" cy="11" r="3"/><circle class="dot" cx="52" cy="24" r="3"/><circle class="dot" cx="28" cy="38" r="3"/><circle class="dot" cx="46" cy="44" r="3"/><circle class="dot" cx="68" cy="37" r="3"/><path class="soft" d="M14 30c15-18 43-24 68-7"/></svg>
       <h3>Input data</h3>
     </div>
     <div class="flow-arrow">↓</div>
@@ -286,11 +289,13 @@ footer a:hover{text-decoration:underline}
       <div class="flow-path">
         <div class="flow-path-label">Native 2-D data</div>
         <div class="flow-node">
+          <svg class="flow-icon" viewBox="0 0 100 70" aria-hidden="true"><path class="soft" d="M12 56h76M18 61V15"/><circle class="dot" cx="30" cy="42" r="3"/><circle class="dot" cx="43" cy="27" r="3"/><circle class="dot" cx="57" cy="38" r="3"/><circle class="dot" cx="70" cy="22" r="3"/><circle class="dot" cx="74" cy="49" r="3"/></svg>
           <h3>Keep the input geometry</h3>
           <p>No projection: the two-dimensional input directly defines the neighbourhood topology.</p>
         </div>
         <div class="flow-arrow">↓</div>
         <div class="flow-node emphasis">
+          <svg class="flow-icon" viewBox="0 0 100 70" aria-hidden="true"><path d="M17 52 35 20 61 16 84 48 47 57Z"/><path d="M17 52 61 16 47 57M35 20 47 57M61 16 84 48M35 20 84 48"/><circle class="dot" cx="17" cy="52" r="2.5"/><circle class="dot" cx="35" cy="20" r="2.5"/><circle class="dot" cx="61" cy="16" r="2.5"/><circle class="dot" cx="84" cy="48" r="2.5"/><circle class="dot" cx="47" cy="57" r="2.5"/></svg>
           <h3>Build the Delaunay graph</h3>
           <p>Triangulation connects geometrically local candidate neighbours.</p>
         </div>
@@ -298,11 +303,13 @@ footer a:hover{text-decoration:underline}
       <div class="flow-path">
         <div class="flow-path-label">Multi-dimensional data</div>
         <div class="flow-node">
+          <svg class="flow-icon" viewBox="0 0 100 70" aria-hidden="true"><path d="M10 25c12-17 31-17 42 0s25 17 37 0"/><path class="soft" d="M10 38c12-17 31-17 42 0s25 17 37 0"/><path class="accent" d="M53 30h27"/><path class="accent" d="m75 23 8 7-8 7"/><path class="soft" d="M66 52h22M70 57V43"/><circle class="accent" cx="72" cy="48" r="2"/><circle class="accent" cx="82" cy="53" r="2"/><circle class="accent" cx="84" cy="45" r="2"/></svg>
           <h3>UMAP topology projection</h3>
           <p>Project to 2-D only to obtain a usable local-neighbourhood topology.</p>
         </div>
         <div class="flow-arrow">↓</div>
         <div class="flow-node emphasis">
+          <svg class="flow-icon" viewBox="0 0 100 70" aria-hidden="true"><path d="M17 52 35 20 61 16 84 48 47 57Z"/><path d="M17 52 61 16 47 57M35 20 47 57M61 16 84 48M35 20 84 48"/><circle class="dot" cx="17" cy="52" r="2.5"/><circle class="dot" cx="35" cy="20" r="2.5"/><circle class="dot" cx="61" cy="16" r="2.5"/><circle class="dot" cx="84" cy="48" r="2.5"/><circle class="dot" cx="47" cy="57" r="2.5"/></svg>
           <h3>Build the Delaunay graph</h3>
           <p>Triangulate the projected topology while retaining the original coordinates.</p>
         </div>
@@ -311,27 +318,38 @@ footer a:hover{text-decoration:underline}
     </div>
     <div class="flow-arrow">↓</div>
     <div class="flow-merge">
+      <div class="flow-node">
+        <svg class="flow-icon" viewBox="0 0 100 70" aria-hidden="true"><path class="soft" d="M10 19c10-12 25-12 35 0s23 12 35 0"/><path class="soft" d="M10 29c10-12 25-12 35 0s23 12 35 0"/><path class="accent" d="M48 57V35"/><path class="accent" d="m42 41 6-7 6 7"/><path d="M57 57h30M63 62V46"/><circle class="dot" cx="66" cy="52" r="2.4"/><circle class="dot" cx="76" cy="56" r="2.4"/><circle class="dot" cx="82" cy="49" r="2.4"/></svg>
+        <h3>Use original-space edge geometry</h3>
+        <p>The projected graph supplies candidate neighbours; the source-space distances evaluate whether those connections are geometrically plausible.</p>
+      </div>
+      <div class="flow-arrow">↓</div>
       <div class="flow-node emphasis">
+        <svg class="flow-icon" viewBox="0 0 100 70" aria-hidden="true"><path class="seed" d="M14 46 26 26 42 44 14 46M26 26 51 18 63 36 42 44M51 18 77 25 84 49 63 36"/><circle class="orange-dot" cx="14" cy="46" r="3"/><circle class="orange-dot" cx="26" cy="26" r="3"/><circle class="orange-dot" cx="42" cy="44" r="3"/><circle class="orange-dot" cx="51" cy="18" r="3"/><circle class="orange-dot" cx="63" cy="36" r="3"/><circle class="orange-dot" cx="77" cy="25" r="3"/><circle class="orange-dot" cx="84" cy="49" r="3"/></svg>
         <h3>Find dense seed components</h3>
         <p>Short, locally coherent edges form conservative cluster nuclei, using the first significant edge-length mode with a robust fallback.</p>
       </div>
       <div class="flow-arrow">↓</div>
       <div class="flow-node emphasis">
+        <svg class="flow-icon" viewBox="0 0 100 70" aria-hidden="true"><path class="soft" d="M13 52 29 25 48 51 13 52M29 25 57 16 82 47 48 51M57 16 72 57 82 47"/><path class="growth" d="M29 25 48 51M48 51 72 57M57 16 82 47"/><circle class="orange-dot" cx="13" cy="52" r="3"/><circle class="orange-dot" cx="29" cy="25" r="3"/><circle class="orange-dot" cx="48" cy="51" r="3"/><circle class="green-dot" cx="57" cy="16" r="3"/><circle class="green-dot" cx="72" cy="57" r="3"/><circle class="green-dot" cx="82" cy="47" r="3"/></svg>
         <h3>Grow components conservatively</h3>
         <p>Components expand round by round using their own original-space edge statistics, with a projected-space safety check when applicable.</p>
       </div>
       <div class="flow-arrow">↓</div>
       <div class="flow-node">
+        <svg class="flow-icon" viewBox="0 0 100 70" aria-hidden="true"><path d="M12 48 26 22 41 47 12 48M59 47 75 21 89 48 59 47"/><path class="cut" stroke-dasharray="4 4" d="M41 47 59 47"/><path class="cut" d="m47 35 7 12m0-12-7 12"/><circle class="dot" cx="12" cy="48" r="2.5"/><circle class="dot" cx="26" cy="22" r="2.5"/><circle class="dot" cx="41" cy="47" r="2.5"/><circle class="dot" cx="59" cy="47" r="2.5"/><circle class="dot" cx="75" cy="21" r="2.5"/><circle class="dot" cx="89" cy="48" r="2.5"/></svg>
         <h3>Resolve supported narrow connections</h3>
         <p>Topology-aware cuts are considered only for components whose geometry supports a meaningful split.</p>
       </div>
       <div class="flow-arrow">↓</div>
       <div class="flow-node">
+        <svg class="flow-icon" viewBox="0 0 100 70" aria-hidden="true"><circle class="blue-dot" cx="23" cy="25" r="3"/><circle class="blue-dot" cx="31" cy="18" r="3"/><circle class="blue-dot" cx="37" cy="29" r="3"/><circle class="blue-dot" cx="29" cy="37" r="3"/><circle class="soft" cx="76" cy="41" r="3"/><path class="accent" d="M72 36 46 29"/><path class="accent" d="m53 23-7 6 9 4"/></svg>
         <h3>Reassign plausible boundary points</h3>
         <p>A conservative original-space cost gate can merge suitable unassigned points into nearby finished components.</p>
       </div>
       <div class="flow-arrow">↓</div>
       <div class="flow-node final">
+        <svg class="flow-icon" viewBox="0 0 100 70" aria-hidden="true"><circle class="blue-dot" cx="20" cy="22" r="3.5"/><circle class="blue-dot" cx="28" cy="16" r="3.5"/><circle class="blue-dot" cx="31" cy="28" r="3.5"/><circle class="green-dot" cx="57" cy="22" r="3.5"/><circle class="green-dot" cx="66" cy="17" r="3.5"/><circle class="green-dot" cx="69" cy="29" r="3.5"/><circle class="pink-dot" cx="42" cy="51" r="3.5"/><circle class="pink-dot" cx="51" cy="46" r="3.5"/><circle class="pink-dot" cx="54" cy="57" r="3.5"/><circle class="outlier" cx="84" cy="49" r="3.5"/></svg>
         <h3>Final clusters and outliers</h3>
         <p>Connected components become clusters; points that remain unsupported are labelled as outliers.</p>
       </div>
