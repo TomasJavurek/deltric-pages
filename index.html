@@ -135,11 +135,15 @@ section .section-desc{color:var(--text-dim);font-size:1.05rem;max-width:680px;ma
 .flow-merge .flow-node{margin-bottom:0}
 .flow-caption{max-width:760px;margin:1.4rem auto 0;font-size:0.87rem;color:var(--text-dim);line-height:1.55}
 
-/* ── Phase diagram ── */
-.phase-diagram{display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;margin:2rem 0}
-.phase-diagram .phase-item{flex:1;min-width:280px;max-width:48%;text-align:center}
-.phase-diagram img{width:100%;border-radius:var(--radius);border:1px solid var(--border-light);box-shadow:var(--shadow-sm);cursor:pointer}
-.phase-diagram .phase-caption{margin-top:0.6rem;font-size:0.88rem;color:var(--text-dim);font-weight:500}
+/* ── Component-growth gallery ── */
+.stage-feature{max-width:930px;margin:2rem auto 2.5rem;text-align:center}
+.stage-feature img{display:block;width:100%;max-height:650px;object-fit:contain;border:1px solid var(--border-light);border-radius:var(--radius);box-shadow:var(--shadow-md);cursor:zoom-in;background:#fff}
+.stage-caption{margin-top:0.75rem;font-size:0.9rem;line-height:1.45;color:var(--text-dim);font-weight:500}
+.stage-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:1.2rem}
+.stage-card{margin:0;background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);cursor:zoom-in;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s}
+.stage-card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:var(--shadow-md)}
+.stage-card img{display:block;width:100%;height:185px;object-fit:contain;background:#fff}
+.stage-card figcaption{padding:0.75rem 0.85rem;font-size:0.82rem;line-height:1.35;color:var(--text-dim);font-weight:600}
 
 /* ── Benchmarks ── */
 .bench-section{background:var(--surface);border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light)}
@@ -336,19 +340,47 @@ footer a:hover{text-decoration:underline}
   </div>
 </section>
 
-<!-- Phase diagram -->
-<section>
-  <h2>Algorithm phases</h2>
-  <p class="section-desc">Component-relative growth: seed components, original- and projected-space boundary gates, and final assignments. Click to enlarge.</p>
-  <div class="phase-diagram">
-    <div class="phase-item">
-      <img src="images/phases/component_growth_compound_shapes.png" alt="Component-growth stages on compound shapes" loading="lazy" onclick="openLightbox(this)">
-      <div class="phase-caption">Compound shapes — seed components, growth gates, and final clusters</div>
-    </div>
-    <div class="phase-item">
-      <img src="images/phases/component_growth_overlap_blobs_10d.png" alt="Component-growth stages on 10D overlap blobs" loading="lazy" onclick="openLightbox(this)">
-      <div class="phase-caption">10D overlap blobs — component growth in a difficult geometry</div>
-    </div>
+<!-- Component-growth gallery -->
+<section id="gallery">
+  <h2>Component growth in action</h2>
+  <p class="section-desc">Each diagnostic follows one dataset through seed construction, the first growth decisions, and final assignments. Click any image for the full-resolution view.</p>
+  <figure class="stage-feature" onclick="openLightbox(this)">
+    <img src="images/phases/component_growth_compound_shapes.png" alt="Four-stage DelTriC component-growth diagnostic on compound shapes" loading="lazy">
+    <figcaption class="stage-caption">Representative 2-D diagnostic: conservative seed components, boundary decisions, and the final component graph.</figcaption>
+  </figure>
+  <div class="stage-gallery">
+    <figure class="stage-card" onclick="openLightbox(this)">
+      <img src="images/stages/overlap_blobs_10d.png" alt="Component growth on 10D overlap blobs" loading="lazy">
+      <figcaption>10-D overlap blobs — projected topology, original-space growth</figcaption>
+    </figure>
+    <figure class="stage-card" onclick="openLightbox(this)">
+      <img src="images/stages/aggregation_2d.png" alt="Component growth on aggregation shapes" loading="lazy">
+      <figcaption>2-D aggregation — multiple dense nuclei grow into clusters</figcaption>
+    </figure>
+    <figure class="stage-card" onclick="openLightbox(this)">
+      <img src="images/stages/spiral_2d.png" alt="Component growth on spiral shapes" loading="lazy">
+      <figcaption>2-D spiral — non-convex local structure</figcaption>
+    </figure>
+    <figure class="stage-card" onclick="openLightbox(this)">
+      <img src="images/stages/graph_2d.png" alt="Component growth on graph shapes" loading="lazy">
+      <figcaption>2-D graph — sparse branches and dense local regions</figcaption>
+    </figure>
+    <figure class="stage-card" onclick="openLightbox(this)">
+      <img src="images/stages/fcps_atom_3d.png" alt="Component growth on the FCPS Atom dataset" loading="lazy">
+      <figcaption>3-D FCPS Atom — compact multi-cluster geometry</figcaption>
+    </figure>
+    <figure class="stage-card" onclick="openLightbox(this)">
+      <img src="images/stages/h2mg_64d.png" alt="Component growth on a 64D h2mg dataset" loading="lazy">
+      <figcaption>64-D h2mg — original-space distances behind the topology</figcaption>
+    </figure>
+    <figure class="stage-card" onclick="openLightbox(this)">
+      <img src="images/stages/digits_784d.png" alt="Component growth on handwritten digits" loading="lazy">
+      <figcaption>784-D handwritten digits — real high-dimensional data</figcaption>
+    </figure>
+    <figure class="stage-card" onclick="openLightbox(this)">
+      <img src="images/stages/chainlink_3d.png" alt="Component growth on the FCPS Chainlink dataset" loading="lazy">
+      <figcaption>3-D Chainlink — a challenging linked-manifold topology</figcaption>
+    </figure>
   </div>
 </section>
 
