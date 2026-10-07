@@ -464,7 +464,7 @@ footer a:hover{text-decoration:underline}
 <!-- Install -->
 <section id="install">
   <h2>Install &amp; Use</h2>
-  <p class="section-desc">Install from PyPI and start clustering in 3 lines.</p>
+  <p class="section-desc">Install from PyPI and start clustering with the validated defaults. The same estimator automatically uses the native 2-D or multi-dimensional path.</p>
   <div class="pip-code">$ pip install deltric</div>
   <h3 style="margin-top:2rem;margin-bottom:0.5rem;">Quick Start</h3>
   <pre><span class="kw">from</span> deltric <span class="kw">import</span> DelTriC
@@ -473,31 +473,41 @@ footer a:hover{text-decoration:underline}
 <span class="comment"># X: numpy array of shape (n_samples, n_features)</span>
 X = np.random.randn(500, 10)
 
-<span class="comment"># Auto-param mode — just pass your data</span>
+<span class="comment"># Validated defaults — just pass your data</span>
 model = <span class="fn">DelTriC</span>()
 labels = model.<span class="fn">fit_predict</span>(X)
 
 n_clusters = len(set(labels) - {-1})
 n_outliers = np.sum(labels == -1)
 <span class="fn">print</span>(<span class="str">f"Found {n_clusters} clusters, {n_outliers} outliers"</span>)</pre>
-  <h3 style="margin-top:2rem;margin-bottom:0.5rem;">Advanced Usage</h3>
-  <pre><span class="comment"># Force PCA projection, tune pruning</span>
+  <h3 style="margin-top:2rem;margin-bottom:0.5rem;">Tune Multi-Dimensional Growth</h3>
+  <pre><span class="comment"># For data with more than two features, tune original-space growth,</span>
+<span class="comment"># the UMAP topology safety gate, and outlier absorption.</span>
 model = <span class="fn">DelTriC</span>(
-    dim_reduction=<span class="str">"pca"</span>,
-    prune_param=<span class="num">1.3</span>,
-    anomaly_sensitivity=<span class="num">0.3</span>,
-    min_cluster_size=<span class="num">10</span>,
-    random_state=<span class="num">42</span>,
+    seed_hard_limit=<span class="num">0.75</span>,
+    hard_growth_limit=<span class="num">1.6</span>,
+    projected_hard_growth_limit=<span class="num">2.8</span>,
+    outlier_cost_gate_reach=<span class="num">15.0</span>,
+    umap_n_neighbors=<span class="num">15</span>,
 )
 labels = model.<span class="fn">fit_predict</span>(X)
-<span class="fn">print</span>(model._last_auto_params())</pre>
+<span class="comment"># Other public controls include seed_baseline, restore_hard_limit,</span>
+<span class="comment"># and gomory_point_cut_size (set it to 0 to disable the final cut stage).</span></pre>
+  <h3 style="margin-top:2rem;margin-bottom:0.5rem;">Tune Native 2-D Growth</h3>
+  <pre><span class="comment"># Two-dimensional inputs bypass UMAP. Only source-space gates apply.</span>
+model = <span class="fn">DelTriC</span>(
+    seed_hard_limit_2d=<span class="num">0.1</span>,
+    hard_growth_limit_2d=<span class="num">1.5</span>,
+    outlier_cost_gate_reach_2d=<span class="num">15.0</span>,
+)
+labels = model.<span class="fn">fit_predict</span>(X_2d)</pre>
   <h3 style="margin-top:2rem;margin-bottom:0.5rem;">In a scikit-learn Pipeline</h3>
   <pre><span class="kw">from</span> sklearn.pipeline <span class="kw">import</span> Pipeline
 <span class="kw">from</span> sklearn.preprocessing <span class="kw">import</span> StandardScaler
 
 pipe = <span class="fn">Pipeline</span>([
     (<span class="str">"scale"</span>, <span class="fn">StandardScaler</span>()),
-    (<span class="str">"cluster"</span>, <span class="fn">DelTriC</span>(dim_reduction=<span class="str">"pca"</span>)),
+    (<span class="str">"cluster"</span>, <span class="fn">DelTriC</span>()),
 ])
 labels = pipe.<span class="fn">fit_predict</span>(X)</pre>
 </section>
