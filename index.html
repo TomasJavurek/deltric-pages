@@ -259,7 +259,8 @@ footer a:hover{text-decoration:underline}
   <p class="subtitle">A scikit-learn compatible algorithm that combines density-robust clustering with built-in outlier detection — often beating HDBSCAN on both tasks simultaneously.</p>
   <div class="cta-row">
     <a href="https://pypi.org/project/deltric/" class="btn-primary">pip install deltric →</a>
-    <a href="https://github.com/deltric/deltric" class="btn-secondary">View on GitHub</a>
+    <a href="https://github.com/kinit-sk/deltric" class="btn-secondary">View on GitHub</a>
+    <a href="https://colab.research.google.com/drive/1eY3BDss02qCvSnk17mkTazJeJ1UhfBDO?usp=sharing" class="btn-secondary" target="_blank" rel="noopener">Open in Colab ↗</a>
   </div>
   <div class="code-snippet">
     <span class="comment"># X is a numpy array of shape (n_samples, n_features)</span><br>
@@ -361,42 +362,42 @@ footer a:hover{text-decoration:underline}
 <!-- Component-growth gallery -->
 <section id="gallery">
   <h2>Component growth in action</h2>
-  <p class="section-desc">Each diagnostic follows one dataset through seed construction, the first growth decisions, and final assignments. Click any image for the full-resolution view.</p>
+  <p class="section-desc">Current validation-stage diagnostics: seed construction, the first growth decisions, and final assignments. Click any image for the full-resolution view.</p>
   <figure class="stage-feature" onclick="openLightbox(this)">
-    <img src="images/phases/component_growth_compound_shapes.png" alt="Four-stage DelTriC component-growth diagnostic on compound shapes" loading="lazy">
-    <figcaption class="stage-caption">Representative 2-D diagnostic: conservative seed components, boundary decisions, and the final component graph.</figcaption>
+    <img src="images/phases/current_2d_compound.png" alt="Current four-stage DelTriC diagnostic on the Sipu Compound validation dataset" loading="lazy">
+    <figcaption class="stage-caption">Current native 2-D validation diagnostic: seed components, boundary decisions, and final assignments on Sipu Compound.</figcaption>
   </figure>
   <div class="stage-gallery">
     <figure class="stage-card" onclick="openLightbox(this)">
-      <img src="images/stages/overlap_blobs_10d.png" alt="Component growth on 10D overlap blobs" loading="lazy">
-      <figcaption>10-D overlap blobs — projected topology, original-space growth</figcaption>
+      <img src="images/stages/current_g2mg_32d.png" alt="Current component growth on a 32-dimensional Gaussian mixture" loading="lazy">
+      <figcaption>32-D Gaussian mixture — projected topology, original-space growth</figcaption>
     </figure>
     <figure class="stage-card" onclick="openLightbox(this)">
-      <img src="images/stages/aggregation_2d.png" alt="Component growth on aggregation shapes" loading="lazy">
+      <img src="images/stages/current_aggregation_2d.png" alt="Current component growth on Sipu Aggregation" loading="lazy">
       <figcaption>2-D aggregation — multiple dense nuclei grow into clusters</figcaption>
     </figure>
     <figure class="stage-card" onclick="openLightbox(this)">
-      <img src="images/stages/spiral_2d.png" alt="Component growth on spiral shapes" loading="lazy">
-      <figcaption>2-D spiral — non-convex local structure</figcaption>
+      <img src="images/stages/current_flame_2d.png" alt="Current component growth on Sipu Flame" loading="lazy">
+      <figcaption>2-D flame — irregular, non-convex local structure</figcaption>
     </figure>
     <figure class="stage-card" onclick="openLightbox(this)">
-      <img src="images/stages/graph_2d.png" alt="Component growth on graph shapes" loading="lazy">
+      <img src="images/stages/current_graph_2d.png" alt="Current component growth on a graph-shaped validation dataset" loading="lazy">
       <figcaption>2-D graph — sparse branches and dense local regions</figcaption>
     </figure>
     <figure class="stage-card" onclick="openLightbox(this)">
-      <img src="images/stages/fcps_atom_3d.png" alt="Component growth on the FCPS Atom dataset" loading="lazy">
+      <img src="images/stages/current_fcps_atom.png" alt="Current component growth on the FCPS Atom dataset" loading="lazy">
       <figcaption>3-D FCPS Atom — compact multi-cluster geometry</figcaption>
     </figure>
     <figure class="stage-card" onclick="openLightbox(this)">
-      <img src="images/stages/h2mg_64d.png" alt="Component growth on a 64D h2mg dataset" loading="lazy">
+      <img src="images/stages/current_h2mg_64d.png" alt="Current component growth on a 64-dimensional h2mg dataset" loading="lazy">
       <figcaption>64-D h2mg — original-space distances behind the topology</figcaption>
     </figure>
     <figure class="stage-card" onclick="openLightbox(this)">
-      <img src="images/stages/digits_784d.png" alt="Component growth on handwritten digits" loading="lazy">
+      <img src="images/stages/current_digits.png" alt="Current component growth on handwritten digits" loading="lazy">
       <figcaption>784-D handwritten digits — real high-dimensional data</figcaption>
     </figure>
     <figure class="stage-card" onclick="openLightbox(this)">
-      <img src="images/stages/chainlink_3d.png" alt="Component growth on the FCPS Chainlink dataset" loading="lazy">
+      <img src="images/stages/current_chainlink.png" alt="Current component growth on the FCPS Chainlink dataset" loading="lazy">
       <figcaption>3-D Chainlink — a challenging linked-manifold topology</figcaption>
     </figure>
   </div>
@@ -507,13 +508,13 @@ labels = pipe.<span class="fn">fit_predict</span>(X)</pre>
   <p class="section-desc" style="margin-left:auto;margin-right:auto;">Install DelTriC and discover clusters your current algorithm is missing.</p>
   <a href="https://pypi.org/project/deltric/" class="btn-primary" style="font-size:1.1rem;padding:1rem 2.5rem;">pip install deltric →</a>
   <br><br>
-  <a href="https://github.com/deltric/deltric" style="color:var(--text-dim);font-size:0.9rem;">View source on GitHub ↗</a>
+  <a href="https://github.com/kinit-sk/deltric" style="color:var(--text-dim);font-size:0.9rem;">View source on GitHub ↗</a>
 </section>
 
 <!-- Footer -->
 <footer>
   <p>DelTriC — Delaunay Triangulation Clustering</p>
-  <p style="margin-top:0.5rem;"><a href="https://pypi.org/project/deltric/">PyPI</a> · <a href="https://github.com/deltric/deltric">GitHub</a> · <a href="https://github.com/deltric/deltric/issues">Issues</a></p>
+  <p style="margin-top:0.5rem;"><a href="https://pypi.org/project/deltric/">PyPI</a> · <a href="https://github.com/kinit-sk/deltric">GitHub</a> · <a href="https://github.com/kinit-sk/deltric/issues">Issues</a></p>
   <p style="margin-top:1rem;font-size:0.75rem;">Licensed under MIT</p>
 </footer>
 
